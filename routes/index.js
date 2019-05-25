@@ -10,6 +10,10 @@ router.get('/home', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/product', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
 module.exports = router;
 
 /*conexion a la base de datos
