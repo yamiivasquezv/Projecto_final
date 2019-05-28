@@ -20,16 +20,6 @@
                     document.getElementById("mat").disabled=true;
                 }
             }
-            else if (id==="cbox2"){
-                if(value===true)
-                {
-                    // habilitamos
-                    document.getElementById("ced").disabled=false;
-                }else if(value===false){
-                    // deshabilitamos
-                    document.getElementById("ced").disabled=true;
-                }
-            }
         }
     </script>
 </head>
@@ -43,12 +33,12 @@
 </nav>
 <ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="">Home</a>
+        <a class="nav-link active" data-toggle="tab" href="/home">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="">Profile</a>
+        <a class="nav-link" data-toggle="tab" href="/login">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" href="/home">Informacion</a>
     </li>
 </ul>

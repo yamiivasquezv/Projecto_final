@@ -15,6 +15,27 @@ router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
 });
 
+router.post('/add', function(req, res) {
+ var data1 = {
+    cedula: req.body.ced,
+    primer_nombre: req.body.nombre1,
+    segundo_nombre: req.body.nombre2,
+    primer_apellido: req.body.apellido1,
+    segundo_apellido: req.body.apellido2,
+    tipo: req.body.tipo,
+    matricula: req.body.mat,
+    user: req.body.user,
+    pass: req.body.pass,
+    pin: req.body.pin
+  };
+  connect().query('INSERT INTO usuario set ? ', [data1], (err, usuario) => {
+    console.log(usuario);
+    res.send("listo");
+  });
+
+});
+
+
 router.get('/product', function(req, res) {
   res.render('index', { title: 'Express' });
 });

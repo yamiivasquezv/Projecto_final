@@ -10,28 +10,29 @@
                 <div class="card-body">
                     <form action="/add" method="post">
                         <legend>Datos del usuario: </legend>
-
                         <div class="form-group" >
-                            <input type="text" name="primer_nombre" placeholder="Primer nombre" class="form-control">
+                            <input type="text" name="ced" placeholder="Cedula" class="form-control">
+                        </div>
+                        <div class="form-group" >
+                            <input type="text" name="nombre1" placeholder="Primer nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="segundo_nombre" placeholder="Segundo nombre" class="form-control">
+                            <input type="text" name="nombre2" placeholder="Segundo nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="primer_apellido" placeholder="Primer apellido" class="form-control">
+                            <input type="text" name="apellido1" placeholder="Primer apellido" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="segundo_apellido" placeholder="Segundo apellido" class="form-control">
+                            <input type="text" name="apellido2" placeholder="Segundo apellido" class="form-control">
                         </div>
                         <h5>Tipo de usuario: </h5>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" id="cbox1" name="nombre" value="estudiante" onchange="habilitar(this.checked,id);">
+                                <input class="form-check-input" type="checkbox" id="cbox1" name="tipo" value="estudiante" onchange="habilitar(this.checked,id);">
                                 Estudiante
                                 <br>
 
-
-                                <input class="form-check-input" type="checkbox" id="cbox2" name="nombre" value="empleado" onchange="habilitar(this.checked,id);">
+                                <input class="form-check-input" type="checkbox" id="cbox2" name="tipo" value="empleado" >
                                 Empleado
                                 <br>
 
@@ -39,10 +40,7 @@
                         </div>
                         <br>
                         <div class="form-group" >
-                            <input type="text" id="mat" name="codigo" placeholder="Matricula" class="form-control" disabled="true">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="ced" name="codigo" placeholder="Cédula" class="form-control" disabled="true">
+                            <input type="text" id="mat" name="mat" placeholder="Matricula" class="form-control" disabled="true">
                         </div>
 
                         <h5>Información de login: </h5>
@@ -52,7 +50,10 @@
                         <div class="form-group">
                             <input type="password" name="pass" placeholder="Contraseña" class="form-control">
                         </div>
-                        <button type="button" class="btn btn-primary">
+                        <div class="form-group">
+                            <input type="password" name="pin" placeholder="Pin de 4 digitos" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
                             Registrar
                         </button>
                         <button type="button" class="btn btn-primary">
