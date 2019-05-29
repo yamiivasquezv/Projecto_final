@@ -1,6 +1,7 @@
-var express = require('express');
-var mysql= require ('mysql');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const indexcontroller= require('../controllers/indexcontroller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -15,43 +16,14 @@ router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
 });
 
-router.post('/add', function(req, res) {
- var data1 = {
-    cedula: req.body.ced,
-    primer_nombre: req.body.nombre1,
-    segundo_nombre: req.body.nombre2,
-    primer_apellido: req.body.apellido1,
-    segundo_apellido: req.body.apellido2,
-    tipo: req.body.tipo,
-    matricula: req.body.mat,
-    user: req.body.user,
-    pass: req.body.pass,
-    pin: req.body.pin
-  };
-  connect().query('INSERT INTO usuario set ? ', [data1], (err, usuario) => {
-    console.log(usuario);
-    res.send("listo");
-  });
-
-});
+//aqui funciona el boton "registrar" usuarios
+router.post('/add', indexcontroller.add );
 
 
 router.get('/product', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
-
-//conexion a la base de datos
-function connect(){
-  return mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'bicicletas0931',
-    database: 'prueba',
-    port: 3306,
-    insecureAuth : true
-  });
-}
 
 module.exports = router;
 
