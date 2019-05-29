@@ -1,6 +1,7 @@
 const mysql= require ('mysql');
 const controller={};
 
+
 controller.add=(req,res)=> {
     var data1 = {
         cedula: req.body.ced,
@@ -19,10 +20,12 @@ controller.add=(req,res)=> {
             res.json(err);
         }
         console.log(usuario);
-        res.render('usuario', {
-            data: usuario
-        });
+        res.send("Hola");
     });
+};
+
+controller.pin=(req,res)=>{
+    res.render('home');
 };
 //crear conexion a la base de datos
 

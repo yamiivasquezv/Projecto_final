@@ -18,10 +18,16 @@ router.get('/login', function(req, res) {
 
 //aqui funciona el boton "registrar" usuarios
 router.post('/add', indexcontroller.add );
+router.post('/verpin', indexcontroller.pin);
+
 
 
 router.get('/product', function(req, res) {
   res.render('index', { title: 'Express' });
+});
+
+router.get('/alquiler', function (req, res) {
+    res.render('alquiler', { title: 'Express' });
 });
 
 

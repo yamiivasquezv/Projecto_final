@@ -22,6 +22,32 @@
             }
         }
     </script>
+
+    <script type="text/javascript">
+        document.title = "Título de la pagina";
+
+
+        var answer_mode = 0;
+
+        function clear1() {
+            document.forms["calculator"].display.value = "";
+        }
+
+        function clear() {
+            clear1();
+        }
+
+
+        function number(ch) {
+            if (answer_mode) {
+                clear1();
+                answer_mode = 0;
+
+            }
+            document.forms["calculator"].display.value += ch;
+            var hoja=ch
+        }
+    </script>
 </head>
 <body>
 <nav class= 'navbar navbar-expand-lg navbar-dark bg-primary'>
