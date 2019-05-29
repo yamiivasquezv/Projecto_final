@@ -35,12 +35,6 @@ controller.pin=(req,res)=>{
         console.log(rows);
     });
 };
-
-
-
-
-
-
 //crear conexion a la base de datos
 
 function connect(){
