@@ -2,15 +2,14 @@
 
 <div class="container">
     <div class="row mt-5">
-        <form name="datos">
+        <form name="calculator" action="/verpin" method="post">
 
             <legend>Escanee su carnet universitario: </legend>
             <div class="form-group" >
                 <input type="text" name="cod" placeholder="Codigo" class="form-control">
             </div>
-
             <legend>Digite su pin: </legend>
-            <form name="calculator" method="post" action="/verpin" aria-disabled="true">
+
 
                 <input name="display" value="" size="6" style="text: Arial; font-size: 20pt; background-color:#A18A85" >
 
@@ -48,10 +47,16 @@
 
                     </tbody>
                 </table>
-            </form>
         </form>
     </div>
 </div>
+
+
+
+
+
+
+
 
 
 

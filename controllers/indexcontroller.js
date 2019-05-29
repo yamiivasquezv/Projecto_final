@@ -25,8 +25,22 @@ controller.add=(req,res)=> {
 };
 
 controller.pin=(req,res)=>{
-    res.render('home');
+    var cod=req.body.cod;
+    var pin= req.body.display;
+   connect().query('SELECT cedula FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+        res.send("aparecio");
+        console.log(rows);
+    });
 };
+
+
+
+
+
+
 //crear conexion a la base de datos
 
 function connect(){
