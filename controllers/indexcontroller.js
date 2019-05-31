@@ -38,6 +38,10 @@ controller.pin=(req,res)=>{
 
     });
 };
+controller.alquilar=(req,res)=>{
+    console.log(req.body.numero);
+    res.render('home');
+};
 //crear conexion a la base de datos
 
 function connect(){

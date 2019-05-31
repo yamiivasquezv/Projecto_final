@@ -19,11 +19,6 @@ router.get('/login', function(req, res) {
 //aqui funciona el boton "registrar" usuarios
 router.post('/add', indexcontroller.add );
 
-/*
-router.get('/product', function(req, res) {
-  res.render('index', { title: 'Express' });
-});*/
-
 //Home
 
 //BOTON ALQUILER
@@ -35,7 +30,8 @@ router.get('/pin', function (req, res) {
 //Boton Enter
 router.post('/verpin', indexcontroller.pin);
 
-
+//Boton de numero de bicicleta
+router.post('/crearalquiler', indexcontroller.alquilar);
 //Boton ENTER
 
 /*router.get('/alquiler', function (req, res) {

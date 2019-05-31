@@ -6,7 +6,32 @@
     <title>Bicicletas Universitarias</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
 
+    <script>
+        function habilitarboton(id)
+        {
+            if (id==="btn1"){
+                    document.getElementById("btn2").disabled=true;
+                    document.getElementById("btn3").disabled=true;
+                    document.getElementById("btn4").disabled=true;
 
+                }
+            else if(id==='btn2'){
+                document.getElementById("btn1").disabled=true;
+                document.getElementById("btn3").disabled=true;
+                document.getElementById("btn4").disabled=true;
+                }
+            else if(id==='btn3'){
+                document.getElementById("btn1").disabled=true;
+                document.getElementById("btn2").disabled=true;
+                document.getElementById("btn4").disabled=true;
+            }
+            else if(id==='btn4'){
+                document.getElementById("btn1").disabled=true;
+                document.getElementById("btn3").disabled=true;
+                document.getElementById("btn2").disabled=true;
+            }
+        }
+    </script>
     <script>
         function habilitar(value,id)
         {
