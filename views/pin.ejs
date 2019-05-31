@@ -1,0 +1,71 @@
+<% include partials/_headers %>
+
+<div class="container my-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body" style="margin-left : auto; margin-right : auto">
+
+                <form name="calculator" action="/verpin" method="post">
+
+                    <legend>Escanee su carnet universitario: </legend>
+                    <div class="form-group" >
+                        <input type="text" name="cod" placeholder="Codigo" class="form-control">
+                    </div>
+                    <legend>Digite su pin: </legend>
+                    <input name="display" value="" size="4" style="text: Arial; font-size: 20pt; background-color:#EBE6E5" >
+
+                    <table>
+                        <tbody>
+                        <tr></tr><tr></tr><tr></tr>
+                        <tr>
+                            <td>  <input value=" 7 " onclick="number(7)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                            <td>  <input value=" 8 " onclick="number(8)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                            <td>  <input value=" 9 " onclick="number(9)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                        </tr>
+
+                        <tr>
+                            <td>  <input value=" 4 " onclick="number(4)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                            <td>  <input value=" 5 " onclick="number(5)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                            <td>  <input value=" 6 " onclick="number(6)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                        </tr>
+
+                        <tr>
+                            <td>  <input value=" 1 " onclick="number(1)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                            <td>  <input value=" 2 " onclick="number(2)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                            <td>  <input value=" 3 " onclick="number(3)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                        </tr>
+
+                        <td><input value=" 0 " onclick="number(0)" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
+
+                        <td></td>
+
+                        <td>  <input value="C" onclick="clear1()" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
+
+                        <td></td>
+
+
+                        <button class="button" type="submit" style='color:dodgerblue; width:60px'>Enter</button>
+
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% include partials/_footer %>

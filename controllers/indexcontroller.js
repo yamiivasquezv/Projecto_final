@@ -1,7 +1,7 @@
 const mysql= require ('mysql');
 const controller={};
 
-
+//agregar un usuario
 controller.add=(req,res)=> {
     var data1 = {
         cedula: req.body.ced,
@@ -24,15 +24,18 @@ controller.add=(req,res)=> {
     });
 };
 
+//revisar si el usuario existe con el pin y matricula o cedula
 controller.pin=(req,res)=>{
     var cod=req.body.cod;
     var pin= req.body.display;
-   connect().query('SELECT cedula FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
+   connect().query('SELECT * FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
         if (err) {
             res.json(err);
         }
-        res.send("aparecio");
-        console.log(rows);
+
+           //console.log(rows);
+       res.render('alquiler', {pinuser: rows});
+
     });
 };
 //crear conexion a la base de datos
