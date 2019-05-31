@@ -39,8 +39,18 @@ controller.pin=(req,res)=>{
     });
 };
 controller.alquilar=(req,res)=>{
-    console.log(req.body.numero);
-    res.render('home');
+    var todo=req.body.numero;
+    var num=todo.substring(0,1);
+    var id=todo.substring(1,12);
+
+    connect().query('INSERT INTO alquiler(cedula) VALUES (?)', [id], (err, alquiler) => {
+        if (err) {
+            res.json(err);
+        }
+        console.log(alquiler);
+        res.render('home');
+    });
+
 };
 //crear conexion a la base de datos
 
