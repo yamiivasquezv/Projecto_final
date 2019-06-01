@@ -1,0 +1,33 @@
+<% include partials/_headers %>
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-7">
+
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="post">
+                        <legend>Login: </legend>
+                        <div class="form-group" >
+                            <input type="text" name="usuario" placeholder="Usuario" class="form-control">
+                        </div>
+                        <div class="form-group" >
+                            <input type="text" name="contraseña" placeholder="Contraseña" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Login
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='/login'">
+                            Registrarse
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/_footer %>

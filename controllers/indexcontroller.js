@@ -64,4 +64,18 @@ function connect(){
         insecureAuth : true
     });
 }
+/*
+controller.puestos=(req,res)=>{
+    var cod=req.body.cod;
+    var pin= req.body.display;
+    connect().query('SELECT * FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
+        if (err) {
+            res.json(err);
+        }
+
+        //console.log(rows);
+        res.render('alquiler', {pinuser: rows});
+
+    });
+};*/
 module.exports=controller;

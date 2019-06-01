@@ -8,7 +8,7 @@
                     <h3 style="text-transform: capitalize;"> <%= pinuser[0].primer_nombre%>, Elige la bicicleta que deseas utilizar:</h3>
                     <br>
                     <div class="container">
-                        <button type="submit" name="numero" id="btn1" value="1" class="btn btn-primary" onclick="habilitarboton(id)" style="display: inline-block;
+                        <button type="submit" name="numero" id="btn1" value="1<%= pinuser[0].cedula%>" class="btn btn-primary" onclick="habilitarboton(id)" style="display: inline-block;
                     width: 150px;
                     height:150px;
                     background-color:#979A9A ;
@@ -30,7 +30,8 @@
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit"  name="numero" id="btn2" value="2" class="btn btn-primary" onclick="habilitarboton(id) "style="display: inline-block;
+                        <button type="submit"  name="numero" id="btn2" value="2<%= pinuser[0].cedula%>" class="btn btn-primary" onclick="habilitarboton(id) "style="display: inline-block;
+
                     width:150px;
                     height:150px;
                     background-color:#979A9A ;

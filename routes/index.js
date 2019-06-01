@@ -11,6 +11,9 @@ router.get('/', function(req, res) {
 router.get('/home', function(req, res) {
   res.render('home', { title: 'Express' });
 });
+router.get('/entrar', function(req, res) {
+    res.render('login', { title: 'Express' });
+});
 
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
@@ -34,9 +37,10 @@ router.post('/verpin', indexcontroller.pin);
 router.post('/crearalquiler', indexcontroller.alquilar);
 //Boton ENTER
 
+
 /*router.get('/alquiler', function (req, res) {
     res.render('alquiler', { title: 'Express' });
-});*/
-
+});
+*/
 module.exports = router;
 
