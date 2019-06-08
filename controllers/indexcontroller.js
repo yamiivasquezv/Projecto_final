@@ -32,7 +32,6 @@ controller.pin=(req,res)=>{
         if (err) {
             res.json(err);
         }
-
            //console.log(rows);
        res.render('alquiler', {pinuser: rows});
 
@@ -51,6 +50,26 @@ controller.alquilar=(req,res)=>{
         res.render('home');
     });
 
+};
+
+controller.auth=(req,res)=>{
+    var username= req.body.usuario;
+    var password= req.body.passw;
+    if (username && password){
+        connect().query('SELECT * FROM usuario WHERE user=? AND pass=?',[username,password], function (error,results,fields) {
+          if (results.length>0){
+              req.session.loggedin=true;
+              req.session.username=username;
+              res.redirect('/administrador');
+          }  else{
+              res.send('Usuario o contraseña incorrecta');
+          }
+          res.end();
+        });
+    } else{
+        res.send('Por favor debe ingresar usuario y contraseña!');
+        res.end();
+    }
 };
 //crear conexion a la base de datos
 
