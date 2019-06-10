@@ -11,9 +11,18 @@ router.get('/', function(req, res) {
 router.get('/home', function(req, res) {
   res.render('home', { title: 'Express' });
 });
-router.get('/entrar', function(req, res) {
+
+router.get('/signin', function(req, res) {
     res.render('login', { title: 'Express' });
 });
+
+router.get('/alquilar', function (req, res) {
+    res.render('pin', { title: 'Express' });
+});
+
+
+///////////////////////////////////////////////////////////////
+
 
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
@@ -24,20 +33,24 @@ router.post('/add', indexcontroller.add );
 //Home
 
 //BOTON ALQUILER
-router.get('/pin', function (req, res) {
-    res.render('pin', { title: 'Express' });
-});
+
 router.get('/administrador', function (req, res) {
     if (req.session.loggedin) {
-        res.render('administrador', { title: 'Express' });
+        res.render('administrador');
     } else {
         res.send('Please login to view this page!');
     }
     res.end();
 });
-
-
-
+/*
+router.get('/alquiler', function (req, res) {
+    if (req.session.loggedin) {
+        res.render('alquiler', { pinuser: req.session.});
+    } else {
+        res.send('Please login to view this page!');
+    }
+    res.end();
+});*/
 //PIN
 //Boton Enter
 router.post('/verpin', indexcontroller.pin);
