@@ -14,19 +14,16 @@
                     <form action="/add" method="post">
                         <legend>Datos del usuario: </legend>
                         <div class="form-group" >
-                            <input type="text" name="ced" placeholder="Cedula" class="form-control" autofocus>
-                        </div>
-                        <div class="form-group" >
-                            <input type="text" name="nombre1" placeholder="Primer nombre" class="form-control">
+                            <input type="text" name="primername" placeholder="Primer nombre" class="form-control" autofocus>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="nombre2" placeholder="Segundo nombre" class="form-control">
+                            <input type="text" name="segundoname" placeholder="Segundo nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="apellido1" placeholder="Primer apellido" class="form-control">
+                            <input type="text" name="primerapellido" placeholder="Primer apellido" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="apellido2" placeholder="Segundo apellido" class="form-control">
+                            <input type="text" name="segundoapellido" placeholder="Segundo apellido" class="form-control">
                         </div>
                         <h5>Tipo de usuario: </h5>
                         <div class="form-check">
@@ -35,23 +32,26 @@
                                 Estudiante
                                 <br>
 
-                                <input class="form-check-input" type="checkbox" id="cbox2" name="tipo" value="empleado" >
-                                Empleado
+                                <input class="form-check-input" type="checkbox" id="cbox2" name="tipo" value="empleado" onchange="habilitar(this.checked,id);" >
+                                Empleado/Administrador
                                 <br>
 
                             </label>
                         </div>
                         <br>
                         <div class="form-group" >
-                            <input type="text" id="mat" name="mat" placeholder="Matricula" class="form-control" disabled="true">
+                            <input type="text" id="mat" name="matricula" placeholder="Matricula" class="form-control" disabled="true">
+                        </div>
+                        <div class="form-group" >
+                            <input type="text" id="ced" name="cedula" placeholder="Cedula" class="form-control" disabled="true">
                         </div>
 
                         <h5>Información de login: </h5>
                         <div class="form-group">
-                            <input type="text" name="user" placeholder="Nombre de usuario" class="form-control">
+                            <input type="text" name="usuario" placeholder="Nombre de usuario" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="pass" placeholder="Contraseña" class="form-control">
+                            <input type="password" name="contrasena" placeholder="Contraseña" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="password" name="pin" placeholder="Pin de 4 digitos" class="form-control">

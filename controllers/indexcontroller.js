@@ -1,5 +1,5 @@
 const mysql= require ('mysql');
-const User=require('../modelos/mongo');
+const User=require('../modelos/usuario');
 const controller={};
 
 //agregar un usuario
@@ -8,11 +8,13 @@ controller.add=async (req,res)=> {
     if(req.body.tipo==="estudiante"){
       const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula});
         await nusuario.save();
+        //req.flash('success_msg','Usuario registrado satisfactoriamente');
         res.redirect('/signin');
     }
     else if(req.body.tipo==="empleado"){
        const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, cedula});
        await nusuario.save();
+      // req.flash('success_msg','Usuario registrado satisfactoriamente');
         res.redirect('/signin');
     }
    /* var data1 = {

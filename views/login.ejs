@@ -1,5 +1,14 @@
 <% include partials/_headers %>
 
+<!--
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+s-->
+
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-7">
@@ -17,21 +26,27 @@
         </div>
         <div class="col-md-5">
             <div class="card">
+                <div class="card-header">
+                    <h3>Login</h3>
+                </div>
                 <div class="card-body">
                     <form action="/auth" method="post">
-                        <legend>Login: </legend>
+
                         <div class="form-group" >
-                            <input type="text" name="usuario" placeholder="Usuario" class="form-control">
+                            <input type="text" name="usuario" placeholder="Usuario" class="form-control" autofocus>
                         </div>
                         <div class="form-group" >
                             <input type="text" name="passw" placeholder="Contraseña" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">
-                            Login
-                        </button>
-                        <button type="button" class="btn btn-primary" onclick="location.href='/login'">
-                            Registrarse
-                        </button>
+                        <div class="form-group" >
+                            <button type="submit" class="btn btn-primary">
+                                Login
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='/login'">
+                                Registrarse
+                            </button>
+                        </div>
+
                     </form>
                 </div>
             </div>
