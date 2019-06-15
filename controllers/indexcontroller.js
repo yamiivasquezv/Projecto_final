@@ -3,19 +3,17 @@ const User=require('../modelos/mongo');
 const controller={};
 
 //agregar un usuario
-controller.add=(req,res)=> {
+controller.add=async (req,res)=> {
     const {primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula,cedula}=req.body;
     if(req.body.tipo==="estudiante"){
-      const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin});
-        //nusuario.matricula=({matricula});
-        console.log(nusuario);
-        res.send('ok');
+      const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula});
+        await nusuario.save();
+        res.redirect('/signin');
     }
-    else if(req.body.tipo==="empleado" || req.body.tipo==="administrador"){
-       const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin});
-      // nusuario.cedula=({cedula});
-        console.log(nusuario);
-        res.send('ok');
+    else if(req.body.tipo==="empleado"){
+       const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, cedula});
+       await nusuario.save();
+        res.redirect('/signin');
     }
    /* var data1 = {
         cedula: req.body.ced,
@@ -39,8 +37,26 @@ controller.add=(req,res)=> {
 };
 
 //revisar si el usuario existe con el pin y matricula o cedula
-controller.pin=(req,res)=>{
-    var cod=req.body.cod;
+controller.pin= async (req,res)=>{
+    const pin=req.body.display;
+    const cod=req.body.cod;
+
+  const pinuser= await User.find(
+        {$and:
+                [
+                    {pin: pin},
+                    {$or:
+                            [
+                                {cedula: cod},
+                                {matricula: cod}
+                            ]
+                    }
+                ]
+        });
+  console.log(pinuser);
+  res.render('alquiler',{pinuser});
+
+ /*   var cod=req.body.cod;
     var pin= req.body.display;
    connect().query('SELECT * FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
         if (err) {
@@ -49,12 +65,16 @@ controller.pin=(req,res)=>{
            //console.log(rows);
        res.render('alquiler', {pinuser: rows});
 
-    });
+    });*/
 };
-controller.alquilar=(req,res)=>{
-    var todo=req.body.numero;
-    var num=todo.substring(0,1);
-    var id=todo.substring(1,12);
+controller.alquilar= async (req,res)=>{
+   // slot=req.body.slot;
+    const user= await User.findById(req.params.id);
+    //user.alquiler={slot};
+    res.redirect('/home');
+    console.log(user);
+
+   /*
 
     connect().query('INSERT INTO alquiler(cedula) VALUES (?)', [id], (err, alquiler) => {
         if (err) {
@@ -62,7 +82,7 @@ controller.alquilar=(req,res)=>{
         }
         console.log(alquiler);
         res.render('home');
-    });
+    });*/
 
 };
 
