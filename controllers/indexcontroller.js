@@ -1,9 +1,23 @@
 const mysql= require ('mysql');
+const User=require('../modelos/mongo');
 const controller={};
 
 //agregar un usuario
 controller.add=(req,res)=> {
-    var data1 = {
+    const {primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula,cedula}=req.body;
+    if(req.body.tipo==="estudiante"){
+      const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin});
+        //nusuario.matricula=({matricula});
+        console.log(nusuario);
+        res.send('ok');
+    }
+    else if(req.body.tipo==="empleado" || req.body.tipo==="administrador"){
+       const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin});
+      // nusuario.cedula=({cedula});
+        console.log(nusuario);
+        res.send('ok');
+    }
+   /* var data1 = {
         cedula: req.body.ced,
         primer_nombre: req.body.nombre1,
         segundo_nombre: req.body.nombre2,
@@ -21,7 +35,7 @@ controller.add=(req,res)=> {
         }
         console.log(usuario);
         res.send("Hola");
-    });
+    });*/
 };
 
 //revisar si el usuario existe con el pin y matricula o cedula
@@ -55,6 +69,21 @@ controller.alquilar=(req,res)=>{
 controller.auth=(req,res)=>{
     var username= req.body.usuario;
     var password= req.body.passw;
+    const errors=[];
+    if(!username){
+        errors.push({text: 'Por favor escriba el usuario'});
+    }
+    if (!password){
+        errors.push({text: 'Por favor escriba su contraseña'});
+    }
+    if(errors.length>0){
+        res.render('login',{
+            errors,
+            username,
+            password
+        });
+    }
+    /*
     if (username && password){
         connect().query('SELECT * FROM usuario WHERE user=? AND pass=?',[username,password], function (error,results,fields) {
           if (results.length>0){
@@ -69,7 +98,7 @@ controller.auth=(req,res)=>{
     } else{
         res.send('Por favor debe ingresar usuario y contraseña!');
         res.end();
-    }
+    }*/
 };
 //crear conexion a la base de datos
 
