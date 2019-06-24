@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const indexcontroller= require('../controllers/indexcontroller');
-
+const passport=require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -30,6 +30,12 @@ router.get('/administrador', function (req, res) {
 router.post('/add', indexcontroller.add );
 router.post('/verpin', indexcontroller.pin);
 router.put('/crearalquiler/:id', indexcontroller.alquilar);
-router.post('/auth', indexcontroller.auth);
+
+router.post('/auth', passport.authenticate('local',{
+    successRedirect:'/home',
+    failureRedirect:'/signin',
+    failureFlash:true
+}));
+
 module.exports = router;
 

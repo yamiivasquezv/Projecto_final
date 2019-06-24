@@ -1,22 +1,35 @@
-const mysql= require ('mysql');
+// const mysql= require ('mysql');
 const User=require('../modelos/usuario');
+
+
+
 const controller={};
 
 //agregar un usuario
 controller.add=async (req,res)=> {
     const {primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula,cedula}=req.body;
-    if(req.body.tipo==="estudiante"){
-      const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula});
-        await nusuario.save();
-        //req.flash('success_msg','Usuario registrado satisfactoriamente');
-        res.redirect('/signin');
+    const usuariouser= await User.findOne({usuario: req.body.usuario});
+    if (usuariouser){
+        req.flash('error_msg','No se pudo registrar');
+        res.redirect('/login');
     }
-    else if(req.body.tipo==="empleado"){
-       const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, cedula});
-       await nusuario.save();
-      // req.flash('success_msg','Usuario registrado satisfactoriamente');
-        res.redirect('/signin');
+    else{
+        if(req.body.tipo==="estudiante"){
+            const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula});
+            nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
+            await nusuario.save();
+            req.flash('success_msg','Usuario registrado satisfactoriamente');
+            res.redirect('/signin');
+        }
+        else if(req.body.tipo==="empleado"){
+            const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, cedula});
+            nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
+            await nusuario.save();
+            req.flash('success_msg','Usuario registrado satisfactoriamente');
+            res.redirect('/signin');
+        }
     }
+
    /* var data1 = {
         cedula: req.body.ced,
         primer_nombre: req.body.nombre1,
@@ -88,7 +101,7 @@ controller.alquilar= async (req,res)=>{
 
 };
 
-controller.auth=(req,res)=>{
+/*controller.auth=(req,res)=>{
     var username= req.body.usuario;
     var password= req.body.passw;
     const errors=[];
@@ -120,9 +133,11 @@ controller.auth=(req,res)=>{
     } else{
         res.send('Por favor debe ingresar usuario y contraseña!');
         res.end();
-    }*/
-};
+    }
+};*/
+
 //crear conexion a la base de datos
+ /*
 
 function connect(){
     return mysql.createConnection({
@@ -133,7 +148,7 @@ function connect(){
         port: 3306,
         insecureAuth : true
     });
-}
+}*/
 /*
 controller.puestos=(req,res)=>{
     var cod=req.body.cod;
