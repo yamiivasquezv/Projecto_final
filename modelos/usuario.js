@@ -21,11 +21,19 @@ usuarioSchema.methods.encryptPassword=async (contrasena)=>{
    const hash= await bcrypt.hash(contrasena,salt);
    return hash;
 };
+usuarioSchema.methods.encryptPin=async (pin)=>{
+    const salt= await bcrypt.genSalt(10);
+    const hash= await bcrypt.hash(pin,salt);
+    return hash;
+};
 
 usuarioSchema.methods.matchPassword= async function(contrasena){
   return await bcrypt.compare(contrasena, this.contrasena);
 };
 
+usuarioSchema.methods.matchPin= async function(pin){
+    return await bcrypt.compare(pin, this.pin);
+};
 module.exports=mongoose.model('usuarios',usuarioSchema);
 
 

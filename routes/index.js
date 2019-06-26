@@ -19,6 +19,9 @@ router.get('/alquilar', function (req, res) {
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
 });
+router.get('/alquiler', function (req, res) {
+    res.render('alquiler', { title: 'Express' });
+});
 router.get('/administrador', function (req, res) {
     if (req.session.loggedin) {
         res.render('administrador');
@@ -28,10 +31,15 @@ router.get('/administrador', function (req, res) {
     res.end();
 });
 router.post('/add', indexcontroller.add );
-router.post('/verpin', indexcontroller.pin);
+//router.post('/verpin', indexcontroller.pin);
+router.post('/verpin', passport.authenticate('passport',{
+    successRedirect:'/alquiler',
+    failureRedirect:'/alquilar',
+    failureFlash:true
+}));;
 router.put('/crearalquiler/:id', indexcontroller.alquilar);
 
-router.post('/auth', passport.authenticate('local',{
+router.post('/auth', passport.authenticate('pin',{
     successRedirect:'/home',
     failureRedirect:'/signin',
     failureFlash:true

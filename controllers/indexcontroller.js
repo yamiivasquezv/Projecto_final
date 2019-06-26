@@ -17,6 +17,7 @@ controller.add=async (req,res)=> {
         if(req.body.tipo==="estudiante"){
             const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula});
             nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
+            nusuario.pin= await nusuario.encryptPin(req.body.pin);
             await nusuario.save();
             req.flash('success_msg','Usuario registrado satisfactoriamente');
             res.redirect('/signin');
@@ -24,6 +25,7 @@ controller.add=async (req,res)=> {
         else if(req.body.tipo==="empleado"){
             const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, cedula});
             nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
+            nusuario.pin= await nusuario.encryptPin(req.body.pin);
             await nusuario.save();
             req.flash('success_msg','Usuario registrado satisfactoriamente');
             res.redirect('/signin');

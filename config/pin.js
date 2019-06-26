@@ -4,23 +4,22 @@ const LocalStrategy= require ('passport-local').Strategy;
 const User=require('../modelos/usuario');
 
 
+
 //que datos me va a enviar para autenticar
-passport.use('passport', new LocalStrategy({
-    usernameField: 'usuario',
-    passwordField: 'contrasena'
-}, async (usuario, contrasena, done) => {
-    const user = await User.findOne({usuario: usuario});
+passport.use('pin',new LocalStrategy({
+    usernameField: 'matricula',
+    passwordField: 'pin'
+}, async (matricula, pin, done) => {
+    const user = await User.findOne({$or: [{matricula: matricula}, {cedula: matricula}]});
     // console.log(user);
     if (!user) {
         return done(null, false, {message: 'El usuario no fue encontrado'});
     } else {
-        console.log(user._id);
-        const match = await user.matchPassword(contrasena);
+        const match = await user.matchPin(pin);
         if (match) {
             return done(null, user);
-
         } else {
-            return done(null, false, {message: 'Contraseña incorrecta'});
+            return done(null, false, {message: 'Pin incorrecto'});
         }
     }
 
