@@ -15,6 +15,8 @@ var indexRouter = require('./routes/index');
 const app = express();
 require('./mongodb');
 require('./config/passport');
+require('./config/pin');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
