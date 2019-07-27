@@ -40,16 +40,16 @@ function ToggleOutput(ioname){
         case "on":
             var message = new Paho.MQTT.Message("OFF");
             message.destinationName = "candado/" + ioname + "/set";
-            message.qos=1;
-            message.retain=true;
+            //message.qos=1;
+            //message.retain=true;
             mqttClient.send(message);
             cell.className = "set_off";
             break;
         case "off":
             var message = new Paho.MQTT.Message("ON");
             message.destinationName = "candado/" + ioname + "/set";
-            message.qos=1;
-            message.retain=true;
+            //message.qos=1;
+           // message.retain=true;
             mqttClient.send(message);
             cell.className = "set_on";
             break;

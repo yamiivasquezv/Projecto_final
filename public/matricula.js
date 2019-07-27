@@ -1,17 +1,12 @@
 var hostname = "192.168.1.162";
 var port = 9001;
-var clientId = "vilma";
-//var clientId = user._id;
-//console.log("ID:" + clientId);
+var clientId = "hola";
 clientId += new Date().getUTCMilliseconds();
-//var username = "webclient";
-//var password = "Super$icher123";
+var subscription = "matricula/+/set";
 
-var subscription = "candado/+/set";
-//var subscription = "hola";
 
 mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
-mqttClient.qos=3;
+//mqttClient.qos=3;
 mqttClient.onMessageArrived = MessageArrived;
 mqttClient.onConnectionLost = ConnectionLost;
 Connect();
@@ -22,16 +17,13 @@ function Connect(){
         onSuccess: Connected,
         onFailure: ConnectionFailed,
         keepAliveInterval: 10,
-        //userName: username,
-        //useSSL: true,
-        //password: password
     });
 }
 
 /*Callback for successful MQTT connection */
 function Connected() {
     console.log("Connected");
-    mqttClient.subscribe(subscription,{qos:1});
+    mqttClient.subscribe(subscription);
 }
 
 /*Callback for failed connection*/
@@ -50,19 +42,12 @@ function ConnectionLost(res) {
 /*Callback for incoming message processing */
 function MessageArrived(message) {
     console.log(message.destinationName +" : " + message.payloadString);
-    switch(message.payloadString){
-        case "ON":
-            displayClass = "on";
-            break;
-        case "OFF":
-            displayClass = "off";
-            break;
-        default:
-            displayClass = "unknown";
-    }
+    matricula=message.payloadString;
+
+
     var topic = message.destinationName.split("/");
-    if (topic.length === 3){
+    if (topic.length === 3) {
         var ioname = topic[1];
-        UpdateElement(ioname, displayClass);
+        UpdateElement(ioname, matricula);
     }
 }

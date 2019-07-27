@@ -38,11 +38,15 @@ router.get('/administrador', function (req, res) {
 });
 router.post('/add', indexcontroller.add );
 //router.post('/verpin', indexcontroller.pin);
+
+
 router.post('/verpin', passport.authenticate('pin',{
     successRedirect:'/alquiler',
     failureRedirect:'/alquilar',
     failureFlash:true
 }));
+
+
 router.put('/crearalquiler/:id', indexcontroller.alquilar);
 
 router.post('/auth', passport.authenticate('passport',{

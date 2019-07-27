@@ -13,39 +13,13 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
 
     <script src="/ui.js" type="text/javascript" defer></script>
-    <script src="/mqtt.js" type="text/javascript"></script>
+    <script src="/ mqtt.js" type="text/javascript"></script>
     <!--Lo demas-->
     <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
     <link rel="stylesheet" href="/stylesheets/body.css">
 
 
-   <!-- <script>
-        function habilitarboton(id)
-        {
-            if (id==="btn1"){
-                document.getElementById("btn2").disabled=true;
-                document.getElementById("btn3").disabled=true;
-                document.getElementById("btn4").disabled=true;
-
-            }
-            else if(id==='btn2'){
-                document.getElementById("btn1").disabled=true;
-                document.getElementById("btn3").disabled=true;
-                document.getElementById("btn4").disabled=true;
-            }
-            else if(id==='btn3'){
-                document.getElementById("btn1").disabled=true;
-                document.getElementById("btn2").disabled=true;
-                document.getElementById("btn4").disabled=true;
-            }
-            else if(id==='btn4'){
-                document.getElementById("btn1").disabled=true;
-                document.getElementById("btn3").disabled=true;
-                document.getElementById("btn2").disabled=true;
-            }
-        }
-    </script>-->
     <style type="text/css">
         body {font-family: sans-serif;}
         table {empty-cells: show;}
@@ -128,7 +102,7 @@
                 <h3>Disponibilidad de la estacion</h3>
             </div>
             <div class="card-body" style="margin-left : auto; margin-right : auto">
-                <h3 style="text-transform: capitalize;"> Elige la bicicleta que deseas utilizar:</h3>
+                <h3 style="text-transform: capitalize;"><%=user.primername%> Elige la bicicleta que deseas utilizar:</h3>
                 <br>
                 <div class="container">
                     <button type="submit" class="unknown"  id="slot0"
