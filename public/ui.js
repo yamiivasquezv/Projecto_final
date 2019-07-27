@@ -11,6 +11,7 @@ tópico "mywebio/output0/set". Cuando la solicitud está sin confirmar se muestr
 el nuevo estado como payload y el tópico "mywebio/output0/status". Cuando Web-Client recibe el mensaje cambia de nuevo la
 salida al color más intenso.*/
 
+//hola//
 /** Web-IO 4.0: MQTT WebSocket example*/
 
 /* Updates the CSS class of an DOM element */
