@@ -1,13 +1,15 @@
-var hostname = "192.168.0.8";
+var hostname = "192.168.1.162";
 var port = 9001;
 var clientId = "vilma";
 clientId += new Date().getUTCMilliseconds();
 //var username = "webclient";
 //var password = "Super$icher123";
+
 var subscription = "candado/+/set";
 //var subscription = "hola";
 
 mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
+mqttClient.qos=3;
 mqttClient.onMessageArrived = MessageArrived;
 mqttClient.onConnectionLost = ConnectionLost;
 Connect();
@@ -27,7 +29,7 @@ function Connect(){
 /*Callback for successful MQTT connection */
 function Connected() {
     console.log("Connected");
-    mqttClient.subscribe(subscription);
+    mqttClient.subscribe(subscription,{qos:1});
 }
 
 /*Callback for failed connection*/

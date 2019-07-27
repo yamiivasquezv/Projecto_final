@@ -17,7 +17,15 @@ salida al color más intenso.*/
 
 function UpdateElement(ioname, displayClass){
     var cell = document.getElementById(ioname);
-    if (cell){
+    if ((displayClass==="on")&&(cell)){
+        cell.className = displayClass;
+        cell.disabled=false;
+    }
+    else if ((displayClass==="off")&&(cell)){
+        cell.className = displayClass;
+        cell.disabled=true;
+    }
+    else{
         cell.className = displayClass;
     }
 }
@@ -31,12 +39,16 @@ function ToggleOutput(ioname){
         case "on":
             var message = new Paho.MQTT.Message("OFF");
             message.destinationName = "candado/" + ioname + "/set";
+            message.qos=1;
+            message.retain=true;
             mqttClient.send(message);
             cell.className = "set_off";
             break;
         case "off":
             var message = new Paho.MQTT.Message("ON");
             message.destinationName = "candado/" + ioname + "/set";
+            message.qos=1;
+            message.retain=true;
             mqttClient.send(message);
             cell.className = "set_on";
             break;
@@ -51,11 +63,10 @@ function ToggleOutput(ioname){
 function EnableToggle(ioname){
     var cell = document.getElementById(ioname);
     if (cell){
-        cell.addEventListener("click",
-            function(){
-                ToggleOutput(ioname)
-            },
-            true);
+            cell.addEventListener("click",
+                function(){
+                    ToggleOutput(ioname)
+                }, true);
     }
 }
 /*Initialize elements that can be toggled my by click*/
