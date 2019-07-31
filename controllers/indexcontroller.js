@@ -1,8 +1,5 @@
 // const mysql= require ('mysql');
 const User=require('../modelos/usuario');
-
-
-
 const controller={};
 
 //agregar un usuario
@@ -86,10 +83,13 @@ controller.pin= async (req,res)=>{
 };
 controller.alquilar= async (req,res)=>{
    // slot=req.body.slot;
-    const user= await User.findById(req.params.id);
+   // const user= await User.findById(req.params.id);
     //user.alquiler={slot};
+    req.logout();
+    req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
     res.redirect('/home');
-    console.log(user);
+
+    //console.log(req.body.name);
 
    /*
 

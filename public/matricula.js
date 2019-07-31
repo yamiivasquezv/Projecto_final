@@ -6,7 +6,6 @@ var subscription = "matricula/+/set";
 
 
 mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
-//mqttClient.qos=3;
 mqttClient.onMessageArrived = MessageArrived;
 mqttClient.onConnectionLost = ConnectionLost;
 Connect();

@@ -4,7 +4,6 @@ function UpdateElement(ioname,matricula){
     var cell = document.getElementById(ioname);
     if (cell){
         cell.value=matricula;
-       // cell.placeholder=matricula;
     }
 }
 
@@ -28,3 +27,4 @@ function ToggleOutput(ioname){
 
 /*Initialize elements that can be toggled my by click*/
 ToggleOutput("mat");
+

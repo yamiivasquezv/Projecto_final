@@ -39,6 +39,10 @@ router.get('/administrador', function (req, res) {
 router.post('/add', indexcontroller.add );
 //router.post('/verpin', indexcontroller.pin);
 
+//router.post('/creandoalquiler', indexcontroller.add );
+//router.post('/verpin', indexcontroller.pin);
+
+
 
 router.post('/verpin', passport.authenticate('pin',{
     successRedirect:'/alquiler',
@@ -46,8 +50,7 @@ router.post('/verpin', passport.authenticate('pin',{
     failureFlash:true
 }));
 
-
-router.put('/crearalquiler/:id', indexcontroller.alquilar);
+router.post('/crearalquiler', indexcontroller.alquilar);
 
 router.post('/auth', passport.authenticate('passport',{
     successRedirect:'/home',
