@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
     <link rel="stylesheet" href="/stylesheets/body.css">
+    <link rel="stylesheet" href="/stylesheets/botonesalquiler.css">
 
 
     <style type="text/css">
@@ -28,8 +29,8 @@
         .set_on {background-color: #CCFFCC;}
         .set_off {background-color: #FFCCCC;}
         .unknown {background-color: #DDDDDD;}
-        .on:before, .set_on:before {content: "ON";  }
-        .off:before, .set_off:before {content: "OFF"; }
+        .on:before, .set_on:before {content: "Disponible";  }
+        .off:before, .set_off:before {content: "No disponible"; }
         .unknown:before	{content: " ";}
         #slot0,#slot1,#slot2,#slot3{cursor: pointer;}
     </style>
@@ -99,96 +100,32 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3>Disponibilidad de la estacion</h3>
+                <h3>Disponibilidad de la Estación</h3>
             </div>
             <div class="card-body" style="margin-left : auto; margin-right : auto">
                 <form name="slots" action="/crearalquiler" method="post">
                     <h3 style="text-transform: capitalize;"><%=user.primername%> Elige la bicicleta que deseas utilizar:</h3>
                     <br>
                     <div class="container">
-                        <button type="submit" class="unknown"  id="slot0"
-                                style="display: inline-block;
-                                    width: 150px;
-                                    height:150px;
-
-                                    margin: 5px;
-                                    padding:10px;
-                                    -webkit-border-radius: 50px;
-                                    -moz-border-radius: 50px;
-                                    border-radius: 50px;
-                                    font-size:30px;
-                                    font-weight: bold;
-                                    line-height:32px;
-                                    text-transform: uppercase;
-                                    float:left; opacity: 0.50;
-                                    -moz-opacity: .50;
-                                    filter:alpha(opacity=50)"> <a  style="color:#fff;
+                        <button type="submit" class="unknown"  id="slot0"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>1
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit"  class="unknown" id="slot1"
-                                style="display: inline-block;
-                                    width:150px;
-                                    height:150px;
-
-                                    margin: 5px;
-                                    padding:10px;
-                                    -webkit-border-radius: 50px;
-                                    -moz-border-radius: 50px;
-                                    border-radius: 50px;
-                                    font-size:30px;
-                                    font-weight: bold;
-                                    line-height:32px;
-                                    text-transform: uppercase;
-                                    float:left; opacity: 0.50;
-                                    -moz-opacity: .50;
-                                    filter:alpha(opacity=50)"> <a  style="color:#fff;
+                        <button type="submit"  disabled="true" class="unknown" id="slot1"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>2
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit" class="unknown" id="slot2"
-                                style="display: inline-block;
-                                    width:150px;
-                                    height:150px;
-
-                                    margin: 5px;
-                                    padding:10px;
-                                    -webkit-border-radius: 50px;
-                                    -moz-border-radius: 50px;
-                                    border-radius: 50px;
-                                    font-size:30px;
-                                    font-weight: bold;
-                                    line-height:32px;
-                                    text-transform: uppercase;
-                                    float:left; opacity: 0.50;
-                                    -moz-opacity: .50;
-                                    filter:alpha(opacity=50)"> <a  style="color:#fff;
+                        <button type="submit" disabled="true" class="unknown" id="slot2"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>3
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit" class="unknown" id="slot3"
-                                style="display: inline-block;
-                                    width:150px;
-                                    height:150px;
-
-                                    margin: 5px;
-                                    padding:10px;
-                                    -webkit-border-radius: 50px;
-                                    -moz-border-radius: 50px;
-                                    border-radius: 50px;
-                                    font-size:30px;
-                                    font-weight: bold;
-                                    line-height:32px;
-                                    text-transform: uppercase;
-                                    float:left; opacity: 0.50;
-                                    -moz-opacity: .50;
-                                    filter:alpha(opacity=50)"> <a  style="color:#fff;
+                        <button type="submit"  disabled="true" class="unknown" id="slot3"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>4
                         </button>

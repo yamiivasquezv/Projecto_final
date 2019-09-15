@@ -1,0 +1,68 @@
+#slot0{
+    display: inline-block;
+    width: 150px;
+    height:150px;
+    margin: 5px;
+    padding:10px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size:20px;
+    font-weight: bold;
+    line-height:32px;
+    text-transform: uppercase;
+    float:left; opacity: 0.50;
+    -moz-opacity: .50;
+    filter:alpha(opacity=50)
+}
+#slot1{
+    display: inline-block;
+    width:150px;
+    height:150px;
+    margin: 5px;
+    padding:10px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size:30px;
+    font-weight: bold;
+    line-height:32px;
+    text-transform: uppercase;
+    float:left; opacity: 0.50;
+    -moz-opacity: .50;
+    filter:alpha(opacity=50)
+}
+#slot2{
+    display: inline-block;
+    width:150px;
+    height:150px;
+    margin: 5px;
+    padding:10px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size:30px;
+    font-weight: bold;
+    line-height:32px;
+    text-transform: uppercase;
+    float:left; opacity: 0.50;
+    -moz-opacity: .50;
+    filter:alpha(opacity=50)
+}
+#slot3{
+    display: inline-block;
+    width:150px;
+    height:150px;
+    margin: 5px;
+    padding:10px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size:30px;
+    font-weight: bold;
+    line-height:32px;
+    text-transform: uppercase;
+    float:left; opacity: 0.50;
+    -moz-opacity: .50;
+    filter:alpha(opacity=50)
+}

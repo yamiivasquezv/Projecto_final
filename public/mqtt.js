@@ -51,10 +51,10 @@ function ConnectionLost(res) {
 function MessageArrived(message) {
     console.log(message.destinationName +" : " + message.payloadString);
     switch(message.payloadString){
-        case "ON":
+        case "on":
             displayClass = "on";
             break;
-        case "OFF":
+        case "off":
             displayClass = "off";
             break;
         default:
