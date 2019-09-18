@@ -1,4 +1,4 @@
-var hostname = "192.168.1.162";
+var hostname = "192.168.8.107";
 var port = 9001;
 var clientId = "vilma";
 //var clientId = user._id;
