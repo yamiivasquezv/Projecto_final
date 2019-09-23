@@ -17,6 +17,9 @@ router.get('/signin', function(req, res) {
 router.get('/alquilar', function (req, res) {
     res.render('pin', { title: 'Express' });
 });
+router.get('/administrar', function (req, res) {
+    res.render('administrar', { title: 'Express' });
+});
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
 });
@@ -53,7 +56,7 @@ router.post('/verpin', passport.authenticate('pin',{
 router.post('/crearalquiler', indexcontroller.alquilar);
 
 router.post('/auth', passport.authenticate('passport',{
-    successRedirect:'/home',
+    successRedirect:'/administrar',
     failureRedirect:'/signin',
     failureFlash:true
 }));

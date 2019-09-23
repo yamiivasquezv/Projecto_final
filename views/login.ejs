@@ -12,24 +12,14 @@ s-->
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-7">
-            <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-            <div id="map" class="map"></div>
-            <script>
-                var map = new ol.Map({
-                    layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
-                    target: 'map',
-                    view: new ol.View({
-                        projection: 'EPSG:4326',
-                        center: [-70.6827,19.4436],
-                        zoom: 16})});
-            </script>
+            <img src="Imagenes/bicimove.gif" width="445" height="300" style="border:5px solid lightgrey ">
         </div>
         <div class="col-md-5">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3;">
                     <h3>Inicio de Sesión</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body" >
                     <form action="/auth" method="post">
 
                         <div class="form-group" >

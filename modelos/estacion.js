@@ -3,7 +3,8 @@ const {Schema}=mongoose;
 
 //Esquema de las estaciones
 const  estacionSchema= new Schema({
-    slot: {type: String, required:true},
+    numeroestacion: {type: String, required:true},
+    cantidadslot: {type: String, required:true},
     ubicacion: {type: String, required:false}
 });
 
