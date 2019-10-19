@@ -1,5 +1,26 @@
+div.contenedor{
+    width: 1200px;
+    height: 250px;
+
+
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+}
+div.elemento{
+    margin: 5px;
+    text-align: center;
+}
+
 #adm1{
-    border:0;
+    border: 5px solid darkgray;
     color:#D3D3D3;
     font-weight: bold;
     font-size: 20px;
@@ -20,7 +41,7 @@
     font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
 }
 #adm2{
-    border:0;
+    border: 5px solid darkgray;
     background-size: 120px 100px;
     background-position: center;
     color:#D3D3D3;
@@ -35,6 +56,75 @@
 #adm2:hover{
     outline:0;
     background: url("../Imagenes/estacion.png") no-repeat scroll ;
+    background-size: 120px 100px;
+    background-position: center;
+    color: transparent;
+    cursor:pointer;
+    border:5px solid #2C3E50;
+    font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+}
+#adm3{
+    border: 5px solid darkgray;
+    background-size: 120px 100px;
+    background-position: center;
+    color:#D3D3D3;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #2C3E50 ;
+    width:170px; height:170px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;"
+}
+#adm3:hover{
+    outline:0;
+    background: url("../Imagenes/viaje.png") no-repeat scroll ;
+    background-size: 120px 100px;
+    background-position: center;
+    color: transparent;
+    cursor:pointer;
+    border:5px solid #2C3E50;
+    font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+}
+#adm4{
+    border: 5px solid darkgray;
+    background-size: 120px 100px;
+    background-position: center;
+    color:#D3D3D3;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #2C3E50 ;
+    width:170px; height:170px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;"
+}
+#adm4:hover{
+    outline:0;
+    background: url("../Imagenes/ruta.png") no-repeat scroll ;
+    background-size: 120px 100px;
+    background-position: center;
+    color: transparent;
+    cursor:pointer;
+    border:5px solid #2C3E50;
+    font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+}
+#adm5{
+    border: 5px solid darkgray;
+    background-size: 120px 100px;
+    background-position: center;
+    color:#D3D3D3;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #2C3E50 ;
+    width:170px; height:170px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;"
+}
+#adm5:hover{
+    outline:0;
+    background: url("../Imagenes/grupo.png") no-repeat scroll ;
     background-size: 120px 100px;
     background-position: center;
     color: transparent;
