@@ -1,8 +1,6 @@
 div.contenedor{
     width: 1200px;
     height: 250px;
-
-
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -11,7 +9,6 @@ div.contenedor{
     margin-right: auto;
     flex-direction: row;
     flex-wrap: wrap;
-
     justify-content: space-between;
 }
 div.elemento{
@@ -19,6 +16,55 @@ div.elemento{
     text-align: center;
 }
 
+div.contenedoruno{
+    width: 600px;
+    height: 600px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.elementouno{
+margin: 5px;
+    text-align: center;
+}
+div.contenedordos{
+    width: 250px;
+    height: 400px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border: 5px solid black;
+}
+div.elementodos{
+    text-align: -moz-left;
+}
+div.contenedortres{
+    width: 1200px;
+    height: 700px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.elementotres{
+    text-align: -moz-left;
+    height: 500px; width: 1200px;
+}
 #adm1{
     border: 5px solid darkgray;
     color:#D3D3D3;
@@ -32,7 +78,7 @@ div.elemento{
 }
 #adm1:hover{
     outline:0;
-    background: url("../Imagenes/bici.png") no-repeat scroll ;
+    background: url("../Imagenes/bicinn.png") no-repeat scroll ;
     background-size: 120px 100px;
     background-position: center;
     cursor:pointer;
@@ -55,7 +101,7 @@ div.elemento{
 }
 #adm2:hover{
     outline:0;
-    background: url("../Imagenes/estacion.png") no-repeat scroll ;
+    background: url("../Imagenes/bicycle-parking.png") no-repeat scroll ;
     background-size: 120px 100px;
     background-position: center;
     color: transparent;
@@ -78,7 +124,7 @@ div.elemento{
 }
 #adm3:hover{
     outline:0;
-    background: url("../Imagenes/viaje.png") no-repeat scroll ;
+    background: url("../Imagenes/mapofroadsb.png") no-repeat scroll ;
     background-size: 120px 100px;
     background-position: center;
     color: transparent;
@@ -101,7 +147,7 @@ div.elemento{
 }
 #adm4:hover{
     outline:0;
-    background: url("../Imagenes/ruta.png") no-repeat scroll ;
+    background: url("../Imagenes/way.png") no-repeat scroll ;
     background-size: 120px 100px;
     background-position: center;
     color: transparent;
@@ -124,11 +170,22 @@ div.elemento{
 }
 #adm5:hover{
     outline:0;
-    background: url("../Imagenes/grupo.png") no-repeat scroll ;
+    background: url("../Imagenes/group.png") no-repeat scroll ;
     background-size: 120px 100px;
     background-position: center;
     color: transparent;
     cursor:pointer;
     border:5px solid #2C3E50;
     font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+}
+div.bikemove{
+    height: 250px;
+    width: 250px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 200px;
+    background-size: 250px 250px;
+    cursor:pointer;
+    background-image: url("../Imagenes/bicimove.gif");
+    border: 5px solid #2C3E50 ;
 }
