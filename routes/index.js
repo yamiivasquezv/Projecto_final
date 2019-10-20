@@ -23,11 +23,27 @@ router.get('/administrar', function (req, res) {
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
 });
+router.get('/btnbici', function (req, res) {
+    res.render('btnbici', { title: 'Express' });
+});
+router.get('/btnestac', function (req, res) {
+    res.render('btnestac', { title: 'Express' });
+});
+router.get('/btnviajes', function (req, res) {
+    res.render('btnviajes', { title: 'Express' });
+});
+router.get('/btnrutas', function (req, res) {
+    res.render('btnrutas', { title: 'Express' });
+});
+router.get('/btnusuarios', function (req, res) {
+    res.render('btnusuarios', { title: 'Express' });
+});
 router.get('/logout', isAuthenticated, function(req, res) {
     req.logout();
     req.flash('success_msg', 'You are logged out now.');
     res.redirect('/signin');
 });
+
 router.get('/alquiler', isAuthenticated, function (req, res) {
     res.render('alquiler', { title: 'Express' });
 });

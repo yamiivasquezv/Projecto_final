@@ -1,47 +1,34 @@
 <% include partials/_headers %>
-
-<!--
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-s-->
-
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-md-7">
-            <img src="Imagenes/bicimove.gif" width="445" height="300" style="border:5px solid lightgrey ">
-        </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3;">
-                    <h3>Inicio de Sesión</h3>
-                </div>
-                <div class="card-body" >
-                    <form action="/auth" method="post">
-
-                        <div class="form-group" >
-                            <input type="text" name="usuario" placeholder="Usuario" class="form-control" autofocus>
-                        </div>
-                        <div class="form-group" >
-                            <input type="password" name="contrasena" placeholder="Contraseña" class="form-control">
-                        </div>
-                        <div class="form-group" >
-                            <button type="submit" class="btn btn-primary">
-                                Iniciar Sesión
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="location.href='/login'">
-                                Registrarse
-                            </button>
-                        </div>
-
-                    </form>
-                </div>
+<div class="contenedoruno">
+        <div class="elementouno">
+            <div class="bikemove">
             </div>
         </div>
-    </div>
-</div>
+        <div class="elementouno">
+                <div class="card" style="height:350px; width:350px;">
+                    <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+                        <h3>Inicio de Sesión</h3>
+                    </div>
+                    <div class="card-body" >
+                        <form action="/auth" method="post">
 
+                            <div class="form-group" >
+                                <input type="text" name="usuario" placeholder="Usuario" class="form-control" autofocus>
+                            </div>
+                            <div class="form-group" >
+                                <input type="password" name="contrasena" placeholder="Contraseña" class="form-control">
+                            </div>
+                            <div class="form-group" >
+                                <button type="submit" class="btn btn-primary">
+                                    Iniciar Sesión
+                                </button>
+                                <button type="button" class="btn btn-primary" onclick="location.href='/login'">
+                                    Registrarse
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+</div>
 <% include partials/_footer %>
