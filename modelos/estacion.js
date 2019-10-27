@@ -5,7 +5,7 @@ const {Schema}=mongoose;
 const  estacionSchema= new Schema({
     numeroestacion: {type: String, required:true},
     cantidadslot: {type: String, required:true},
-    ubicacion: {type: String, required:false}
+    ubicacion: {type: Point, required:false}
 });
 
 module.exports=mongoose.model('estacion',estacionSchema);

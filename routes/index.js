@@ -4,6 +4,7 @@ const indexcontroller= require('../controllers/indexcontroller');
 const passport=require('passport');
 const {isAuthenticated }=require('../helpers/auth');
 const Bici=require('../modelos/bikes');
+const Point=require('../modelos/point');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -27,7 +28,10 @@ router.get('/login', function(req, res) {
 router.get('/btnbici', async function (req, res) {
     try {
         const bicis = await Bici.find({}).lean();
-        res.render('btnbici', {bicis});
+        const puntos = await Point.find({}).lean();
+        console.log(bicis);
+        console.log(puntos);
+        res.render('btnbici', {bicis, puntos});
     } catch (error) {
         console.error(error);
         res.status(500).send('Oops..');
