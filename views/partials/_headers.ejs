@@ -73,7 +73,6 @@
             }
         }
     </script>
-
     <script type="text/javascript">
         var answer_mode = 0;
 
@@ -96,6 +95,20 @@
             var hoja=ch
         }
     </script>
+    <script>
+        function hideshow(){
+            if(document.getElementById("formbici").style.display=="block")
+            {
+                (document.getElementById("formbici").style.display="none")
+            }
+            else
+            if(document.getElementById("formbici").style.display=="none")
+            {
+                (document.getElementById("formbici").style.display="block")
+            }
+        }
+    </script>
+
 </head>
 <body>
 <section><%include navbar.ejs %></section>

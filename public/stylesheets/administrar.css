@@ -15,7 +15,6 @@ div.elemento{
     margin: 5px;
     text-align: center;
 }
-
 div.contenedoruno{
     width: 600px;
     height: 600px;
@@ -65,6 +64,46 @@ div.elementotres{
     text-align: -moz-left;
     height: 500px; width: 1200px;
 }
+div.contenedorcuatro{
+    width: 700px;
+    height: 650px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flow: none;
+    display: flex;
+    padding: 5px;
+    margin-left: 300px;
+    margin-right: auto;
+    margin-top: -650px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: start;
+
+}
+div.elementocuatro{
+    margin: 5px;
+    text-align: center;
+}
+div.contenedorcuatromini{
+    width: 300px;
+    height: 650px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flow: none;
+    display: flex;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: -650px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+div.elementocuatromini{
+    margin: 5px;
+    text-align: left;
+}
+
 #adm1{
     border: 5px solid darkgray;
     color:#D3D3D3;

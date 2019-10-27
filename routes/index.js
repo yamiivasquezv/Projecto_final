@@ -3,6 +3,7 @@ const router = express.Router();
 const indexcontroller= require('../controllers/indexcontroller');
 const passport=require('passport');
 const {isAuthenticated }=require('../helpers/auth');
+const Bici=require('../modelos/bikes');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -23,8 +24,14 @@ router.get('/administrar', function (req, res) {
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
 });
-router.get('/btnbici', function (req, res) {
-    res.render('btnbici', { title: 'Express' });
+router.get('/btnbici', async function (req, res) {
+    try {
+        const bicis = await Bici.find({}).lean();
+        res.render('btnbici', {bicis});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
 });
 router.get('/btnestac', function (req, res) {
     res.render('btnestac', { title: 'Express' });
@@ -38,6 +45,7 @@ router.get('/btnrutas', function (req, res) {
 router.get('/btnusuarios', function (req, res) {
     res.render('btnusuarios', { title: 'Express' });
 });
+
 router.get('/logout', isAuthenticated, function(req, res) {
     req.logout();
     req.flash('success_msg', 'You are logged out now.');
@@ -61,7 +69,7 @@ router.post('/add', indexcontroller.add );
 //router.post('/creandoalquiler', indexcontroller.add );
 //router.post('/verpin', indexcontroller.pin);
 
-
+router.post('/addbici', indexcontroller.addbici );
 
 router.post('/verpin', passport.authenticate('pin',{
     successRedirect:'/alquiler',

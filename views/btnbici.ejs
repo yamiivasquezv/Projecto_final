@@ -7,7 +7,7 @@
                     <a href="#"><img src="Imagenes/bicinn.png" style="font-size: 3.0em; padding-right: 0.5em; width: 2em; display: inline; vertical-align: middle;"></img> <span>Bicicleta</span></a>
                     <ul class="nav-flyout">
                         <li>
-                            <a href="#"><i class="icon ion-md-add"></i>Agregar Bicicleta</a>
+                            <a href="#" onclick="hideshow()"><i class="icon ion-md-add"></i>Agregar Bicicleta</a>
                         </li>
                         <li>
                             <a href="#"><i class="icon ion-md-paper"></i>Ver Bicicletas</a>
@@ -18,4 +18,84 @@
         </nav>
     </aside>
 </section>
+<div class="contenedorcuatro">
+    <div class="elementocuatro">
+
+        <table class="table table-hover">
+
+                <thead>
+                <tr class="table-dark">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">RFID</th>
+                    <th scope="col">Fecha de adquisición</th>
+                    <th scope="col">Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% bicis.forEach(function(bicis, index) { %>
+                    <% if (bicis.estado==="disponible") { %>
+                        <tr class="table-success">
+                            <td><%= bicis.ident %></td>
+                            <td><%= bicis.rfid %></td>
+                            <td><%= bicis.fechadq %></td>
+                            <td><%= bicis.estado %></td>
+                        </tr>
+                    <%}%>
+                    <% if (bicis.estado==="ocupado") {%>
+                        <tr class="table-light">
+                            <td><%= bicis.ident %></td>
+                            <td><%= bicis.rfid %></td>
+                            <td><%= bicis.fechadq %></td>
+                            <td><%= bicis.estado %></td>
+                        </tr>
+                    <%}%>
+                    <tr class="table-secondary">
+                        <td><%= bicis.ident %></td>
+                        <td><%= bicis.rfid %></td>
+                        <td><%= bicis.fechadq %></td>
+                        <td><%= bicis.estado %></td>
+                    </tr>
+                <% }) %>
+                </tbody>
+        </table>
+    </div>
+</div>
+<div class="contenedorcuatromini">
+    <div class="elementocuatromini">
+        <div class="card" style="height:350px; width:250px;">
+            <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+                <h3>Agregar Bicicleta</h3>
+            </div>
+                <div class="card-body" >
+                    <form id="formbici" style="display:block" action="/addbici" method="post">
+                        <div class="form-group">
+                            <input type="text" name="ident" placeholder="Nombre identificador" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <select class="custom-select" name="rfid">
+                                <option selected="">Elija RFID </option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                                <option value="4">Three</option>
+                                <option value="5">Three</option>
+                                <option value="6">Three</option>
+                            </select>
+                        </div>
+                        <div class="form-group" >
+                            <input type="date" name="fechadq" placeholder="Fecha de adquisición" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Agregar
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                               Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
 <% include partials/_footer %>

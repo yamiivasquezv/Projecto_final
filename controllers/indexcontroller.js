@@ -1,5 +1,6 @@
 // const mysql= require ('mysql');
 const User=require('../modelos/usuario');
+const Bici=require('../modelos/bikes');
 const controller={};
 
 //agregar un usuario
@@ -28,26 +29,26 @@ controller.add=async (req,res)=> {
             res.redirect('/signin');
         }
     }
+};
 
-   /* var data1 = {
-        cedula: req.body.ced,
-        primer_nombre: req.body.nombre1,
-        segundo_nombre: req.body.nombre2,
-        primer_apellido: req.body.apellido1,
-        segundo_apellido: req.body.apellido2,
-        tipo: req.body.tipo,
-        matricula: req.body.mat,
-        user: req.body.user,
-        pass: req.body.pass,
-        pin: req.body.pin
-    };
-    connect().query('INSERT INTO usuario set ? ', [data1], (err, usuario) => {
-        if (err) {
-            res.json(err);
+controller.addbici=async (req,res)=> {
+    const {rfid, fechadq,ident}=req.body;
+    if (rfid==="Elija RFID") {
+        req.flash('error_msg', 'Elija un código RFID');
+        res.redirect('/btnbici');
+    }
+    else {
+        const bikes = await Bici.findOne({$or: [{$or: [{rfid: req.body.rfid}, {ident: req.body.ident}]}, {$and: [{rfid: req.body.rfid}, {ident: req.body.rfid}]}]});
+        if (bikes) {
+            req.flash('error_msg', 'No se pudo registrar');
+            res.redirect('/btnbici');
+        } else {
+            const nbike = new Bici({ident, rfid, fechadq});
+            await nbike.save();
+            req.flash('success_msg', 'Bicicleta registrada satisfactoriamente');
+            res.redirect('/btnbici');
         }
-        console.log(usuario);
-        res.send("Hola");
-    });*/
+    }
 };
 
 //revisar si el usuario existe con el pin y matricula o cedula
@@ -70,99 +71,11 @@ controller.pin= async (req,res)=>{
   console.log(pinuser);
   res.render('alquiler',{pinuser});
 
- /*   var cod=req.body.cod;
-    var pin= req.body.display;
-   connect().query('SELECT * FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
-        if (err) {
-            res.json(err);
-        }
-           //console.log(rows);
-       res.render('alquiler', {pinuser: rows});
-
-    });*/
 };
 controller.alquilar= async (req,res)=>{
-   // slot=req.body.slot;
-   // const user= await User.findById(req.params.id);
-    //user.alquiler={slot};
     req.logout();
     req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
     res.redirect('/home');
-
-    //console.log(req.body.name);
-
-   /*
-
-    connect().query('INSERT INTO alquiler(cedula) VALUES (?)', [id], (err, alquiler) => {
-        if (err) {
-            res.json(err);
-        }
-        console.log(alquiler);
-        res.render('home');
-    });*/
-
 };
 
-/*controller.auth=(req,res)=>{
-    var username= req.body.usuario;
-    var password= req.body.passw;
-    const errors=[];
-    if(!username){
-        errors.push({text: 'Por favor escriba el usuario'});
-    }
-    if (!password){
-        errors.push({text: 'Por favor escriba su contraseña'});
-    }
-    if(errors.length>0){
-        res.render('login',{
-            errors,
-            username,
-            password
-        });
-    }
-    /*
-    if (username && password){
-        connect().query('SELECT * FROM usuario WHERE user=? AND pass=?',[username,password], function (error,results,fields) {
-          if (results.length>0){
-              req.session.loggedin=true;
-              req.session.username=username;
-              res.redirect('/administrador');
-          }  else{
-              res.send('Usuario o contraseña incorrecta');
-          }
-          res.end();
-        });
-    } else{
-        res.send('Por favor debe ingresar usuario y contraseña!');
-        res.end();
-    }
-};*/
-
-//crear conexion a la base de datos
- /*
-
-function connect(){
-    return mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'bicicletas0931',
-        database: 'prueba',
-        port: 3306,
-        insecureAuth : true
-    });
-}*/
-/*
-controller.puestos=(req,res)=>{
-    var cod=req.body.cod;
-    var pin= req.body.display;
-    connect().query('SELECT * FROM usuario WHERE (usuario.matricula= ? OR usuario.cedula= ?) AND usuario.pin= ?', [cod,cod,pin], (err, rows) => {
-        if (err) {
-            res.json(err);
-        }
-
-        //console.log(rows);
-        res.render('alquiler', {pinuser: rows});
-
-    });
-};*/
 module.exports=controller;
