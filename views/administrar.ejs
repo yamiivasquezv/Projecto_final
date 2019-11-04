@@ -34,16 +34,38 @@
             </div>
             <div class="card-body" style="background-color:#DCDCDC;">
                 <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-                <div id="map" class="map"></div>
-                <script>
-                    var map = new ol.Map({
-                        layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
-                        target: 'map',
-                        view: new ol.View({
-                            projection: 'EPSG:4326',
-                            center: [-70.6827,19.4436],
-                            zoom: 16})});
-                </script>
+                <div id="map" class="map" style="height: 500px;">
+                    <script>
+                        var map = L.map('map').setView([19.4436,-70.6827], 16);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+
+                         <%var puntomenor=0;%>
+                         <%bicis.forEach(function(bicis, index) {%>
+                                <%puntos.forEach(function (puntos, index) {%>
+                                    <%if (bicis.ident===puntos.patron_id){%>
+                                        <%if (puntos.fecha>puntomenor) {%>
+                                          <%puntomenor=puntos.fecha;%>
+                                         <%}%>
+                                     <%}%>
+                                <%});%>
+                                    <%puntos.forEach(function (puntos, index) {%>
+                                        <%if (puntos.fecha===puntomenor){%>
+                                            var myIcon = L.icon({
+                                                iconUrl: 'Imagenes/bicycleiconn.png',
+                                                popupAnchor: [-3, -76]
+                                            });
+                                            <% var marker=puntos.marker;%>
+                                             marker = L.marker([<%=puntos.punto%>],{icon: myIcon}).addTo(map)
+                                                 .bindPopup('<%=puntos.marker%>')
+                                                 .openPopup();;
+                                            <%console.log(marker);%>
+                                        <%}%>
+                                    <%});%>
+                         <%});%>
+                    </script>
+                </div>
             </div>
         </div>
     </div>

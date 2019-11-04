@@ -20,60 +20,62 @@
 </section>
 <div class="contenedorcuatro">
     <div class="elementocuatro">
+                <table class="table table-hover">
 
-        <table class="table table-hover">
-
-                <thead>
-                <tr class="table-dark">
-                    <th scope="col">Nombre</th>
-                    <th scope="col">RFID</th>
-                    <th scope="col">Fecha de adquisición</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Ubicacion</th>
-                </tr>
-                </thead>
-            <tbody>
-                <% bicis.forEach(function(bicis, index) { %>
-                    <% if (bicis.estado==="disponible") {%>
-                        <tr class="table-success">
-                                <td><%= bicis.ident %></td>
-                                <td><%= bicis.rfid %></td>
-                                <td><%= bicis.fechadq %></td>
-                                <td><%= bicis.estado %></td>
-                                <% puntos.forEach(function (puntos, index) { %>
-                                    <%if (bicis.ident===puntos.patron_id){%>
-                                        <td><%= puntos.punto %></td>
-                                    <%}%>
-                                <%})%>
+                        <thead>
+                        <tr class="table-dark">
+                            <th scope="col">Nombre</th>
+                            <th scope="col">RFID</th>
+                            <th scope="col">Fecha de adquisición</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Ubicación</th>
                         </tr>
-                    <%}%>
-                    <% if (bicis.estado==="ocupado") {%>
-                        <tr class="table-light">
-                            <td><%= bicis.ident %></td>
-                            <td><%= bicis.rfid %></td>
-                            <td><%= bicis.fechadq %></td>
-                            <td><%= bicis.estado %></td>
-                            <% puntos.forEach(function (puntos, index) { %>
-                                <%if (bicis.ident===puntos.patron_id){%>
-                                    <td><%= puntos.punto %></td>
+                        </thead>
+                        <tbody>
+                            <% bicis.forEach(function(bicis, index) { %>
+                                <% if (bicis.estado==="disponible") {%>
+                                    <tr class="table-success">
+                                            <td><%= bicis.ident %></td>
+                                            <td><%= bicis.rfid %></td>
+                                            <td><%= bicis.fechadq %></td>
+                                            <td><%= bicis.estado %></td>
+                                        <td><button class="btn-primary">Ubicación</button></td>
+                                            <% puntos.forEach(function (puntos, index) { %>
+                                                <%if (bicis.ident===puntos.patron_id){%>
+                                                    <td><%= puntos.punto %></td>
+                                                <%}%>
+                                            <%})%>
+                                    </tr>
                                 <%}%>
+                                <% if (bicis.estado==="ocupado") {%>
+                                    <tr class="table-light">
+                                        <td><%= bicis.ident %></td>
+                                        <td><%= bicis.rfid %></td>
+                                        <td><%= bicis.fechadq %></td>
+                                        <td><%= bicis.estado %></td>
+                                        <td><button class="btn-primary">Ubicación</button></td>
+                                        <% puntos.forEach(function (puntos, index) { %>
+                                            <%if (bicis.ident===puntos.patron_id){%>
+                                                <td><%= puntos.punto %></td>
+                                            <%}%>
+                                        <%})%>
+                                    </tr>
+                                <%}%>
+                                <tr class="table-secondary">
+                                    <td><%= bicis.ident %></td>
+                                    <td><%= bicis.rfid %></td>
+                                    <td><%= bicis.fechadq %></td>
+                                    <td><%= bicis.estado %></td>
+                                    <td>
+                                        <div class="btn-group-vertical" data-toggle="buttons">
+                                            <button type="button" class="btn btn-outline-primary" style="font-size:12px;">Ubicación</button>
+                                            <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
+                                        </div>
+                                    </td>
+                                </tr>
                             <%})%>
-                        </tr>
-                    <%}%>
-                    <tr class="table-secondary">
-                        <td><%= bicis.ident %></td>
-                        <td><%= bicis.rfid %></td>
-                        <td><%= bicis.fechadq %></td>
-                        <td><%= bicis.estado %></td>
-                        <% puntos.forEach(function (puntos, index) { %>
-                            <%if (bicis.ident===puntos.patron_id){%>
-                                <td><%= puntos.punto %></td>
-                            <%}%>
-                        <%})%>
-                    </tr>
-                <%})%>
-            </tbody>
-        </table>
+                        </tbody>
+                </table>
     </div>
 </div>
 <div class="contenedorcuatromini">

@@ -19,8 +19,10 @@ router.get('/signin', function(req, res) {
 router.get('/alquilar', function (req, res) {
     res.render('pin', { title: 'Express' });
 });
-router.get('/administrar', function (req, res) {
-    res.render('administrar', { title: 'Express' });
+router.get('/administrar', async function (req, res) {
+    const puntos = await Point.find({}).lean();
+    const bicis = await Bici.find({}).lean();
+    res.render('administrar', {puntos,bicis});
 });
 router.get('/login', function(req, res) {
   res.render('usuarios', { title: 'Express' });
