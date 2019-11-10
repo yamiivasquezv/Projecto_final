@@ -1,6 +1,10 @@
 // const mysql= require ('mysql');
 const User=require('../modelos/usuario');
 const Bici=require('../modelos/bikes');
+const Slotestado=require('../modelos/slotestado');
+const Alquiler=require('../modelos/alquiler');
+const Estacion=require('../modelos/estacion');
+const Slot=require('../modelos/slot');
 const controller={};
 
 //agregar un usuario
@@ -30,6 +34,14 @@ controller.add=async (req,res)=> {
         }
     }
 };
+controller.verubi=async (req,res)=> {
+    const bicicleta=req.body.bicicleta;
+    const turealbici = await Bici.find({ident:bicicleta}).lean();
+    if(turealbici) {
+        res.render('btnbici', {turealbici});
+        console.log(turealbici);
+    }
+};
 
 controller.addbici=async (req,res)=> {
     const {rfid, fechadq,ident}=req.body;
@@ -47,6 +59,30 @@ controller.addbici=async (req,res)=> {
             await nbike.save();
             req.flash('success_msg', 'Bicicleta registrada satisfactoriamente');
             res.redirect('/btnbici');
+        }
+    }
+};
+
+controller.addestac=async (req,res)=> {
+    const {nombreestacion, cantidadslot}=req.body;
+    if (cantidadslot==="Elija cantidad") {
+        req.flash('error_msg', 'Elija cantidad de slots');
+        res.redirect('/btnestac');
+    }
+    else {
+        const estacion= await Estacion.findOne({nombreestacion: req.body.nombreestacion});
+        if (estacion) {
+            req.flash('error_msg', 'Existe estacion con este mismo nombre, elija otro');
+            res.redirect('/btnestac');
+        } else {
+            const nestacion = new Estacion({nombreestacion, cantidadslot});
+            await nestacion.save();
+            for(var i=0; i<cantidadslot; i++){
+                const nslot = new Slot({nombre:'slot'.concat(i+1),estacion:nombreestacion});
+                await nslot.save();
+            }
+            req.flash('success_msg', 'Estacion registrada satisfactoriamente');
+            res.redirect('/btnestac');
         }
     }
 };
@@ -73,9 +109,25 @@ controller.pin= async (req,res)=>{
 
 };
 controller.alquilar= async (req,res)=>{
-    req.logout();
-    req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
-    res.redirect('/home');
+    const {slotestado,user,estacion}=req.body;
+    const findslot= await Slotestado.find({slot:req.body.slotestado}).lean();
+    if (findslot){
+        const bike= findslot.rfid;
+        const findbike= await Bici.find({rfid:bike}).lean();
+        const idbike=findbike._id;
+        const idslot=findslot._id;
+        await Slotestado.updateOne({_id:idslot},{$set: {estado: 'disponible'}}).save();
+        await Bici.updateOne({_id:idbike},{$set:{estado:'ocupado'}}).save();
+        const nalquiler=new Alquiler({user:user,estacionon:estacion,slot:slotestado,bike:bike});
+        await nalquiler.save();
+        req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
+        req.logout();
+        res.redirect('/home');
+    }
+    else {
+        req.flash('error_msg', 'Error, no se pudo alquilar bicicleta');
+        req.logout();
+        res.redirect('/home');
+    }
 };
-
 module.exports=controller;

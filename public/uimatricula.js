@@ -17,7 +17,7 @@ function ToggleOutput(ioname){
 
     if (cell.onFocus) {
         var message = new Paho.MQTT.Message("Recibir");
-        message.destinationName = "matricula/" + ioname + "/set";
+        message.destinationName = "matricula/estacion1" + ioname + "/set";
         mqttClient.send(message);
     }
 }

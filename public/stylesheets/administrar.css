@@ -66,7 +66,7 @@ div.elementotres{
 }
 div.contenedorcuatro{
     width: 700px;
-    height: 650px;
+    height: 600px;
     display: -webkit-flex;
     display: -ms-flexbox;
     flow: none;
@@ -75,10 +75,9 @@ div.contenedorcuatro{
     margin-left: 300px;
     margin-right: auto;
     margin-top: -650px;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: start;
-
+    justify-content: center;
 }
 div.elementocuatro{
     margin: 5px;
@@ -86,7 +85,7 @@ div.elementocuatro{
 }
 div.contenedorcuatromini{
     width: 300px;
-    height: 650px;
+    height: 360px;
     display: -webkit-flex;
     display: -ms-flexbox;
     flow: none;
@@ -94,12 +93,70 @@ div.contenedorcuatromini{
     padding: 5px;
     margin-left: auto;
     margin-right: 20px;
-    margin-top: -650px;
+    margin-top: -600px;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
 }
 div.elementocuatromini{
+    margin: 5px;
+    text-align: left;
+}
+div.contenedorcinco{
+    width: 900px;
+    height: 600px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flow: none;
+    display: flex;
+    padding: 5px;
+    margin-left: 300px;
+    margin-right: auto;
+    margin-top: -360px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.elementocinco{
+    margin: 5px;
+    text-align: center;
+}
+
+div.contenedorseis{
+    width: 700px;
+    height: 600px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flow: none;
+    display: flex;
+    padding: 5px;
+    margin-left: 300px;
+    margin-right: auto;
+    margin-top: -650px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.elementoseis{
+    margin: 5px;
+    text-align: center;
+}
+div.contenedorseismini{
+    width: 300px;
+    height: 360px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flow: none;
+    display: flex;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-top: -600px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+div.elementoseismini{
     margin: 5px;
     text-align: left;
 }
@@ -227,4 +284,12 @@ div.bikemove{
     cursor:pointer;
     background-image: url("../Imagenes/bicimove.gif");
     border: 5px solid #2C3E50 ;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 330px;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
 }

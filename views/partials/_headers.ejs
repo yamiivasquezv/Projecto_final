@@ -101,16 +101,53 @@
             var hoja=ch
         }
     </script>
-    <script>
+    <script type="text/javascript">
         function hideshow(){
-            if(document.getElementById("formbici").style.display=="block")
+            if(document.getElementById('adbici').style.display==="block"){
+                    (document.getElementById('adbici').style.display = "none");
+                    (document.getElementById('alltable').style.display = "none");
+                    (document.getElementById('verubi').style.display="none");
+                    (document.getElementById('selbici').style.display="none");
+
+                }
+            else
+            if(document.getElementById('adbici').style.display==="none"){
+                    (document.getElementById('adbici').style.display="block");
+                    (document.getElementById('alltable').style.display="block");
+                    (document.getElementById('verubi').style.display="none");
+                    (document.getElementById('selbici').style.display="none");
+
+                }
+        }
+    </script>
+    <script type="text/javascript">
+            function hideshow2(){
+                if(document.getElementById('verubi').style.display==="block"){
+                    (document.getElementById('verubi').style.display = "none");
+                    (document.getElementById('selbici').style.display = "none");
+                    (document.getElementById('alltable').style.display = "none");
+                    (document.getElementById('adbici').style.display="none");
+                }
+            else
+                if(document.getElementById('verubi').style.display==="none"){
+                    (document.getElementById('verubi').style.display = "block");
+                    (document.getElementById('selbici').style.display = "block");
+                    (document.getElementById('adbici').style.display="none");
+                    (document.getElementById('alltable').style.display="none");
+                }
+            }
+    </script>
+
+    <script>
+        function ubicacion(punto, marker){
+            if(document.getElementById(mapubi).style.display=="block")
             {
-                (document.getElementById("formbici").style.display="none")
+                (document.getElementById(mapubi).style.display="none");
             }
             else
-            if(document.getElementById("formbici").style.display=="none")
+            if(document.getElementById(mapubi).style.display=="none")
             {
-                (document.getElementById("formbici").style.display="block")
+                (document.getElementById(mapubi).style.display="block");
             }
         }
     </script>

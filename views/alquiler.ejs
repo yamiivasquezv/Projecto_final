@@ -107,28 +107,34 @@
                     <h3 style="text-transform: capitalize;"><%=user.primername%> Elige la bicicleta que deseas utilizar:</h3>
                     <br>
                     <div class="container">
-                        <button type="submit" class="unknown"  id="slot0"> <a  style="color:#fff;
+                        <button type="submit" disabled="true" value="slot0" name="slotestado" class="unknown"  id="slot0"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>1
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit"  disabled="true" class="unknown" id="slot1"> <a  style="color:#fff;
+                        <button type="submit"  disabled="true" value="slot1" name="slotestado" class="unknown" id="slot1"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>2
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit" disabled="true" class="unknown" id="slot2"> <a  style="color:#fff;
+                        <button type="submit" disabled="true" value="slot2" name="slotestado" class="unknown" id="slot2"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>3
                         </button>
                     </div>
                     <div class="container">
-                        <button type="submit"  disabled="true" class="unknown" id="slot3"> <a  style="color:#fff;
+                        <button type="submit"  disabled="true" value="slot3" name="slotestado" class="unknown" id="slot3"> <a  style="color:#fff;
                                     text-decoration:none;
                                     padding:5px 5px 5px 0"></a>4
                         </button>
+                    </div>
+                    <div class="container">
+                        <input type="text" name="user" value="<%=user.usuario%>" class="form-control" style="display: none;">
+                    </div>
+                    <div class="container">
+                        <input type="text" name="estacion" value="estacion1" class="form-control" style="display: none;">
                     </div>
                 </form>
             </div>

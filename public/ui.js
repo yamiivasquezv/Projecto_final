@@ -39,7 +39,7 @@ function ToggleOutput(ioname){
     switch (cell.className){
         case "on":
             var message = new Paho.MQTT.Message("OFF");
-            message.destinationName = "candado/" + ioname + "/set";
+            message.destinationName = "candado/estacion1" + ioname + "/set";
             //message.qos=1;
             //message.retain=true;
             mqttClient.send(message);
@@ -47,7 +47,7 @@ function ToggleOutput(ioname){
             break;
         case "off":
             var message = new Paho.MQTT.Message("ON");
-            message.destinationName = "candado/" + ioname + "/set";
+            message.destinationName = "candado/estacion1" + ioname + "/set";
             //message.qos=1;
            // message.retain=true;
             mqttClient.send(message);
