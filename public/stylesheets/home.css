@@ -1,7 +1,9 @@
 body {
     background: #9CECFB; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(135deg, rgba(19, 176, 223, 0.26) 0%, rgba(19, 176, 223, 0.26) 23%, rgba(16, 160, 197, 0.26) 23%, rgba(16, 160, 197, 0.26) 65%, rgba(13, 144, 172, 0.26) 65%, rgba(13, 144, 172, 0.26) 70%, rgba(9, 129, 146, 0.26) 70%, rgba(9, 129, 146, 0.26) 74%, rgba(6, 113, 121, 0.26) 74%, rgba(6, 113, 121, 0.26) 90%, rgba(3, 97, 95, 0.26) 90%, rgba(3, 97, 95, 0.26) 100%), linear-gradient(45deg, rgba(65, 234, 230, 0.26) 0%, rgba(65, 234, 230, 0.26) 28%, rgba(88, 192, 215, 0.26) 28%, rgba(88, 192, 215, 0.26) 55%, rgba(110, 150, 201, 0.26) 55%, rgba(110, 150, 201, 0.26) 66%, rgba(133, 107, 186, 0.26) 66%, rgba(133, 107, 186, 0.26) 80%, rgba(155, 65, 172, 0.26) 80%, rgba(155, 65, 172, 0.26) 85%, rgba(178, 23, 157, 0.26) 85%, rgba(178, 23, 157, 0.26) 100%), linear-gradient(90deg, rgb(27, 194, 246) 0%, rgb(27, 194, 246) 6%, rgb(39, 174, 237) 6%, rgb(39, 174, 237) 32%, rgb(50, 155, 229) 32%, rgb(50, 155, 229) 40%, rgb(62, 135, 220) 40%, rgb(62, 135, 220) 66%, rgb(74, 116, 211) 66%, rgb(74, 116, 211) 72%, rgb(86, 96, 202) 72%, rgb(86, 96, 202) 86%, rgb(97, 77, 194) 86%, rgb(97, 77, 194) 96%, rgb(109, 57, 185) 96%, rgb(109, 57, 185) 100%)
+    background: linear-gradient(135deg, rgba(19, 176, 223, 0.26) 0%, rgba(19, 176, 223, 0.26) 23%, rgba(16, 160, 197, 0.26) 23%, rgba(16, 160, 197, 0.26) 65%, rgba(13, 144, 172, 0.26) 65%, rgba(13, 144, 172, 0.26) 70%, rgba(9, 129, 146, 0.26) 70%, rgba(9, 129, 146, 0.26) 74%, rgba(6, 113, 121, 0.26) 74%, rgba(6, 113, 121, 0.26) 90%, rgba(3, 97, 95, 0.26) 90%, rgba(3, 97, 95, 0.26) 100%), linear-gradient(45deg, rgba(65, 234, 230, 0.26) 0%, rgba(65, 234, 230, 0.26) 28%, rgba(88, 192, 215, 0.26) 28%, rgba(88, 192, 215, 0.26) 55%, rgba(110, 150, 201, 0.26) 55%, rgba(110, 150, 201, 0.26) 66%, rgba(133, 107, 186, 0.26) 66%, rgba(133, 107, 186, 0.26) 80%, rgba(155, 65, 172, 0.26) 80%, rgba(155, 65, 172, 0.26) 85%, rgba(178, 23, 157, 0.26) 85%, rgba(178, 23, 157, 0.26) 100%), linear-gradient(90deg, rgb(27, 194, 246) 0%, rgb(27, 194, 246) 6%, rgb(39, 174, 237) 6%, rgb(39, 174, 237) 32%, rgb(50, 155, 229) 32%, rgb(50, 155, 229) 40%, rgb(62, 135, 220) 40%, rgb(62, 135, 220) 66%, rgb(74, 116, 211) 66%, rgb(74, 116, 211) 72%, rgb(86, 96, 202) 72%, rgb(86, 96, 202) 86%, rgb(97, 77, 194) 86%, rgb(97, 77, 194) 96%, rgb(109, 57, 185) 96%, rgb(109, 57, 185) 100%);
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 *{
@@ -35,10 +37,15 @@ body {
     margin-top: 10px;
     width: 100%;
     max-width: 1200px;
+    align-self: center;
 }
 .content2\.2{
     margin-top: 5px;
     background-color:#D3D3D3;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 .card2\.1{
     background-color:#2C3E50;
@@ -54,10 +61,10 @@ body {
     object-fit: cover;
     width: 400px;
 }
-.content3{
-    margin-top: 10px;
-}
 
+.display-4{
+  font-size: 2em;
+}
 #alq{
     border:0;
     outline:0;
@@ -110,18 +117,35 @@ body {
     font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
 }
 
+.jumbotron {
+    text-align: center;    }
+
+.jumbotron p{
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.widget{
+  margin-bottom: 3em;
+}
 
 @media screen and (min-width: 800px) {
-    .jumbotron {
-        text-align: center
+    .widget{
+      width: 30vw;
+      margin-right: 1em;
     }
     .jumbotron p{
         text-align: center;
         margin: auto;
-        font-size: 20px;
+        font-size: 1.7em;
         font-family: sans-serif;
     }
-
+    .display-4{
+      font-size: 2.3em;
+      text-align: justify;
+    }
 
     #alq{
         border:0;
@@ -175,6 +199,13 @@ body {
         font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
     }
 
+    .content2\.2{
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+    }
+
     .content2\.4{
         width: 100%;
         max-width: 20rem;
@@ -188,6 +219,9 @@ body {
         object-fit: cover;
         width: 500px;
         height: 500px;
+    }
+    .content2{
+      margin-bottom: 4em;
     }
 
 }
