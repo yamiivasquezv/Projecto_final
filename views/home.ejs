@@ -1,36 +1,49 @@
 <% include partials/_headers %>
-<div class="container">
-    <div class="jumbotron mt-4">
-        <hi class="display-4">Sistema automatizado para alquiler de bicicletas en campus universitario</hi>
-        <p class="lead">Pontifica Universidad Católica Madre y Maestra PUCMM</p>
+
+<div class="content1">
+    <div class="content1.1">
+        <div class="jumbotron">
+            <hi class="display-4">Sistema automatizado para alquiler de bicicletas en campus universitario</hi>
+            <p class="lead">Pontifica Universidad Católica Madre y Maestra PUCMM</p>
+        </div>
     </div>
 </div>
-<div class="container my-5">
-    <div class="col-md-12">
-        <div class="card" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+
+<div class="content2">
+        <div class="card card2.1">
             <div class="card-header">
                 <h3 >Bienvenido:</h3>
             </div>
-            <div class="card-body" style="background-color:#DCDCDC; ">
-                <img src="Imagenes/bike2.png" style="float:none; margin-top:-100px; margin-left:100px; object-fit: cover;">
-                <button type="submit" id="alq"
-                        onclick="location.href='/signin'">Administrar Sistema
-                </button>
-                <button type="submit" id="sign"
-                        onclick="location.href='/alquilar'">Alquilar bicicleta
-                </button>
-                <div class="card text-white bg-primary mb-3" style="max-width: 20rem; float:right;" >
-                    <div class="card-header" style="background-color:#2C3E50; font-weight: bold;">Mira el clima hoy</div>
-                    <div class="card-body">
-                        <!-- weather widget start --><a target="_blank" href="https://hotelmix.es/weather/santiago-de-los-caballeros-47981"><img src="https://w.bookcdn.com/weather/picture/3_47981_1_4_137AE9_271_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=582&anc_id=24778"  alt="booked.net"/></a><!-- weather widget end -->
-                    </div>
+
+            <div class="content2.2">
+                <div class="card-body card-body2.1">
+                    <img class="img2.1" src="Imagenes/bike2.png" >
                 </div>
-                <div class="card text-white bg-primary mb-3" style="max-width: 20rem; float:right; margin-top: -100px">
-                    <div class="card-header" style="background-color:#2C3E50; font-weight: bold;">Mas Info HERE</div>
-                    <div class="card-body">
-                        <h4 class="card-title">Primary card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    </div>
+            </div>
+            <div class="content2.3">
+                <button type="submit" id="alq"
+                    onclick="location.href='/signin'">Administrar Sistema
+                 </button>
+                <button type="submit" id="sign"
+                    onclick="location.href='/alquilar'">Alquilar bicicleta
+                </button>
+            </div>
+        </div>
+</div>
+<div class="content3">
+    <div class="content3.1">
+        <div class="item-content1">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header" style="background-color:#2C3E50; font-weight: bold;">Mira el clima hoy</div>
+                <div class="card-body">
+                    <!-- weather widget start --><a target="_blank" href="https://hotelmix.es/weather/santiago-de-los-caballeros-47981"><img src="https://w.bookcdn.com/weather/picture/3_47981_1_4_137AE9_271_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=582&anc_id=24778"  alt="booked.net"/></a><!-- weather widget end -->
+                </div>
+            </div>
+        </div>
+        <div class="item-content2">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header" style="background-color:#2C3E50; font-weight: bold;">Otra información</div>
+                <div class="card-body">HOLA
                 </div>
             </div>
         </div>
