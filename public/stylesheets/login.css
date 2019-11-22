@@ -1,0 +1,85 @@
+.content3{
+    margin-bottom: 4em;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1200px;
+    align-self: center;
+    width:350px;
+}
+.content3\.1{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+.login{
+    margin-top: 10px;
+}
+
+div.bikemove{
+    height: 200px;
+    width: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 200px;
+    background-size: 200px 200px;
+    cursor:pointer;
+    background-image: url("../Imagenes/bicimove.gif");
+    border: 5px solid #2C3E50 ;
+    margin-top: 18px;
+}
+.user{
+    height:250px;
+    width:250px;
+}
+.dos{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 800px) {
+    .dos{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        margin-top:50px;
+    }
+    .user{
+        height:300px;
+        width:350px;
+    }
+    div.bikemove{
+        margin-top: 18px;
+        height: 250px;
+        width: 250px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 200px;
+        background-size: 250px 250px;
+        cursor:pointer;
+        background-image: url("../Imagenes/bicimove.gif");
+        border: 5px solid #2C3E50 ;
+    }
+    .login{
+        margin-top: 10px;
+    }
+    .content3\.1{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content3{
+        margin-bottom: 4em;
+        margin-top: 10px;
+        width: 100%;
+        max-width: 1200px;
+        align-self: center;
+        width:1200px;
+    }
+
+}

@@ -34,60 +34,6 @@
         .unknown:before	{content: " ";}
         #slot0,#slot1,#slot2,#slot3{cursor: pointer;}
     </style>
-
-
-    <script>
-        function habilitar(value,id)
-        {
-            if (id==="cbox1") {
-                if (value === true) {
-                    // habilitamos
-                    document.getElementById("mat").disabled = false;
-                    document.getElementById("cbox2").disabled = true;
-
-                } else if (value === false) {
-                    // deshabilitamos
-                    document.getElementById("mat").disabled = true;
-                    document.getElementById("cbox2").disabled = false;
-                }
-            }
-            else if (id==="cbox2"){
-                if (value===true){
-                    document.getElementById("ced").disabled=false;
-                    document.getElementById("cbox1").disabled = true;
-                }else if(value===false){
-                    document.getElementById("ced").disabled=true;
-                    document.getElementById("cbox1").disabled = false;
-                }
-            }
-        }
-    </script>
-
-    <script type="text/javascript">
-        document.title = "Título de la pagina";
-
-
-        var answer_mode = 0;
-
-        function clear1() {
-            document.forms["calculator"].display.value = "";
-        }
-
-        function clear() {
-            clear1();
-        }
-
-
-        function number(ch) {
-            if (answer_mode) {
-                clear1();
-                answer_mode = 0;
-
-            }
-            document.forms["calculator"].display.value += ch;
-            var hoja=ch
-        }
-    </script>
 </head>
 <body>
 <section><%include partials/navbar.ejs %></section>
@@ -97,14 +43,14 @@
 </main>
 
 <div class="container my-5">
-    <div class="col-md-12">
-        <div class="card" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3;" >
-            <div class="card-header">
+    <div class="col-md-12" style="align-items: center;">
+        <div class="card" style="background-color:#DDDDDD; font-weight:bold; color:#D3D3D3;" >
+            <div class="card-header" style="background-color:#2C3E50;">
                 <h3>Disponibilidad de la Estación</h3>
             </div>
-            <div class="card-body" style="margin-left : auto; margin-right : auto">
+            <div class="card-body" style="margin-left:auto; margin-right:auto;">
                 <form name="slots" action="/crearalquiler" method="post">
-                    <h3 style="text-transform: capitalize;"><%=user.primername%> Elige la bicicleta que deseas utilizar:</h3>
+                    <h3 style="text-transform: capitalize; color: #2C3E50"><%=user.primername%>, Elige la bicicleta que deseas utilizar:</h3>
                     <br>
                     <div class="container">
                         <button type="submit" disabled="true" value="slot0" name="slotestado" class="unknown"  id="slot0"> <a  style="color:#fff;

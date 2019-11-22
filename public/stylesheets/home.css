@@ -20,7 +20,6 @@ body {
 .jumbotron {
     text-align: justify;
 }
-
 .jumbotron h1{
     margin: auto;
     font-size: 50px;
@@ -32,12 +31,13 @@ body {
     font-size: 20px;
     font-family: sans-serif;
 }
-
 .content2{
+    margin-bottom: 4em;
     margin-top: 10px;
     width: 100%;
     max-width: 1200px;
     align-self: center;
+    width:350px;
 }
 .content2\.2{
     margin-top: 5px;
@@ -46,6 +46,7 @@ body {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+
 }
 .card2\.1{
     background-color:#2C3E50;
@@ -59,9 +60,8 @@ body {
 .img2\.1{
     margin:auto;
     object-fit: cover;
-    width: 400px;
+    width: 300px;
 }
-
 .display-4{
   font-size: 2em;
 }
@@ -70,13 +70,13 @@ body {
     outline:0;
     color:#D3D3D3;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #2C3E50 ;
     float:left;
     position:absolute;
     display:block;
-    margin: -218px 8px 200px 270px;
-    width:140px; height:140px;
+    margin: -150px 8px 200px 185px;
+    width:110px; height:110px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;"
@@ -86,7 +86,7 @@ body {
     color:#000000;
     font-weight: bold;
     cursor:pointer;
-    font-size: 20px;
+    font-size: 18px;
     border:1px solid #A3E4D7;
     font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
 }
@@ -95,14 +95,14 @@ body {
     outline: 0;
     color:#D3D3D3;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #2C3E50;
     float: left;
     position: absolute;
     display: block;
-    margin: -218px 100px 200px 35px;
-    width: 140px;
-    height: 140px;
+    margin: -150px 100px 200px 8px;
+    width: 110px;
+    height: 110px;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
@@ -112,29 +112,28 @@ body {
     color:#000000;
     font-weight: bold;
     cursor:pointer;
-    font-size: 20px;
+    font-size: 18px;
     border:1px solid #A3E4D7;
     font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
 }
-
 .jumbotron {
     text-align: center;    }
-
 .jumbotron p{
     text-align: center;
     margin: auto;
     font-size: 20px;
     font-family: sans-serif;
 }
-
 .widget{
   margin-bottom: 3em;
+    width: 250px;
 }
 
 @media screen and (min-width: 800px) {
     .widget{
-      width: 30vw;
-      margin-right: 1em;
+        width: 25vw;
+        height: 22vw;
+        margin-right: 1em;
     }
     .jumbotron p{
         text-align: center;
@@ -146,7 +145,6 @@ body {
       font-size: 2.3em;
       text-align: justify;
     }
-
     #alq{
         border:0;
         outline:0;
@@ -157,11 +155,11 @@ body {
         float:left;
         position:absolute;
         display:block;
-        margin: -270px 8px 200px 328px;
-        width:180px; height:180px;
-        -webkit-border-radius: 100px;
-        -moz-border-radius: 100px;
-        border-radius: 100px;
+        margin: -315px 8px 200px 408px;
+        width:220px; height:220px;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        border-radius: 150px;
     }
     #alq:hover{
         background: #7FFFD4;
@@ -182,12 +180,12 @@ body {
         float: left;
         position: absolute;
         display: block;
-        margin: -270px 100px 200px 35px;
-        width: 180px;
-        height: 180px;
-        -webkit-border-radius: 100px;
-        -moz-border-radius: 100px;
-        border-radius: 100px;
+        margin: -315px 100px 200px 25px;
+        width: 220px;
+        height: 220px;
+        -webkit-border-radius: 150px;
+        -moz-border-radius: 150px;
+        border-radius: 150px;
     }
     #sign:hover{
         background: #7FFFD4;
@@ -198,30 +196,20 @@ body {
         border:1px solid #A3E4D7;
         font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
     }
-
     .content2\.2{
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
       justify-content: center;
     }
-
-    .content2\.4{
-        width: 100%;
-        max-width: 20rem;
-        float:none;
-        margin: auto;
-        margin-top: 10px;
-    }
-
     .img2\.1{
         margin:auto;
         object-fit: cover;
-        width: 500px;
-        height: 500px;
+        width: 650px;
+        height: 650px;
     }
     .content2{
       margin-bottom: 4em;
+        width: 1200px;
     }
-
 }

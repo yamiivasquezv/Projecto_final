@@ -1,0 +1,68 @@
+div.bikepark{
+    height: 220px;
+    width: 220px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 200px;
+    background-size: 100px 100px;
+    cursor:pointer;
+    background-image: url("../Imagenes/bike-parking.png");
+    border: 10px solid #2C3E50 ;
+    margin-top: 18px;
+}
+.content4{
+    margin-bottom: 4em;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1200px;
+    align-self: center;
+    width:400px;
+}
+.content4\.1{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4em;
+}
+.card4\.1{
+    margin-top: 10px;
+    height: 550px;
+    width: 300px;
+}
+@media screen and (min-width: 800px) {
+    div.bikepark{
+        margin-top: 18px;
+        height: 250px;
+        width: 250px;
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius: 200px;
+        background-size: 150px 150px;
+        cursor:pointer;
+        background-image: url("../Imagenes/bike-parking.png");
+        border: 10px solid #2C3E50 ;
+    }
+    .card4\.1{
+        margin-top: 10px;
+        height: 550px;
+        width: 300px;
+    }
+    .content4\.1{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 4em;
+    }
+
+    .content4{
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 4em;
+        margin-top: 10px;
+        width: 100%;
+        align-self: center;
+        width:1200px;
+    }
+}
