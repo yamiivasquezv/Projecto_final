@@ -8,6 +8,7 @@ const User=require('../modelos/usuario');
 passport.use('passport', new LocalStrategy({
     usernameField: 'usuario',
     passwordField: 'contrasena'
+
 }, async (usuario, contrasena, done) => {
     const user = await User.findOne({usuario: usuario});
     // console.log(user);

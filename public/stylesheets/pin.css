@@ -46,7 +46,7 @@ div.bikepark{
     .card4\.1{
         margin-top: 10px;
         height: 550px;
-        width: 300px;
+        width: 400px;
     }
     .content4\.1{
         display: flex;
@@ -55,7 +55,6 @@ div.bikepark{
         justify-content: center;
         margin-bottom: 4em;
     }
-
     .content4{
         align-items: center;
         justify-content: center;

@@ -6,14 +6,13 @@ const {isAuthenticated }=require('../helpers/auth');
 const Bici=require('../modelos/bikes');
 const Estacion=require('../modelos/estacion');
 const Point=require('../modelos/point');
-
-
+const User=require('../modelos/usuario');
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('home', { title: 'Express' });
+    res.render('home', { title: 'Express' });
 });
 router.get('/home', function(req, res) {
-  res.render('home', { title: 'Express' });
+    res.render('home', { title: 'Express' });
 });
 router.get('/signin', function(req, res) {
     res.render('login', { title: 'Express' });
@@ -27,7 +26,7 @@ router.get('/administrar', async function (req, res) {
     res.render('administrar', {puntos,bicis});
 });
 router.get('/login', function(req, res) {
-  res.render('usuarios', { title: 'Express' });
+    res.render('usuarios', { title: 'Express' });
 });
 router.get('/btnbici', async function (req, res) {
     try {
@@ -57,13 +56,11 @@ router.get('/btnrutas', function (req, res) {
 router.get('/btnusuarios', function (req, res) {
     res.render('btnusuarios', { title: 'Express' });
 });
-
 router.get('/logout', isAuthenticated, function(req, res) {
     req.logout();
     req.flash('success_msg', 'You are logged out now.');
     res.redirect('/signin');
 });
-
 router.get('/alquiler', isAuthenticated, function (req, res) {
     res.render('alquiler', { title: 'Express' });
 });
@@ -78,26 +75,30 @@ router.get('/administrador', function (req, res) {
 router.post('/add', indexcontroller.add );
 router.post('/verubi', indexcontroller.verubi);
 //router.post('/verpin', indexcontroller.pin);
-
 //router.post('/creandoalquiler', indexcontroller.add );
 //router.post('/verpin', indexcontroller.pin);
-
 router.post('/addbici', indexcontroller.addbici );
 router.post('/addestac', indexcontroller.addestac );
-
 router.post('/verpin', passport.authenticate('pin',{
     successRedirect:'/alquiler',
     failureRedirect:'/alquilar',
     failureFlash:true
 }));
-
 router.post('/crearalquiler', indexcontroller.alquilar);
-
-router.post('/auth', passport.authenticate('passport',{
-    successRedirect:'/administrar',
-    failureRedirect:'/signin',
-    failureFlash:true
-}));
-
+router.post('/auth', passport.authenticate('passport',{failureRedirect:'/signin', failureFlash:true}),
+    async function (req, res) {
+        const usuariot= await User.find({usuario:req.body.usuario});
+        console.log(usuariot[0].tipo);
+        if (usuariot) {
+            if (usuariot[0].tipo == 'estudiante') {
+                const puntos = await Point.find({}).lean();
+                const bicis = await Bici.find({}).lean();
+                res.render('administrar', {puntos,bicis});
+            } else if (usuariot[0].tipo == 'administrador') {
+                res.redirect('/home');
+            }
+        }
+    }
+);
 module.exports = router;
 

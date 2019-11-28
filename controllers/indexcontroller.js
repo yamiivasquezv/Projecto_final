@@ -42,7 +42,6 @@ controller.verubi=async (req,res)=> {
         console.log(turealbici);
     }
 };
-
 controller.addbici=async (req,res)=> {
     const {rfid, fechadq,ident}=req.body;
     if (rfid==="Elija RFID") {
@@ -62,7 +61,6 @@ controller.addbici=async (req,res)=> {
         }
     }
 };
-
 controller.addestac=async (req,res)=> {
     const {nombreestacion, cantidadslot}=req.body;
     if (cantidadslot==="Elija cantidad") {
@@ -86,7 +84,6 @@ controller.addestac=async (req,res)=> {
         }
     }
 };
-
 //revisar si el usuario existe con el pin y matricula o cedula
 controller.pin= async (req,res)=>{
     const pin=req.body.display;
@@ -109,17 +106,22 @@ controller.pin= async (req,res)=>{
 
 };
 controller.alquilar= async (req,res)=>{
-    const {slotestado,user,estacion}=req.body;
-    const findslot= await Slotestado.find({slot:req.body.slotestado}).lean();
+    const slotestado=req.body.slotestado;
+    const user=req.body.user;
+    const estacion=req.body.estacion;
+    const findslot= await Slotestado.find({slot:slotestado});
+    const bike= findslot[0].rfid;
+    const findbike= await Bici.find({rfid:bike});
+    const idbike=findbike[0]._id;
+    const idslot=findslot[0]._id;
+    //no devuelve nada, chequear eso
     if (findslot){
-        const bike= findslot.rfid;
-        const findbike= await Bici.find({rfid:bike}).lean();
-        const idbike=findbike._id;
-        const idslot=findslot._id;
-        await Slotestado.updateOne({_id:idslot},{$set: {estado: 'disponible'}}).save();
-        await Bici.updateOne({_id:idbike},{$set:{estado:'ocupado'}}).save();
-        const nalquiler=new Alquiler({user:user,estacionon:estacion,slot:slotestado,bike:bike});
+        const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike});
+
+        await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
+        await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
         await nalquiler.save();
+
         req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
         req.logout();
         res.redirect('/home');
@@ -130,4 +132,5 @@ controller.alquilar= async (req,res)=>{
         res.redirect('/home');
     }
 };
+
 module.exports=controller;

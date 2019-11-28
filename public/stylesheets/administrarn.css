@@ -87,9 +87,10 @@ div.elementotres{
 
 }
 
+
 @media screen and (min-width: 800px) {
     .content7 {
-        width: 1300px;
+        width: 1200px;
         height: 250px;
         display: -webkit-flex;
         display: -ms-flexbox;
