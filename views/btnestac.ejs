@@ -21,33 +21,40 @@
         </nav>
     </aside>
 </section>
-
 <div class="contenedorseis">
-    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="estaciontable">
-        <table class="table table-hover" style=" width:650px;">
+    <div class="card" id="cardestacion" style="width:850px;">
+        <div class="card-header"  style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+            <h3>Bicicletas creadas</h3>
+        </div>
+        <div class="card-body" style="background-color:#DCDCDC; height:100%;">
+            <div id="estaciontable" style="overflow:auto; max-height:250px;">
+                <table class="table table-hover">
 
-            <thead >
-            <tr class="table-warning">
-                <th scope="col">Estacion</th>
-                <th scope="col">Cantidad de Slots</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% estacion.forEach(function(estacion, index) { %>
-                    <tr class="table-secondary">
-                        <td><%=estacion.nombreestacion%></td>
-                        <td><%=estacion.cantidadslot%></td>
+                    <thead >
+                    <tr class="table-dark">
+                        <th scope="col">Estación</th>
+                        <th scope="col">Cantidad de Slots</th>
                     </tr>
-            <%})%>
-            </tbody>
-        </table>
+                    </thead>
+                    </thead>
+                    <tbody>
+                        <% estacion.forEach(function(estacion, index) { %>
+                        <tr class="table-secondary">
+                            <td><%=estacion.nombreestacion%></td>
+                            <td><%=estacion.cantidadslot%></td>
+                        </tr>
+                        <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <div class="contenedorseismini">
     <div class="elementoseismini">
         <div class="card" id="adestacion" style="height:350px; width:250px;">
             <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
-                <h3>Agregar Estacion</h3>
+                <h3>Agregar Estación</h3>
             </div>
             <div class="card-body" >
                 <form id="formestac" style="display:block" action="/addestac" method="post">

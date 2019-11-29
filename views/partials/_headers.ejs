@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Bicicletas Universitarias</title>
     <!--CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,6 +26,9 @@
     <link rel="stylesheet" href="/stylesheets/login.css">
     <link rel="stylesheet" href="/stylesheets/administrarn.css">
     <link rel="stylesheet" href="/stylesheets/pin.css">
+    <link rel="stylesheet" href="/stylesheets/btnestac.css">
+    <link rel="stylesheet" href="/stylesheets/btnbici.css">
+
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -107,17 +111,18 @@
             if(document.getElementById('adbici').style.display==="block"){
                     (document.getElementById('adbici').style.display = "none");
                     (document.getElementById('alltable').style.display = "none");
+                    (document.getElementById('carbici').style.display = "none");
                     (document.getElementById('verubi').style.display="none");
-                    (document.getElementById('selbici').style.display="none");
+                    (document.getElementById('valorbici').style.display="none");
 
                 }
             else
             if(document.getElementById('adbici').style.display==="none"){
                     (document.getElementById('adbici').style.display="block");
                     (document.getElementById('alltable').style.display="block");
+                    (document.getElementById('carbici').style.display="block");
                     (document.getElementById('verubi').style.display="none");
-                    (document.getElementById('selbici').style.display="none");
-
+                    (document.getElementById('valorbici').style.display="none");
                 }
         }
     </script>
@@ -125,16 +130,18 @@
             function hideshow2(){
                 if(document.getElementById('verubi').style.display==="block"){
                     (document.getElementById('verubi').style.display = "none");
-                    (document.getElementById('selbici').style.display = "none");
+                    (document.getElementById('valorbici').style.display = "none");
                     (document.getElementById('alltable').style.display = "none");
                     (document.getElementById('adbici').style.display="none");
+                    (document.getElementById('carbici').style.display="none");
                 }
             else
                 if(document.getElementById('verubi').style.display==="none"){
                     (document.getElementById('verubi').style.display = "block");
-                    (document.getElementById('selbici').style.display = "block");
+                    (document.getElementById('valorbici').style.display = "block");
                     (document.getElementById('adbici').style.display="none");
                     (document.getElementById('alltable').style.display="none");
+                    (document.getElementById('carbici').style.display="none");
                 }
             }
     </script>

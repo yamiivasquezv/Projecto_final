@@ -8,9 +8,10 @@
 }
 .content3\.1{
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+
 }
 .login{
     margin-top: 10px;
@@ -34,9 +35,11 @@ div.bikemove{
 }
 .dos{
     display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: -webkit-flex;
+    display: -ms-flexbox;
 }
 
 @media screen and (min-width: 800px) {
@@ -44,8 +47,11 @@ div.bikemove{
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        justify-content: center;
-        margin-top:50px;
+        justify-content: space-between;
+        margin-top:20px;
+        padding: 10px;
+        display: -webkit-flex;
+        display: -ms-flexbox;
     }
     .user{
         height:300px;

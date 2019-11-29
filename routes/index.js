@@ -50,6 +50,9 @@ router.get('/btnestac', async function (req, res) {
 router.get('/btnviajes', function (req, res) {
     res.render('btnviajes', { title: 'Express' });
 });
+router.get('/homeuser', function (req, res) {
+});
+
 router.get('/btnrutas', function (req, res) {
     res.render('btnrutas', { title: 'Express' });
 });
@@ -58,7 +61,7 @@ router.get('/btnusuarios', function (req, res) {
 });
 router.get('/logout', isAuthenticated, function(req, res) {
     req.logout();
-    req.flash('success_msg', 'You are logged out now.');
+    req.flash('success_msg', 'Has Cerrado Sesión Satisfactoriamente');
     res.redirect('/signin');
 });
 router.get('/alquiler', isAuthenticated, function (req, res) {
@@ -68,7 +71,7 @@ router.get('/administrador', function (req, res) {
     if (req.session.loggedin) {
         res.render('administrador');
     } else {
-        res.send('Please login to view this page!');
+        res.send('Inicia sesión para poder ver esta página!');
     }
     res.end();
 });
@@ -91,11 +94,11 @@ router.post('/auth', passport.authenticate('passport',{failureRedirect:'/signin'
         console.log(usuariot[0].tipo);
         if (usuariot) {
             if (usuariot[0].tipo == 'estudiante') {
+                res.render('homeuser');
+            } else if (usuariot[0].tipo == 'administrador') {
                 const puntos = await Point.find({}).lean();
                 const bicis = await Bici.find({}).lean();
                 res.render('administrar', {puntos,bicis});
-            } else if (usuariot[0].tipo == 'administrador') {
-                res.redirect('/home');
             }
         }
     }
