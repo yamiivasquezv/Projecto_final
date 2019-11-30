@@ -1,10 +1,30 @@
 <% include partials/userheader.ejs %>
-    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
-    <div id="map" class="map" style="height:100%">
-        <script>
-            var map = L.map('map').setView([19.4436,-70.6827], 16);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
-        </script>
-    </div>
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+<div id="map" class="map" style="height:100%">
+    <script>
+        var map = L.map('map').setView([19.4436,-70.6827], 16);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+        var latlngs=[
+           [
+                [19.443103744939776,-70.68188786527803],
+                [19.443328404957285,-70.68249583282353],
+                [19.44363169539507, -70.68299651136233],
+                [19.444193343028815, -70.68303227392802],
+                [19.444822385947763, -70.68304419521981],
+                [19.445732247185475, -70.68327069256048]
+           ],
+            [
+                [19.441447255329937,-70.68390309794826],
+                [19.441441638752767,-70.68355143031805],
+                [19.441452871906893,-70.6831222769106],
+                [19.441447255329937,-70.6826990838216]
+            ]
+        ];
+        var polyline= L.polyline(latlngs, {color:'red'}).bindPopup('Primer Viaje').addTo(map);
+        map.fitBounds(polyline.getBounds());
+
+    </script>
+</div>
 <% include partials/userfooter.ejs %>

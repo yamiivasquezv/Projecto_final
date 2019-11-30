@@ -5,7 +5,8 @@ const {Schema}=mongoose;
 const  estacion= new Schema({
     nombreestacion: {type: String, required:true},
     cantidadslot: {type: String, required:true},
-    ubicacion: {type: Number, index: '2dsphere'}
+    latitud: {type: Number, required:true},
+    longitud: {type: Number, required:true}
 });
 
 module.exports=mongoose.model('estacion',estacion);

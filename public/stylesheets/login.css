@@ -30,13 +30,16 @@ div.bikemove{
     margin-top: 18px;
 }
 .user{
-    height:250px;
+    align-content: center;
+    height:300px;
     width:250px;
 }
 .dos{
+    width: 180px;
     display: flex;
     flex-flow: column;
-    flex-wrap: wrap;
+    flex-wrap:nowrap;
+    align-content:center;
     justify-content: space-between;
     display: -webkit-flex;
     display: -ms-flexbox;

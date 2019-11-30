@@ -21,10 +21,41 @@
         </nav>
     </aside>
 </section>
+<div class="contenedorsiete">
+    <div class="card" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; height:100%; width: 100%;">
+        <div class="card-header">
+            <h3>Estaciones</h3>
+        </div>
+        <div class="card-body" style="background-color:#DCDCDC;">
+            <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+            <div id="mapaubicacion" class="map" style="height:100%">
+                <script>
+                    var map=L.map('mapaubicacion').setView([19.4436,-70.6827], 16);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+                    var marker = new L.marker([19.4436,-70.6827],{draggable: true}).addTo(map);
+
+                    marker.on("drag", function(e) {
+                        var marker = e.target;
+                        var position = marker.getLatLng();
+                        var lat= document.getElementById('latitude').value = marker.getLatLng().lat;
+                        console.log(lat);
+                        document.getElementById('longitude').value = marker.getLatLng().lng;
+                        map.panTo(new L.LatLng(position.lat, position.lng));
+
+                    });
+
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="contenedorseis">
     <div class="card" id="cardestacion" style="width:850px;">
         <div class="card-header"  style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
-            <h3>Bicicletas creadas</h3>
+            <h3>Estaciones creadas</h3>
         </div>
         <div class="card-body" style="background-color:#DCDCDC; height:100%;">
             <div id="estaciontable" style="overflow:auto; max-height:250px;">
@@ -52,7 +83,7 @@
 </div>
 <div class="contenedorseismini">
     <div class="elementoseismini">
-        <div class="card" id="adestacion" style="height:350px; width:250px;">
+        <div class="card" id="adestacion" style="height:450px; width:250px;">
             <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
                 <h3>Agregar Estación</h3>
             </div>
@@ -69,6 +100,12 @@
                             <option value="3">3</option>
                             <option value="4">4</option>
                         </select>
+                    </div>
+                    <div class="form-group" style="font-size:13px">Ubicación
+                        <input type="text" name="latitud" id="latitude" placeholder="Latitud" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="longitud" id="longitude" placeholder="Longitud" class="form-control">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">

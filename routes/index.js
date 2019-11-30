@@ -7,9 +7,13 @@ const Bici=require('../modelos/bikes');
 const Estacion=require('../modelos/estacion');
 const Point=require('../modelos/point');
 const User=require('../modelos/usuario');
+const RFID=require('../modelos/rfid');
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('home', { title: 'Express' });
+});
+router.get('/viajesuser', function(req, res) {
+    res.render('viajesuser', { title: 'Express' });
 });
 router.get('/home', function(req, res) {
     res.render('home', { title: 'Express' });
@@ -30,9 +34,10 @@ router.get('/login', function(req, res) {
 });
 router.get('/btnbici', async function (req, res) {
     try {
+        const rfid= await RFID.find({}).lean();
         const bicis = await Bici.find({}).lean();
         const puntos = await Point.find({}).lean();
-        res.render('btnbici', {bicis, puntos});
+        res.render('btnbici', {bicis, puntos, rfid});
     } catch (error) {
         console.error(error);
         res.status(500).send('Oops..');
@@ -56,8 +61,9 @@ router.get('/homeuser', function (req, res) {
 router.get('/btnrutas', function (req, res) {
     res.render('btnrutas', { title: 'Express' });
 });
-router.get('/btnusuarios', function (req, res) {
-    res.render('btnusuarios', { title: 'Express' });
+router.get('/btnusuarios', async function (req, res) {
+    const usuario = await User.find({}).lean();
+    res.render('btnusuarios', {usuario});
 });
 router.get('/logout', isAuthenticated, function(req, res) {
     req.logout();
@@ -88,16 +94,17 @@ router.post('/verpin', passport.authenticate('pin',{
     failureFlash:true
 }));
 router.post('/crearalquiler', indexcontroller.alquilar);
+router.post('/verviaje', indexcontroller.verviaje);
 router.post('/auth', passport.authenticate('passport',{failureRedirect:'/signin', failureFlash:true}),
     async function (req, res) {
         const usuariot= await User.find({usuario:req.body.usuario});
-        console.log(usuariot[0].tipo);
         if (usuariot) {
             if (usuariot[0].tipo == 'estudiante') {
                 res.render('homeuser');
-            } else if (usuariot[0].tipo == 'administrador') {
+            } else if (usuariot[0].tipo == 'empleado') {
                 const puntos = await Point.find({}).lean();
                 const bicis = await Bici.find({}).lean();
+                console.log(usuariot[0].tipo);
                 res.render('administrar', {puntos,bicis});
             }
         }

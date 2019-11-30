@@ -10,7 +10,10 @@
                             <a href="#"><i class="icon ion-md-paper"></i><span>Ver Usuarios</span></a>
                         </li>
                         <li>
-                            <a href="/administrar" onclick="hideshow2();"><img src="Imagenes/back.png" style="font-size: 3.0em; padding-right: 0.5em; width: 1.4em; display: inline; vertical-align: middle;"></img>Volver</a>
+                            <a href="#"><i class="icon ion-md-paper"></i><span>Ver Alquileres</span></a>
+                        </li>
+                        <li>
+                            <a href="/administrar"><img src="Imagenes/back.png" style="font-size: 3.0em; padding-right: 0.5em; width: 1.4em; display: inline; vertical-align: middle;"></img>Volver</a>
                         </li>
                     </ul>
                 </li>
@@ -18,4 +21,48 @@
         </nav>
     </aside>
 </section>
+<div class="contenedorocho">
+    <div class="card" id="cardusuario" style="width:80%;">
+        <div class="card-header"  style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+            <h3>Usuarios</h3>
+        </div>
+        <div class="card-body" style="background-color:#DCDCDC; height:100%;">
+            <div id="usuariotable" style="overflow:auto; max-height:650px;">
+                <table class="table table-hover">
+
+                    <thead >
+                    <tr class="table-dark">
+                        <th scope="col">Primer Nombre</th>
+                        <th scope="col">Primer Apellido</th>
+                        <th scope="col">Tipo de usuario</th>
+                        <th scope="col">Matrícula</th>
+                        <th scope="col">Cédula</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Correo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% usuario.forEach(function(usuario, index) { %>
+                        <tr class="table-secondary">
+                            <td><%=usuario.primername%></td>
+                            <td><%=usuario.primerapellido%></td>
+                            <td><%=usuario.tipo%></td>
+                            <%if (usuario.tipo=='estudiante'){%>
+                                <td><%=usuario.matricula%></td>
+                                <td>N/A</td>
+                            <%}%>
+                            <%if (usuario.tipo=='empleado'){%>
+                                <td>N/A</td>
+                                <td><%=usuario.cedula%></td>
+                            <%}%>
+                            <td><%=usuario.usuario%></td>
+                            <td><%=usuario.correo%></td>
+                        </tr>
+                        <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <% include partials/_footer %>

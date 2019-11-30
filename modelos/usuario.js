@@ -14,7 +14,7 @@ const usuarioSchema= new Schema({
     pin: {type: String,  required:true},
     matricula: {type: String, required:false},
     cedula: {type: String, required: false},
-    alquiler: {type: Schema.ObjectId, ref: "alquiler" }
+    correo: {type: String, required:false}
 });
 usuarioSchema.methods.encryptPassword=async (contrasena)=>{
    const salt= await bcrypt.genSalt(10);

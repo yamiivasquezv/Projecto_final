@@ -103,6 +103,18 @@ Sidebar Nav
 }
 
 @media screen and (min-width: 800px) {
+    div.contenedorsiete{
+        width: 800px;
+        height: 600px;
+        display: flex;
+        padding: 5px;
+        margin-left: 300px;
+        margin-right: auto;
+        margin-top: -700px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     div.contenedorseis {
         width: 800px;
         height: 400px;
@@ -113,7 +125,7 @@ Sidebar Nav
         padding: 5px;
         margin-left: 300px;
         margin-right: auto;
-        margin-top: -700px;
+        margin-top: 400px;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -134,7 +146,7 @@ Sidebar Nav
         padding: 5px;
         margin-left: auto;
         margin-right: 20px;
-        margin-top: -400px;
+        margin-top: -1350px;
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;

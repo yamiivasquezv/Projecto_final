@@ -98,9 +98,11 @@
             else if (id==="cbox2"){
                 if (value===true){
                     document.getElementById("ced").disabled=false;
+                    document.getElementById("correo").disabled=false;
                     document.getElementById("cbox1").disabled = true;
                 }else if(value===false){
                     document.getElementById("ced").disabled=true;
+                    document.getElementById("correo").disabled=true;
                     document.getElementById("cbox1").disabled = false;
                 }
             }
@@ -145,6 +147,7 @@
                 }
             }
     </script>
+
     <script>
         function ubicacion(punto, marker){
             if(document.getElementById(mapubi).style.display=="block")

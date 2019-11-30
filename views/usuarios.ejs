@@ -10,8 +10,8 @@
                 <div class="card-header">
                     <h3>Registro de usuarios</h3>
                 </div>
-                <div class="card-body" style="background-color: #0052D4 ">
-                    <form action="/add" method="post">
+                <div class="card-body" style="background-color: #D3D3D3;color: #2C3E50; font-weight: bold;">
+                    <form action="/add" method="post" style="color: #2C3E50; font-weight: bold;">
                         <legend>Datos del usuario: </legend>
                         <div class="form-group" >
                             <input type="text" name="primername" placeholder="Primer nombre" class="form-control" autofocus>
@@ -39,11 +39,14 @@
                             </label>
                         </div>
                         <br>
-                        <div class="form-group" >
+                        <div class="form-group" style="color: #2C3E50; font-weight: bold;">
                             <input type="text" id="mat" name="matricula" placeholder="Matricula" class="form-control" disabled="true">
                         </div>
-                        <div class="form-group" >
+                        <div class="form-group" style="color: #2C3E50; font-weight: bold;">
                             <input type="text" id="ced" name="cedula" placeholder="Cedula" class="form-control" disabled="true">
+                        </div>
+                        <div class="form-group" >
+                            <input type="text" id="correo" name="correo" placeholder="Correo Electrónico" class="form-control" disabled="true">
                         </div>
 
                         <h5>Información de login: </h5>

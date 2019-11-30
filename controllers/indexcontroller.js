@@ -5,11 +5,12 @@ const Slotestado=require('../modelos/slotestado');
 const Alquiler=require('../modelos/alquiler');
 const Estacion=require('../modelos/estacion');
 const Slot=require('../modelos/slot');
+const Viaje=require('../modelos/viaje');
 const controller={};
 
 //agregar un usuario
 controller.add=async (req,res)=> {
-    const {primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula,cedula}=req.body;
+    const {primername, segundoname, primerapellido, segundoapellido, tipo, correo, usuario, contrasena, pin, matricula,cedula}=req.body;
     const usuariouser= await User.findOne({usuario: req.body.usuario});
     if (usuariouser){
         req.flash('error_msg','No se pudo registrar');
@@ -25,7 +26,7 @@ controller.add=async (req,res)=> {
             res.redirect('/signin');
         }
         else if(req.body.tipo==="empleado"){
-            const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, cedula});
+            const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, correo, tipo, usuario, contrasena, pin, cedula});
             nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
             nusuario.pin= await nusuario.encryptPin(req.body.pin);
             await nusuario.save();
@@ -51,7 +52,7 @@ controller.addbici=async (req,res)=> {
     else {
         const bikes = await Bici.findOne({$or: [{$or: [{rfid: req.body.rfid}, {ident: req.body.ident}]}, {$and: [{rfid: req.body.rfid}, {ident: req.body.rfid}]}]});
         if (bikes) {
-            req.flash('error_msg', 'No se pudo registrar');
+            req.flash('error_msg', 'No se pudo registrar, bicicleta existe');
             res.redirect('/btnbici');
         } else {
             const nbike = new Bici({ident, rfid, fechadq});
@@ -62,7 +63,7 @@ controller.addbici=async (req,res)=> {
     }
 };
 controller.addestac=async (req,res)=> {
-    const {nombreestacion, cantidadslot}=req.body;
+    const {nombreestacion, cantidadslot,latitud,longitud}=req.body;
     if (cantidadslot==="Elija cantidad") {
         req.flash('error_msg', 'Elija cantidad de slots');
         res.redirect('/btnestac');
@@ -73,7 +74,7 @@ controller.addestac=async (req,res)=> {
             req.flash('error_msg', 'Existe estacion con este mismo nombre, elija otro');
             res.redirect('/btnestac');
         } else {
-            const nestacion = new Estacion({nombreestacion, cantidadslot});
+            const nestacion = new Estacion({nombreestacion, cantidadslot,latitud,longitud});
             await nestacion.save();
             for(var i=0; i<cantidadslot; i++){
                 const nslot = new Slot({nombre:'slot'.concat(i+1),estacion:nombreestacion});
@@ -122,6 +123,25 @@ controller.alquilar= async (req,res)=>{
         await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
         await nalquiler.save();
 
+        const idalquiler=nalquiler[0]._id;
+        console.log(idalquiler);
+
+        const viajes = await Viaje.find({}).lean();
+        var i=0;
+        var valor=0;
+        if (viajes){
+            for (i=0; i<viajes.length; i++){
+                if (viajes[i].viaje>valor){
+                    valor=viajes[i].viaje;
+                }
+            }
+            const nviaje= new Viaje({viaje:valor,alquiler:idalquiler,estacionorigen:estacion});
+            await nviaje.save();
+        }
+        else {
+            const nviaje= new Viaje({viaje:1,alquiler:idalquiler,estacionorigen:estacion});
+            await nviaje.save();
+        }
         req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
         req.logout();
         res.redirect('/home');
@@ -132,5 +152,7 @@ controller.alquilar= async (req,res)=>{
         res.redirect('/home');
     }
 };
-
+controller.verviaje= async (req,res)=>{
+ res.render('verviaje');
+};
 module.exports=controller;

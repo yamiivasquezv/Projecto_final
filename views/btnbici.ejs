@@ -105,11 +105,11 @@
                             <td>
                                 <div class="btn-group-vertical" data-toggle="buttons">
                                     <% puntos.forEach(function (puntos, index) { %>
-                                    <%if (bicis.ident===puntos.patron_id){%>
-                                    <%if (puntos.fecha>puntomenor){%>
-                                    <%puntomenor=puntos.fecha;%>
-                                    <%}%>
-                                    <%}%>
+                                        <%if (bicis.ident===puntos.patron_id){%>
+                                            <%if (puntos.fecha>puntomenor){%>
+                                            <%puntomenor=puntos.fecha;%>
+                                            <%}%>
+                                        <%}%>
                                     <%});%>
                                     <%puntos.forEach(function (puntos, index){%>
                                     <%if (puntos.fecha===puntomenor){%>
@@ -141,13 +141,9 @@
                 <div class="form-group">
                     <select class="custom-select" name="rfid">
                         <option selected="">Elija RFID </option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
-                        <option value="6">Six</option>
-                        <option value="461868043668">Primer Código</option>
+                        <% rfid.forEach(function (rfid, index) {%>
+                            <option value="<%=rfid.rfid%>"><%=rfid.rfid%></option>
+                        <%})%>
                     </select>
                 </div>
                 <div class="form-group" >
