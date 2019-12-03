@@ -123,10 +123,7 @@ controller.alquilar= async (req,res)=>{
         await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
         await nalquiler.save();
 
-        const idalquiler=nalquiler[0]._id;
-        console.log(idalquiler);
-
-        const viajes = await Viaje.find({}).lean();
+        const viajes = await Viaje.find({usuario:user}).lean();
         var i=0;
         var valor=0;
         if (viajes){
@@ -135,11 +132,11 @@ controller.alquilar= async (req,res)=>{
                     valor=viajes[i].viaje;
                 }
             }
-            const nviaje= new Viaje({viaje:valor,alquiler:idalquiler,estacionorigen:estacion});
+            const nviaje= new Viaje({viaje:valor+1,usuario:user,estacionorigen:estacion});
             await nviaje.save();
         }
         else {
-            const nviaje= new Viaje({viaje:1,alquiler:idalquiler,estacionorigen:estacion});
+            const nviaje= new Viaje({viaje:1,usuario:user,estacionorigen:estacion});
             await nviaje.save();
         }
         req.flash('success_msg', 'Alquiler realizado satisfactoriamente');

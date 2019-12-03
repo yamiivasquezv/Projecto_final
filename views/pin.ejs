@@ -8,16 +8,13 @@
                 </div>
                 <div class="card-body card-body4.3">
                     <form name="calculator"  action="/verpin" method="post">
-
                         <legend style="font-family: sans-serif; font-size:20px;">Escanee su carnet universitario: </legend>
                         <div class="form-group" >
-                            <input type="text"  name="matricula" id="mat" class="form-control" autofocus>
+                            <input type="text"  name="matricula"  required id="mat" maxlength="11" minlength="8" pattern="[0-9]+" class="form-control" autofocus>
                         </div>
 
                         <legend style="font-family: sans-serif; font-size:20px;">Digite su pin: </legend>
-                            <input name="pin"  type="password" readonly="readonly" size="4"  style="width:152px; text: Arial; font-size: 20pt; background-color:#EBE6E5" >
-
-
+                            <input name="pin" type="password" readonly="readonly" title="Longitud máxima de 4 caracteres. Campo obligatorio" minlength="4" pattern="[0-9]+" required  style="width:152px; text: Arial; font-size: 20pt; background-color:#EBE6E5" >
                             <table>
                                 <tbody>
                                 <tr></tr><tr></tr><tr></tr>
@@ -26,21 +23,17 @@
                                     <td>  <input type="button" value="8" onclick="number(8)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                     <td>  <input type="button" value="9" onclick="number(9)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                 </tr>
-
                                 <tr>
                                     <td>  <input value="4" onclick="number(4)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                     <td>  <input value="5" onclick="number(5)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                     <td>  <input value="6" onclick="number(6)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                 </tr>
-
                                 <tr>
                                     <td>  <input value="1" onclick="number(1)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                     <td>  <input value="2" onclick="number(2)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                     <td>  <input value="3" onclick="number(3)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
                                 </tr>
-
                                 <td><input value="0" onclick="number(0)" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
-
                                 <td></td>
 
                                 <td><input value="C" onclick="clear1()" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>

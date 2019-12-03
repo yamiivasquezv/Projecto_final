@@ -5,7 +5,11 @@
         <div class="form-group">
             <select id="viaj" class="custom-select">
                 <option selected="" style="color:black; border:0; outline:0;">Elija el viaje:</option>
-                <option style="color: black;" value="">1</option>
+                <% viajes.forEach(function(viajes, index){%>
+                     <%if (viajes.usuario==user.usuario){%>
+                        <option style="color: black;" value="<%=viajes.viaje%>">Viaje <%=viajes.viaje%>-<%=viajes.fechainicio%></option>
+                     <%}%>
+                <%})%>
             </select>
             <button id="botonver" type="submit" class="btn btn-primary">
                 Ver Viaje
