@@ -27,8 +27,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-
-
 //sesiones
 app.use(session({
   secret: 'useruser',
