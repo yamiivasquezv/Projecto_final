@@ -1,52 +1,85 @@
-<% include partials/_headers %>
-<div class="content4">
-    <div class="content4.1">
-        <div class="bikepark"></div>
-            <div class="card card4.1">
-                <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3;">
-                    <h3>Alquiler de bicicletas</h3>
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bicicletas Universitarias</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--JS-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+
+    <script src="/uimatricula.js" type="text/javascript" defer></script>
+    <script src="/matricula.js" type="text/javascript"></script>
+    <!--Lo demas-->
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css">
+    <link rel="stylesheet" href="/stylesheets/administrar.css">
+    <link rel="stylesheet" href="/stylesheets/sidemenu.css">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/administrarn.css">
+    <link rel="stylesheet" href="/stylesheets/pin.css">
+
+    <link rel="stylesheet" href="/stylesheets/botonesalquiler.css">
+</head>
+<body>
+<section><%include partials/navbar.ejs %></section>
+<main class="container p5">
+    <section><%include partials/messages.ejs %></section>
+    <section><%include partials/errors.ejs %></section>
+</main>
+    <div class="content4">
+        <div class="content4.1">
+            <div class="bikepark"></div>
+                <div class="card card4.1">
+                    <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3;">
+                        <h3>Alquiler de bicicletas</h3>
+                    </div>
+                    <div class="card-body card-body4.3">
+                        <form name="calculator"  action="/verpin" method="post">
+                            <legend style="font-family: sans-serif; font-size:20px;">Escanee su carnet universitario: </legend>
+                            <div class="form-group" >
+                                <input type="text"  name="matricula"  required id="mat" maxlength="11" minlength="8" pattern="[0-9]+" class="form-control" autofocus>
+                            </div>
+
+                            <legend style="font-family: sans-serif; font-size:20px;">Digite su pin: </legend>
+                                <input name="pin" type="password" readonly="readonly" title="Longitud máxima de 4 caracteres. Campo obligatorio" minlength="4" pattern="[0-9]+" required  style="width:152px; text: Arial; font-size: 20pt; background-color:#EBE6E5" >
+                                <table>
+                                    <tbody>
+                                    <tr></tr><tr></tr><tr></tr>
+                                    <tr>
+                                        <td>  <input type="button" value="7" onclick="number(7)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                        <td>  <input type="button" value="8" onclick="number(8)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                        <td>  <input type="button" value="9" onclick="number(9)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>  <input value="4" onclick="number(4)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                        <td>  <input value="5" onclick="number(5)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                        <td>  <input value="6" onclick="number(6)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                    </tr>
+                                    <tr>
+                                        <td>  <input value="1" onclick="number(1)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                        <td>  <input value="2" onclick="number(2)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                        <td>  <input value="3" onclick="number(3)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
+                                    </tr>
+                                    <td><input value="0" onclick="number(0)" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
+                                    <td></td>
+
+                                    <td><input value="C" onclick="clear1()" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
+
+                                    <td></td>
+
+                                    <button class="button" type="submit" style="font-family: sans-serif; font-size:20px; color:dodgerblue; height:40px; width:80px">Ir</button>
+
+                                    </tbody>
+                                </table>
+                        </form>
+                    </div>
                 </div>
-                <div class="card-body card-body4.3">
-                    <form name="calculator"  action="/verpin" method="post">
-                        <legend style="font-family: sans-serif; font-size:20px;">Escanee su carnet universitario: </legend>
-                        <div class="form-group" >
-                            <input type="text"  name="matricula"  required id="mat" maxlength="11" minlength="8" pattern="[0-9]+" class="form-control" autofocus>
-                        </div>
-
-                        <legend style="font-family: sans-serif; font-size:20px;">Digite su pin: </legend>
-                            <input name="pin" type="password" readonly="readonly" title="Longitud máxima de 4 caracteres. Campo obligatorio" minlength="4" pattern="[0-9]+" required  style="width:152px; text: Arial; font-size: 20pt; background-color:#EBE6E5" >
-                            <table>
-                                <tbody>
-                                <tr></tr><tr></tr><tr></tr>
-                                <tr>
-                                    <td>  <input type="button" value="7" onclick="number(7)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                    <td>  <input type="button" value="8" onclick="number(8)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                    <td>  <input type="button" value="9" onclick="number(9)"  style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                </tr>
-                                <tr>
-                                    <td>  <input value="4" onclick="number(4)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                    <td>  <input value="5" onclick="number(5)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                    <td>  <input value="6" onclick="number(6)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                </tr>
-                                <tr>
-                                    <td>  <input value="1" onclick="number(1)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                    <td>  <input value="2" onclick="number(2)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                    <td>  <input value="3" onclick="number(3)" type="button" style='width:50px; height:50px;font-size:30px;color:dodgerblue'></td>
-                                </tr>
-                                <td><input value="0" onclick="number(0)" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
-                                <td></td>
-
-                                <td><input value="C" onclick="clear1()" type="button" style='width:50px; height:50px;font-size:30px;color:black'></td>
-
-                                <td></td>
-
-                                <button class="button" type="submit" style="font-family: sans-serif; font-size:20px; color:dodgerblue; height:40px; width:80px">Ir</button>
-
-                                </tbody>
-                            </table>
-                    </form>
-                </div>
-            </div>
+        </div>
     </div>
-</div>
 <% include partials/_footer %>
