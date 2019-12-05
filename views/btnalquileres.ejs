@@ -1,0 +1,213 @@
+<% include partials/_headers %>
+<div class="contenedorcuatro">
+    <div class="card" id="carbici" style="width:70%; display: none;">
+        <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+            <h3>Bicicletas Creadas</h3>
+        </div>
+        <div class="card-body" style="background-color:#DCDCDC; height:80%;">
+            <div id="alltable" style="display: none; overflow: auto; max-height:500px;">
+                <table class="table table-hover" id="turealamiga">
+
+                    <thead >
+                    <tr class="table-dark">
+                        <th scope="col">Nombre</th>
+                        <th scope="col">RFID</th>
+                        <th scope="col">Fecha de adquisición</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Ubicación</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <%var puntomenor=0;%>
+                    <% bicis.forEach(function(bicis, index) { %>
+                        <% if (bicis.estado==="disponible") {%>
+                            <tr class="table-success">
+                                <td id="ident"><%= bicis.ident %></td>
+                                <td id="rfid"><%= bicis.rfid %></td>
+                                <td id="fechadq"><%= bicis.fechadq %></td>
+                                <td id="estado"><%= bicis.estado %></td>
+                                <td>
+                                    <div class="btn-group-vertical" data-toggle="buttons">
+                                        <% puntos.forEach(function (puntos, index) { %>
+                                        <%if (bicis.ident===puntos.patron_id){%>
+                                        <%if (puntos.fecha>puntomenor){%>
+                                        <%puntomenor=puntos.fecha;%>
+                                        <%}%>
+                                        <%}%>
+                                        <%});%>
+                                        <%puntos.forEach(function (puntos, index){%>
+                                        <%if (puntos.fecha===puntomenor){%>
+                                            <%var point=puntos.punto;%>
+                                            <%var mark=puntos.marker;%>
+                                        <%}%>
+                                        <%})%>
+                                        <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
+                                        <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <%}%>
+                        <% if (bicis.estado==="ocupado") {%>
+                        <tr class="table-light">
+                            <td><%=bicis.ident%></td>
+                            <td><%=bicis.rfid%></td>
+                            <td><%=bicis.fechadq%></td>
+                            <td><%=bicis.estado%></td>
+                            <td>
+                                <div class="btn-group-vertical" data-toggle="buttons">
+                                    <% puntos.forEach(function (puntos, index) { %>
+                                    <%if (bicis.ident===puntos.patron_id){%>
+                                    <%if (puntos.fecha>puntomenor){%>
+                                    <%puntomenor=puntos.fecha;%>
+                                    <%}%>
+                                    <%}%>
+                                    <%});%>
+                                    <%puntos.forEach(function (puntos, index){%>
+                                    <%if (puntos.fecha===puntomenor){%>
+                                        <%var point=puntos.punto;%>
+                                        <%var mark=puntos.marker;%>
+                                    <%}%>
+                                    <%})%>
+                                    <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
+                                    <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <%}%>
+                        <% if (!bicis.estado){%>
+                        <tr class="table-secondary">
+                            <td><%=bicis.ident%></td>
+                            <td><%=bicis.rfid%></td>
+                            <td><%=bicis.fechadq%></td>
+                            <td><%=bicis.estado%></td>
+                            <td>
+                                <div class="btn-group-vertical" data-toggle="buttons">
+                                    <% puntos.forEach(function (puntos, index) { %>
+                                    <%if (bicis.ident===puntos.patron_id){%>
+                                    <%if (puntos.fecha>puntomenor){%>
+                                    <%puntomenor=puntos.fecha;%>
+                                    <%}%>
+                                    <%}%>
+                                    <%});%>
+                                    <%puntos.forEach(function (puntos, index){%>
+                                    <%if (puntos.fecha===puntomenor){%>
+                                        <%var point=puntos.punto;%>
+                                        <%var mark=puntos.marker;%>
+                                    <%}%>
+                                    <%})%>
+                                    <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
+                                    <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <%}%>
+                    <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script language="JavaScript">
+        setInterval(function () {
+            let xhr= new XMLHttpRequest();
+            xhr.open('Get', '/updatebicicletas', true);
+            xhr.onload=function () {
+                if (xhr.status == 200) {
+                    updateBicis(xhr.responseText);
+                }
+            }
+            xhr.send();
+        },5000);
+        function updateBicis(bikes){
+            bikes = JSON.parse(bikes)
+            document.getElementById("turealamiga").innerHTML=
+                '<thead>'+
+                '<tr class=\'table-dark\'>'+
+                '<th scope=\'col\'>Nombre</th>'+
+                '<th scope=\'col\'>RFID</th>'+
+                '<th scope=\'col\'>Fecha de adquisición</th>'+
+                '<th scope=\'col\'>Estado</th>'+
+                '<th scope=\'col\'>Editar</th>'+
+                '</tr>'+
+                '</thead>'+'<tbody>';
+            bikes.forEach(element => {
+                if (element.estado==="disponible") {
+                    document.getElementById("turealamiga").innerHTML +=
+                        '<tr class=\'table-success\'>' +
+                        '<td id=\'ident\'>' + element.ident + '</td>' +
+                        '<td id=\'rfid\'>' + element.rfid + '</td>' +
+                        '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
+                        '<td id=\'estado\'>' + element.estado + '</td>' +
+                        '<td>'+
+                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
+                        '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
+                        '</div>'+
+                        '</td>'+
+                        '</tr>';
+                }
+                else if (element.estado==="ocupado") {
+                    document.getElementById("turealamiga").innerHTML +=
+                        '<tr class=\'table-warning\'>' +
+                        '<td id=\'ident\'>' + element.ident + '</td>' +
+                        '<td id=\'rfid\'>' + element.rfid + '</td>' +
+                        '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
+                        '<td id=\'estado\'>' + element.estado + '</td>' +
+                        '<td>'+
+                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
+                        '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
+                        '</div>'+
+                        '</td>'+
+                        '</tr>';
+                }
+                else {
+                    document.getElementById("turealamiga").innerHTML +=
+                        '<tr class=\'table-primary\'>' +
+                        '<td id=\'ident\'>' + element.ident + '</td>' +
+                        '<td id=\'rfid\'>' + element.rfid + '</td>' +
+                        '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
+                        '<td id=\'estado\'>' + element.estado + '</td>' +
+                        '<td>'+
+                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
+                        '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
+                        '</div>'+
+                        '</td>'+
+                        '</tr>';
+                }
+            });
+            document.getElementById("turealamiga").innerHTML+='</tbody>'+
+                '</thead>';
+        }
+    </script>
+    <div class="card" id="adbici" style="height:350px; width:250px; display: none;">
+        <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+            <h3>Agregar Bicicleta</h3>
+        </div>
+        <div class="card-body" >
+            <form id="formbici" style="display:block" action="/addbici" method="post">
+                <div class="form-group">
+                    <input type="text" name="ident" placeholder="Nombre identificador" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="custom-select" name="rfid">
+                        <option selected="">Elija RFID </option>
+                        <% rfid.forEach(function (rfid, index) {%>
+                        <option value="<%=rfid.rfid%>"><%=rfid.rfid%></option>
+                        <%})%>
+                    </select>
+                </div>
+                <div class="form-group" >
+                    <input type="date" name="fechadq" placeholder="Fecha de adquisición" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        Agregar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Cancelar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% include partials/_footer %>

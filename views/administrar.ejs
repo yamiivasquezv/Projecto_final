@@ -1,4 +1,4 @@
-<% include partials/_headers %>
+<% include partials/headercerrar %>
 
 <div class="content7" id="cont">
     <div class="element4">
@@ -18,7 +18,7 @@
     </div>
     <div class="element4">
         <button type="submit" id="adm4"
-                onclick="location.href='/btnrutas'">Rutas
+                onclick="location.href='/btnrutas'">Alquileres
         </button>
     </div>
     <div class="element4">
@@ -41,24 +41,29 @@
                         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
                             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 
-                            <%var puntomenor=0;%>
-                            <%bicis.forEach(function(bicis, index){%>
-                                 <%puntos.forEach(function (puntos, index){%>
-                                     <%if (bicis.ident===puntos.patron_id){%>
-                                         <%if (puntos.fecha>puntomenor) {%>
-                                              <%puntomenor=puntos.fecha;%>
-                                         <%}%>
-                                     <%}%>
-                                 <%});%>
-                                 <%puntos.forEach(function (puntos, index){%>
-                                      <%if (puntos.fecha===puntomenor){%>
-                                         var myIcon = L.icon({iconUrl:'Imagenes/bicycleiconn.png', popupAnchor: [-3, -76]});
-                                         <%var marker=puntos.marker;%>
-                                         marker = L.marker([<%=puntos.punto%>],{icon: myIcon}).addTo(map).bindPopup('<%=puntos.marker%>').openPopup();
-                                         <%console.log(marker);%>
-                                      <%}%>
-                                 <%});%>
-                            <%});%>
+
+                        <!--var map = L.map('map').setView([19.4436,-70.6827], 16);-->
+                       // <!--L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{-->
+                        //<!--    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);-->
+
+                        <!--    <%var puntomenor=0;%>-->
+                        <!--    <%bicis.forEach(function(bicis, index){%>-->
+                        <!--         <%puntos.forEach(function (puntos, index){%>-->
+                        <!--             <%if (bicis.ident===puntos.patron_id){%>-->
+                        <!--                 <%if (puntos.fecha>puntomenor) {%>-->
+                        <!--                      <%puntomenor=puntos.fecha;%>-->
+                        <!--                 <%}%>-->
+                        <!--             <%}%>-->
+                        <!--         <%});%>-->
+                        <!--         <%puntos.forEach(function (puntos, index){%>-->
+                        <!--              <%if (puntos.fecha===puntomenor){%>-->
+                        <!--                 var myIcon = L.icon({iconUrl:'Imagenes/bicycleiconn.png', popupAnchor: [-3, -76]});-->
+                        <!--                 <%var marker=puntos.marker;%>-->
+                        <!--                 marker = L.marker([<%=puntos.punto%>],{icon: myIcon}).addTo(map).bindPopup('<%=puntos.marker%>').openPopup();-->
+                        <!--                 <%console.log(marker);%>-->
+                        <!--              <%}%>-->
+                        <!--         <%});%>-->
+                        <!--    <%});%>-->
                     </script>
                 </div>
             </div>

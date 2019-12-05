@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bicicletas Universitarias</title>
+    <title>SAABI</title>
     <!--CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--JS-->
@@ -25,6 +25,25 @@
     <link rel="stylesheet" href="/stylesheets/pin.css">
 
     <link rel="stylesheet" href="/stylesheets/botonesalquiler.css">
+
+    <script type="text/javascript">
+        var answer_mode = 0;
+
+        function clear1() {
+            document.forms["calculator"].pin.value ="";
+        }
+        function clear() {
+            clear1();
+        }
+        function number(ch) {
+            if (answer_mode) {
+                clear1();
+                answer_mode = 0;
+            }
+            document.forms["calculator"].pin.value += ch;
+            var hoja=ch;
+        }
+    </script>
 </head>
 <body>
 <section><%include partials/navbar.ejs %></section>

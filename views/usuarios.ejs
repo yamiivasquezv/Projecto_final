@@ -16,19 +16,19 @@
                         <legend>Datos del usuario: </legend>
 
                         <div class="form-group" >
-                            <input type="text" name="primername" title="Campo obligatorio. No Caracteres especiales"  required minlength="3" maxlength="20" pattern="[A-Za-z]+" placeholder="Primer Nombre" class="form-control" style="text-transform: capitalize;" autofocus>
+                            <input type="text" id="primername" name="primername" title="Campo obligatorio. No Caracteres especiales"  required minlength="3" maxlength="20" pattern="[A-Za-z]+" placeholder="Primer Nombre" class="form-control" style="text-transform: capitalize;" autofocus>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="segundoname" title="No Caracteres especiales"  required minlength="3" maxlength="20" pattern="[A-Za-z]+" placeholder="Segundo Nombre" class="form-control" style="text-transform: capitalize;">
+                            <input type="text" id="segundoname" name="segundoname" title="No Caracteres especiales"  required minlength="3" maxlength="20" pattern="[A-Za-z]+" placeholder="Segundo Nombre" class="form-control" style="text-transform: capitalize;">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="primerapellido" placeholder="Primer apellido" minlength="3" maxlength="30" title="Solo letras, campo obligatorio." pattern="[A-Za-z]+" required class="form-control" style="text-transform: capitalize;">
+                            <input type="text" id="primerapellido" name="primerapellido" placeholder="Primer apellido" minlength="3" maxlength="30" title="Solo letras, campo obligatorio." pattern="[A-Za-z]+" required class="form-control" style="text-transform: capitalize;">
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="segundoapellido" placeholder="Segundo apellido" minlength="3" maxlength="30" title="Solo letras" pattern="[A-Za-z]+" class="form-control" style="text-transform: capitalize;">
+                            <input type="text" id="segundoapellido" name="segundoapellido" placeholder="Segundo apellido" minlength="3" maxlength="30" title="Solo letras" pattern="[A-Za-z]+" class="form-control" style="text-transform: capitalize;">
                         </div>
 
                         <h5>Tipo de usuario: </h5>
@@ -52,24 +52,24 @@
                             <input type="text" id="ced" name="cedula" maxlength="11" required minlength="11" title="Solo Números. Campo obligatorio" pattern="[0-9]+" placeholder="Cedula" class="form-control" disabled="true">
                         </div>
                         <div class="form-group" >
-                            <input type="email" pattern=".+@[Cc][Ee][.][Pp][Uu][Cc][Mm][Mm].[Ee][Dd][Uu][.][Dd][oO]" title="Solo Dominio @ce.pucmm.edu.do"required id="correo" name="correo" placeholder="Correo Electrónico" class="form-control" disabled="true">
+                            <input type="email" id="email" pattern=".+@[Cc][Ee][.][Pp][Uu][Cc][Mm][Mm].[Ee][Dd][Uu][.][Dd][oO]" title="Solo Dominio @ce.pucmm.edu.do"required id="correo" name="correo" placeholder="Correo Electrónico" class="form-control" disabled="true">
                         </div>
 
                         <h5>Información de login: </h5>
                         <div class="form-group">
-                            <input type="text" name="usuario" placeholder="Nombre de usuario" minlength="3" maxlength="20" title="Longitud minima de 3 caracteres. Campo obligatorio. No Caracteres especiales" pattern="[A-Za-z0-9]+" required class="form-control">
+                            <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario" minlength="3" maxlength="20" title="Longitud minima de 3 caracteres. Campo obligatorio. No Caracteres especiales" pattern="[A-Za-z0-9]+" required class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="contrasena" placeholder="Contraseña" minlength="4" title="Longitud mínima de 4 caracteres. Campo obligatorio" required class="form-control">
+                            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" minlength="4" title="Longitud mínima de 4 caracteres. Campo obligatorio" required class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="pin" placeholder="Pin de 4 digitos" maxlength="4" title="Longitud máxima de 4 caracteres. Campo obligatorio" minlength="4" pattern="[0-9]+" required class="form-control">
+                            <input type="password" id="digitos" name="pin" placeholder="Pin de 4 digitos" maxlength="4" title="Longitud máxima de 4 caracteres. Campo obligatorio" minlength="4" pattern="[0-9]+" required class="form-control">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">
                                 Registrar
                             </button>
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" id="cancelareg" onclick="limpiar()">
                                 Cancelar
                             </button>
                         </div>

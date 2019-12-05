@@ -118,7 +118,6 @@ controller.alquilar= async (req,res)=>{
     //no devuelve nada, chequear eso
     if (findslot){
         const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike});
-
         await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
         await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
         await nalquiler.save();

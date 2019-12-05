@@ -35,7 +35,6 @@ router.get('/administrar', async function (req, res) {
 router.get('/login', function(req, res) {
     res.render('usuarios', { title: 'Express' });
 });
-
 router.get('/btnbici', async function (req, res) {
     try {
         const rfid= await RFID.find({}).lean();
@@ -52,6 +51,17 @@ router.get('/updatebicicletas', async function (req, res) {
         const bikes = await Bici.find({}).lean();
         let bikejson = JSON.stringify(bikes);
         res.send(bikejson);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
+});
+router.get('/ubicacion', async function (req, res) {
+    try {
+        const ident=req.query.biciubi;
+        const puntos= await Point.find({patron_id: ident}).lean();
+        let puntojson = JSON.stringify(puntos);
+        res.send(puntojson);
     } catch (error) {
         console.error(error);
         res.status(500).send('Oops..');
@@ -114,7 +124,6 @@ router.post('/auth', passport.authenticate('passport',{failureRedirect:'/signin'
             } else if (usuariot[0].tipo == 'empleado') {
                 const puntos = await Point.find({}).lean();
                 const bicis = await Bici.find({}).lean();
-                console.log(usuariot[0].tipo);
                 res.render('administrar', {puntos,bicis});
             }
         }

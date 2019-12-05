@@ -7,7 +7,7 @@ clientId += new Date().getUTCMilliseconds();
 //var username = "webclient";
 //var password = "Super$icher123";
 
-var subscription = "candado/estacion1/+/set";
+var subscription = "candado/+/set";
 //var subscription = "hola";
 
 mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
@@ -61,8 +61,8 @@ function MessageArrived(message) {
             displayClass = "unknown";
     }
     var topic = message.destinationName.split("/");
-    if (topic.length === 4){
-        var ioname = topic[2];
+    if (topic.length === 3){
+        var ioname = topic[1];
         UpdateElement(ioname, displayClass);
     }
 }

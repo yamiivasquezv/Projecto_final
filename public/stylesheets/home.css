@@ -155,10 +155,10 @@ body {
         float:left;
         position:absolute;
         display:block;
-        margin: -315px 8px 200px 408px;
-        width:220px; height:220px;
-        -webkit-border-radius: 150px;
-        -moz-border-radius: 150px;
+        margin: -250px 8px 200px 308px;
+        width:180px; height:180px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
         border-radius: 150px;
     }
     #alq:hover{
@@ -180,11 +180,11 @@ body {
         float: left;
         position: absolute;
         display: block;
-        margin: -315px 100px 200px 25px;
-        width: 220px;
-        height: 220px;
-        -webkit-border-radius: 150px;
-        -moz-border-radius: 150px;
+        margin: -250px 100px 200px 15px;
+        width: 180px;
+        height: 180px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
         border-radius: 150px;
     }
     #sign:hover{
@@ -205,11 +205,11 @@ body {
     .img2\.1{
         margin:auto;
         object-fit: cover;
-        width: 650px;
-        height: 650px;
+        width: 500px;
+        height: 500px;
     }
     .content2{
       margin-bottom: 4em;
-        width: 1200px;
+        width: 1000px;
     }
 }

@@ -1,6 +1,6 @@
  <% include partials/_headers %>
 <section class="app" >
-    <aside class="sidebar" style="margin-top: 85px">
+    <aside class="sidebar" style="margin-top: 105px">
         <nav class="sidebar-nav" style="background-color:#2C3E50;" >
             <ul>
                 <li>
@@ -37,11 +37,9 @@
                         <th scope="col">RFID</th>
                         <th scope="col">Fecha de adquisición</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Ubicación</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <%var puntomenor=0;%>
                     <% bicis.forEach(function(bicis, index) { %>
                         <% if (bicis.estado==="disponible") {%>
                             <tr class="table-success">
@@ -49,80 +47,23 @@
                                 <td id="rfid"><%= bicis.rfid %></td>
                                 <td id="fechadq"><%= bicis.fechadq %></td>
                                 <td id="estado"><%= bicis.estado %></td>
-                                <td>
-                                    <div class="btn-group-vertical" data-toggle="buttons">
-                                        <% puntos.forEach(function (puntos, index) { %>
-                                        <%if (bicis.ident===puntos.patron_id){%>
-                                        <%if (puntos.fecha>puntomenor){%>
-                                        <%puntomenor=puntos.fecha;%>
-                                        <%}%>
-                                        <%}%>
-                                        <%});%>
-                                        <%puntos.forEach(function (puntos, index){%>
-                                        <%if (puntos.fecha===puntomenor){%>
-                                            <%var point=puntos.punto;%>
-                                            <%var mark=puntos.marker;%>
-                                        <%}%>
-                                        <%})%>
-                                        <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
-                                        <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
-                                    </div>
-                                </td>
                             </tr>
                         <%}%>
                         <% if (bicis.estado==="ocupado") {%>
-                        <tr class="table-light">
-                            <td><%=bicis.ident%></td>
-                            <td><%=bicis.rfid%></td>
-                            <td><%=bicis.fechadq%></td>
-                            <td><%=bicis.estado%></td>
-                            <td>
-                                <div class="btn-group-vertical" data-toggle="buttons">
-                                    <% puntos.forEach(function (puntos, index) { %>
-                                    <%if (bicis.ident===puntos.patron_id){%>
-                                    <%if (puntos.fecha>puntomenor){%>
-                                    <%puntomenor=puntos.fecha;%>
-                                    <%}%>
-                                    <%}%>
-                                    <%});%>
-                                    <%puntos.forEach(function (puntos, index){%>
-                                    <%if (puntos.fecha===puntomenor){%>
-                                        <%var point=puntos.punto;%>
-                                        <%var mark=puntos.marker;%>
-                                    <%}%>
-                                    <%})%>
-                                    <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
-                                    <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr class="table-light">
+                                <td><%=bicis.ident%></td>
+                                <td><%=bicis.rfid%></td>
+                                <td><%=bicis.fechadq%></td>
+                                <td><%=bicis.estado%></td>
+                            </tr>
                         <%}%>
                         <% if (!bicis.estado){%>
-                        <tr class="table-secondary">
-                            <td><%=bicis.ident%></td>
-                            <td><%=bicis.rfid%></td>
-                            <td><%=bicis.fechadq%></td>
-                            <td><%=bicis.estado%></td>
-                            <td>
-                                <div class="btn-group-vertical" data-toggle="buttons">
-                                    <% puntos.forEach(function (puntos, index) { %>
-                                        <%if (bicis.ident===puntos.patron_id){%>
-                                            <%if (puntos.fecha>puntomenor){%>
-                                            <%puntomenor=puntos.fecha;%>
-                                            <%}%>
-                                        <%}%>
-                                    <%});%>
-                                    <%puntos.forEach(function (puntos, index){%>
-                                    <%if (puntos.fecha===puntomenor){%>
-                                        <%var point=puntos.punto;%>
-                                        <%var mark=puntos.marker;%>
-                                    <%}%>
-                                    <%})%>
-                                    <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
-                                    <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr class="table-secondary">
+                                <td><%=bicis.ident%></td>
+                                <td><%=bicis.rfid%></td>
+                                <td><%=bicis.fechadq%></td>
+                                <td><%=bicis.estado%></td>
+                            </tr>
                         <%}%>
                     <%})%>
                     </tbody>
@@ -150,7 +91,6 @@
             '<th scope=\'col\'>RFID</th>'+
             '<th scope=\'col\'>Fecha de adquisición</th>'+
             '<th scope=\'col\'>Estado</th>'+
-            '<th scope=\'col\'>Editar</th>'+
             '</tr>'+
             '</thead>'+'<tbody>';
         bikes.forEach(element => {
@@ -161,11 +101,6 @@
                     '<td id=\'rfid\'>' + element.rfid + '</td>' +
                     '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
                     '<td id=\'estado\'>' + element.estado + '</td>' +
-                    '<td>'+
-                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
-                            '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
-                        '</div>'+
-                    '</td>'+
                     '</tr>';
             }
             else if (element.estado==="ocupado") {
@@ -175,11 +110,6 @@
                     '<td id=\'rfid\'>' + element.rfid + '</td>' +
                     '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
                     '<td id=\'estado\'>' + element.estado + '</td>' +
-                    '<td>'+
-                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
-                            '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
-                        '</div>'+
-                    '</td>'+
                     '</tr>';
             }
             else {
@@ -189,11 +119,6 @@
                     '<td id=\'rfid\'>' + element.rfid + '</td>' +
                     '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
                     '<td id=\'estado\'>' + element.estado + '</td>' +
-                    '<td>'+
-                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
-                            '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
-                        '</div>'+
-                    '</td>'+
                     '</tr>';
             }
         });
@@ -208,18 +133,18 @@
         <div class="card-body" >
             <form id="formbici" style="display:block" action="/addbici" method="post">
                 <div class="form-group">
-                    <input type="text" name="ident" placeholder="Nombre identificador" class="form-control">
+                    <input type="text" name="ident" pattern="[a-z0-9]+" required title="Campo obligatorio." placeholder="Nombre identificador" class="form-control">
                 </div>
                 <div class="form-group">
                     <select class="custom-select" name="rfid">
-                        <option selected="">Elija RFID </option>
+                        <option selected="" required>Elija RFID </option>
                         <% rfid.forEach(function (rfid, index) {%>
                             <option value="<%=rfid.rfid%>"><%=rfid.rfid%></option>
                         <%})%>
                     </select>
                 </div>
                 <div class="form-group" >
-                    <input type="date" name="fechadq" placeholder="Fecha de adquisición" class="form-control">
+                    <input type="date" name="fechadq" required placeholder="Fecha de adquisición" class="form-control">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">
@@ -233,30 +158,66 @@
         </div>
     </div>
 </div>
-
 <div class="contenedorcinco">
     <div class="card" id="verubi" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; width: 100%">
         <div class="card-header">
             <h3 >Ubicación</h3>
-            <select id="valorbici" name="bicicleta" class="custom-select" style="border:none; background-color:transparent; float:top; width:200px; font-weight:bold; color:whitesmoke;">
-                <option selected="" style="color:black; border:0; outline:0;">Elija la bicicleta:</option>
-                <% bicis.forEach(function(bicis, index) { %>
-                <option style="color: black;" class="<%=bicis._id%>" value="<%=bicis.ident%>"><%=bicis.ident%></option>
-                <%})%>
+            <select id="valorbici" name="biciubi" class="custom-select" style="border:none; background-color:transparent; float:top; width:200px; font-weight:bold; color:whitesmoke;">
+                    <% bicis.forEach(function(bicis, index) { %>
+                         <option style="color: black;" value="<%=bicis.ident%>"><%=bicis.ident%></option>
+                    <%})%>
             </select>
         </div>
         <div class="card-body" style="background-color:#DCDCDC; height: 85%">
             <div id="mapubi" class="map" style="height:100%; width:100%;">
-                <script>
-                    var mapnew = L.map('mapubi').setView([19.4436,-70.6827], 16);
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(mapnew);
-                    var newicon = L.icon({iconUrl:'Imagenes/bicycleiconn.png', popupAnchor: [-3, -76]});
-                </script>
+                <div class="card-body" style="background-color:#DCDCDC; height: 85%">
+                    <div id="mapubi" class="map" style="height:100%; width:100%;">
+                        <script>
+                            var mapnew = L.map('mapubi').setView([19.4436,-70.6827], 16);
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                             }).addTo(mapnew);
+
+                            let latlon;
+
+
+                            function getdata () {
+                                let xhr= new XMLHttpRequest();
+                                var e = document.getElementById("valorbici");
+                                var strUser = e.options[e.selectedIndex].value;
+                                biciubi = strUser;
+                                console.log(biciubi);
+                                var punto;
+                                xhr.open('get', '/ubicacion?biciubi='+biciubi, true);
+                                xhr.onload=function () {
+                                    if (xhr.status == 200) {
+                                        punto=JSON.parse(xhr.responseText);
+                                        updateubi(punto[0]);
+                                    }
+                                }
+                                xhr.send();
+                            }
+                            function updateubi(puntos){
+                                latlon=puntos.punto;
+                                console.log("el punto es"+latlon);
+                            }
+                            var marker;
+                            var newicon = L.icon({iconUrl:'Imagenes/bicycleiconn.png', popupAnchor: [-3, -76]});
+                            setInterval(function () {
+                                getdata();
+                                 if (marker != undefined) {
+                                     mapnew.removeLayer(marker);
+                                }
+
+                                mapnew.setView(latlon, mapnew.getZoom());
+                                marker = L.marker(latlon).addTo(mapnew).bindPopup('Hola');
+
+                            },1000)
+                        </script>
+                     </div>
+                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <% include partials/_footer %>

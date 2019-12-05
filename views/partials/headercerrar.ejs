@@ -74,16 +74,16 @@
         function habilitarboton(id)
         {
             if (id==="btn1"){
-                    document.getElementById("btn2").disabled=true;
-                    document.getElementById("btn3").disabled=true;
-                    document.getElementById("btn4").disabled=true;
+                document.getElementById("btn2").disabled=true;
+                document.getElementById("btn3").disabled=true;
+                document.getElementById("btn4").disabled=true;
 
-                }
+            }
             else if(id==='btn2'){
                 document.getElementById("btn1").disabled=true;
                 document.getElementById("btn3").disabled=true;
                 document.getElementById("btn4").disabled=true;
-                }
+            }
             else if(id==='btn3'){
                 document.getElementById("btn1").disabled=true;
                 document.getElementById("btn2").disabled=true;
@@ -131,41 +131,41 @@
     <script type="text/javascript">
         function hideshow(){
             if(document.getElementById('adbici').style.display==="block"){
-                    (document.getElementById('adbici').style.display = "none");
-                    (document.getElementById('alltable').style.display = "none");
-                    (document.getElementById('carbici').style.display = "none");
-                    (document.getElementById('verubi').style.display="none");
-                    (document.getElementById('valorbici').style.display="none");
+                (document.getElementById('adbici').style.display = "none");
+                (document.getElementById('alltable').style.display = "none");
+                (document.getElementById('carbici').style.display = "none");
+                (document.getElementById('verubi').style.display="none");
+                (document.getElementById('valorbici').style.display="none");
 
-                }
+            }
             else
             if(document.getElementById('adbici').style.display==="none"){
-                    (document.getElementById('adbici').style.display="block");
-                    (document.getElementById('alltable').style.display="block");
-                    (document.getElementById('carbici').style.display="block");
-                    (document.getElementById('verubi').style.display="none");
-                    (document.getElementById('valorbici').style.display="none");
-                }
+                (document.getElementById('adbici').style.display="block");
+                (document.getElementById('alltable').style.display="block");
+                (document.getElementById('carbici').style.display="block");
+                (document.getElementById('verubi').style.display="none");
+                (document.getElementById('valorbici').style.display="none");
+            }
         }
     </script>
     <script type="text/javascript">
-            function hideshow2(){
-                if(document.getElementById('verubi').style.display==="block"){
-                    (document.getElementById('verubi').style.display = "none");
-                    (document.getElementById('valorbici').style.display = "none");
-                    (document.getElementById('alltable').style.display = "none");
-                    (document.getElementById('adbici').style.display="none");
-                    (document.getElementById('carbici').style.display="none");
-                }
-            else
-                if(document.getElementById('verubi').style.display==="none"){
-                    (document.getElementById('verubi').style.display = "block");
-                    (document.getElementById('valorbici').style.display = "block");
-                    (document.getElementById('adbici').style.display="none");
-                    (document.getElementById('alltable').style.display="none");
-                    (document.getElementById('carbici').style.display="none");
-                }
+        function hideshow2(){
+            if(document.getElementById('verubi').style.display==="block"){
+                (document.getElementById('verubi').style.display = "none");
+                (document.getElementById('valorbici').style.display = "none");
+                (document.getElementById('alltable').style.display = "none");
+                (document.getElementById('adbici').style.display="none");
+                (document.getElementById('carbici').style.display="none");
             }
+            else
+            if(document.getElementById('verubi').style.display==="none"){
+                (document.getElementById('verubi').style.display = "block");
+                (document.getElementById('valorbici').style.display = "block");
+                (document.getElementById('adbici').style.display="none");
+                (document.getElementById('alltable').style.display="none");
+                (document.getElementById('carbici').style.display="none");
+            }
+        }
     </script>
 
     <script>
@@ -198,7 +198,7 @@
 
 </head>
 <body>
-<section><%include navbar.ejs %></section>
+<section><%include navbarcerrar.ejs %></section>
 <main class="container p5">
     <section><%include messages.ejs %></section>
     <section><%include errors.ejs %></section>

@@ -1,6 +1,7 @@
 /* Updates the CSS class of an DOM element */
 
 function UpdateElement(ioname,matricula){
+    console.log(ioname);
     var cell = document.getElementById(ioname);
     if (cell){
         cell.value=matricula;
@@ -18,6 +19,7 @@ function ToggleOutput(ioname){
     if (cell.onFocus) {
         var message = new Paho.MQTT.Message("Recibir");
         message.destinationName = "matricula/estacion1" + ioname + "/set";
+        console.log(message);
         mqttClient.send(message);
     }
 }
