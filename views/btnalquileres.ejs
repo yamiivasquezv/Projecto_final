@@ -7,7 +7,6 @@
         <div class="card-body" style="background-color:#DCDCDC; height:80%;">
             <div id="alltable" style="display: none; overflow: auto; max-height:500px;">
                 <table class="table table-hover" id="turealamiga">
-
                     <thead >
                     <tr class="table-dark">
                         <th scope="col">Nombre</th>
@@ -18,7 +17,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <%var puntomenor=0;%>
                     <% bicis.forEach(function(bicis, index) { %>
                         <% if (bicis.estado==="disponible") {%>
                             <tr class="table-success">
@@ -26,25 +24,6 @@
                                 <td id="rfid"><%= bicis.rfid %></td>
                                 <td id="fechadq"><%= bicis.fechadq %></td>
                                 <td id="estado"><%= bicis.estado %></td>
-                                <td>
-                                    <div class="btn-group-vertical" data-toggle="buttons">
-                                        <% puntos.forEach(function (puntos, index) { %>
-                                        <%if (bicis.ident===puntos.patron_id){%>
-                                        <%if (puntos.fecha>puntomenor){%>
-                                        <%puntomenor=puntos.fecha;%>
-                                        <%}%>
-                                        <%}%>
-                                        <%});%>
-                                        <%puntos.forEach(function (puntos, index){%>
-                                        <%if (puntos.fecha===puntomenor){%>
-                                            <%var point=puntos.punto;%>
-                                            <%var mark=puntos.marker;%>
-                                        <%}%>
-                                        <%})%>
-                                        <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
-                                        <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
-                                    </div>
-                                </td>
                             </tr>
                         <%}%>
                         <% if (bicis.estado==="ocupado") {%>
@@ -53,53 +32,15 @@
                             <td><%=bicis.rfid%></td>
                             <td><%=bicis.fechadq%></td>
                             <td><%=bicis.estado%></td>
-                            <td>
-                                <div class="btn-group-vertical" data-toggle="buttons">
-                                    <% puntos.forEach(function (puntos, index) { %>
-                                    <%if (bicis.ident===puntos.patron_id){%>
-                                    <%if (puntos.fecha>puntomenor){%>
-                                    <%puntomenor=puntos.fecha;%>
-                                    <%}%>
-                                    <%}%>
-                                    <%});%>
-                                    <%puntos.forEach(function (puntos, index){%>
-                                    <%if (puntos.fecha===puntomenor){%>
-                                        <%var point=puntos.punto;%>
-                                        <%var mark=puntos.marker;%>
-                                    <%}%>
-                                    <%})%>
-                                    <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
-                                    <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
-                                </div>
-                            </td>
                         </tr>
                         <%}%>
                         <% if (!bicis.estado){%>
-                        <tr class="table-secondary">
-                            <td><%=bicis.ident%></td>
-                            <td><%=bicis.rfid%></td>
-                            <td><%=bicis.fechadq%></td>
-                            <td><%=bicis.estado%></td>
-                            <td>
-                                <div class="btn-group-vertical" data-toggle="buttons">
-                                    <% puntos.forEach(function (puntos, index) { %>
-                                    <%if (bicis.ident===puntos.patron_id){%>
-                                    <%if (puntos.fecha>puntomenor){%>
-                                    <%puntomenor=puntos.fecha;%>
-                                    <%}%>
-                                    <%}%>
-                                    <%});%>
-                                    <%puntos.forEach(function (puntos, index){%>
-                                    <%if (puntos.fecha===puntomenor){%>
-                                        <%var point=puntos.punto;%>
-                                        <%var mark=puntos.marker;%>
-                                    <%}%>
-                                    <%})%>
-                                    <button type="button" class="btn btn-outline-primary" onclick="ubicacion(point,mark);" style="font-size:12px;">Ubicación</button>
-                                    <button type="button" class="btn btn-outline-danger" style="font-size: 12px;">Editar</button>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr class="table-secondary">
+                                <td><%=bicis.ident%></td>
+                                <td><%=bicis.rfid%></td>
+                                <td><%=bicis.fechadq%></td>
+                                <td><%=bicis.estado%></td>
+                            </tr>
                         <%}%>
                     <%})%>
                     </tbody>

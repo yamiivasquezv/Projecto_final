@@ -43,21 +43,28 @@
                     </thead>
                     <tbody>
                         <% usuario.forEach(function(usuario, index) { %>
-                        <tr class="table-secondary">
-                            <td><%=usuario.primername%></td>
-                            <td><%=usuario.primerapellido%></td>
-                            <td><%=usuario.tipo%></td>
                             <%if (usuario.tipo=='estudiante'){%>
-                                <td><%=usuario.matricula%></td>
-                                <td>N/A</td>
+                                <tr class='table-primary'>
+                                    <td><%=usuario.primername%></td>
+                                    <td><%=usuario.primerapellido%></td>
+                                    <td><%=usuario.tipo%></td>
+                                    <td><%=usuario.matricula%></td>
+                                    <td>N/A</td>
+                                    <td><%=usuario.usuario%></td>
+                                    <td>N/A</td>
+                                </tr>
                             <%}%>
                             <%if (usuario.tipo=='empleado'){%>
-                                <td>N/A</td>
-                                <td><%=usuario.cedula%></td>
+                                <tr class='table-success'>
+                                    <td><%=usuario.primername%></td>
+                                    <td><%=usuario.primerapellido%></td>
+                                    <td><%=usuario.tipo%></td>
+                                    <td>N/A</td>
+                                    <td><%=usuario.cedula%></td>
+                                    <td><%=usuario.usuario%></td>
+                                    <td><%=usuario.correo%></td>
+                                </tr>
                             <%}%>
-                            <td><%=usuario.usuario%></td>
-                            <td><%=usuario.correo%></td>
-                        </tr>
                         <%})%>
                     </tbody>
                 </table>

@@ -15,7 +15,6 @@ router.get('/', function(req, res) {
 });
 router.get('/viajesuser', async function (req, res) {
     const viajes=await Viaje.find({});
-    console.log(viajes);
     res.render('viajesuser', {viajes});
 });
 router.get('/home', function(req, res) {

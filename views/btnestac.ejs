@@ -40,7 +40,6 @@
                         var marker = e.target;
                         var position = marker.getLatLng();
                         var lat= document.getElementById('latitude').value = marker.getLatLng().lat;
-                        console.log(lat);
                         document.getElementById('longitude').value = marker.getLatLng().lng;
                         map.panTo(new L.LatLng(position.lat, position.lng));
 

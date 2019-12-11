@@ -186,7 +186,6 @@
                                 var e = document.getElementById("valorbici");
                                 var strUser = e.options[e.selectedIndex].value;
                                 biciubi = strUser;
-                                console.log(biciubi);
                                 var punto;
                                 xhr.open('get', '/ubicacion?biciubi='+biciubi, true);
                                 xhr.onload=function () {
@@ -199,7 +198,6 @@
                             }
                             function updateubi(puntos){
                                 latlon=puntos.punto;
-                                console.log("el punto es"+latlon);
                             }
                             var marker;
                             var newicon = L.icon({iconUrl:'Imagenes/bicycleiconn.png', popupAnchor: [-3, -76]});
