@@ -1,27 +1,51 @@
 <% include partials/userheader.ejs %>
 <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
 <div id="viajesuser">
-    <form action="/verviaje" method="post">
-        <div class="form-group">
-            <select id="viaj" class="custom-select">
-                <option selected="" style="color:black; border:0; outline:0;">Elija el viaje:</option>
+            <select id="viaj" name="viajee" class="custom-select">
                 <% viajes.forEach(function(viajes, index){%>
                      <%if (viajes.usuario==user.usuario){%>
                         <option style="color: black;" value="<%=viajes.viaje%>">Viaje <%=viajes.viaje%>-<%=viajes.fechainicio%></option>
                      <%}%>
                 <%})%>
             </select>
-            <button id="botonver" type="submit" class="btn btn-primary">
-                Ver Viaje
-            </button>
-        </div>
-    </form>
+            <div class="container">
+                <input type="text" id="log" value="<%=user.usuario%>" class="form-control" style="display: none;">
+            </div>
+
 </div>
 <div id="mapviajes" class="map" style="height:100%">
     <script>
         var map = L.map('mapviajes').setView([19.4436,-70.6827], 16);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+        let latlngs;
+
+        function getdata () {
+            let xhr= new XMLHttpRequest();
+            var e = document.getElementById("viaj");
+            var a = document.getElementById("log");
+            var strUser = e.options[e.selectedIndex].value;
+            var str= a.value;
+            viajenew = strUser;
+            var viajeactual;
+            xhr.open('get', '/viaje?viajee='+viajenew+'&log='+str, true);
+            xhr.onload=function () {
+                if (xhr.status == 200) {
+                    viajeactual=JSON.parse(xhr.responseText);
+                    console.log(viajeactual);
+                    updateviaje(viajeactual);
+                    }
+                }
+            xhr.send();
+        }
+         function updateviaje(viaje){
+             var polyline= L.polyline(viaje, {color:'red'}).bindPopup('Primer Viaje').addTo(map);
+             map.fitBounds(polyline.getBounds());
+         }
+
+        setInterval(function () {
+            getdata();
+        },2000)
     </script>
 </div>
 <% include partials/userfooter.ejs %>
