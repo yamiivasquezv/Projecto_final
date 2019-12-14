@@ -20,6 +20,7 @@ controller.add=async (req,res)=> {
     else{
         if(req.body.tipo==="estudiante"){
             const nusuario= new User({primername, segundoname, primerapellido, segundoapellido, tipo, usuario, contrasena, pin, matricula});
+
             nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
             nusuario.pin= await nusuario.encryptPin(req.body.pin);
             await nusuario.save();
@@ -110,6 +111,11 @@ controller.alquilar= async (req,res)=>{
     const user=req.body.user;
     const estacion=req.body.estacion;
     const findslot= await Slotestado.find({slot:slotestado});
+    const fi= await Viajeactual.find({viaje:1});
+    // for (var i=0; i<fi[0].puntos.length; i++){
+    //     console.log(fi[0].puntos[i].lat);
+    //     console.log(fi[0].puntos[i].lon);
+    // }
     const bike= findslot[0].rfid;
     const findbike= await Bici.find({rfid:bike});
     const idbike=findbike[0]._id;
@@ -121,18 +127,18 @@ controller.alquilar= async (req,res)=>{
         var valor=0;
         if (viajes){
             for (i=0; i<viajes.length; i++){
-                if (viajes[i].viaje>valor){
-                    valor=viajes[i].viaje;
-                    await Viajeactual.findOneAndUpdate({viaje:1},{ $push: {puntos:[{lat:1,lon:2}]}});
-                }
-            }
+             if (viajes[i].viaje>valor){
+                 valor=viajes[i].viaje;
+                 await Viajeactual.findOneAndUpdate({viaje:1},{ $push: {puntos:[{lat:1,lon:2}]}});
+                 }
+             }
             const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:valor+1});
             await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
             await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
             await nalquiler.save();
             const nviaje= new Viaje({viaje:valor+1,usuario:user,estacionorigen:estacion});
             await nviaje.save();
-            const nviajeactual=new Viajeactual({viaje:valor+1,bike:bike});
+            const nviajeactual=new Viajeactual({viaje:valor+1,bike:bike,usuario:user});
             await nviajeactual.save();
         }
         else {
@@ -142,7 +148,7 @@ controller.alquilar= async (req,res)=>{
             await nalquiler.save();
             const nviaje= new Viaje({viaje:1,usuario:user,estacionorigen:estacion});
             await nviaje.save();
-            const nviajeactual=new Viajeactual({viaje:1,bike:bike});
+            const nviajeactual=new Viajeactual({viaje:1,bike:bike,usuario:user});
             await nviajeactual.save();
 
         }

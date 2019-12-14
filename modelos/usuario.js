@@ -9,7 +9,7 @@ const usuarioSchema= new Schema({
     primerapellido: {type: String, required:true},
     segundoapellido: {type: String, required:false},
     tipo:{type: String, required:true},
-    usuario: {type: String, required:true,},
+    usuario: {type: String, required:true},
     contrasena: {type: String, required: true},
     pin: {type: String,  required:true},
     matricula: {type: String, required:false},

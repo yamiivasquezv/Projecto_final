@@ -9,6 +9,7 @@ const Point=require('../modelos/point');
 const User=require('../modelos/usuario');
 const RFID=require('../modelos/rfid')
 const Viaje=require('../modelos/viaje');
+const Viajeactual=require('../modelos/viajeactual');
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('home', { title: 'Express' });
@@ -61,6 +62,23 @@ router.get('/ubicacion', async function (req, res) {
         const puntos= await Point.find({patron_id: ident}).lean();
         let puntojson = JSON.stringify(puntos);
         res.send(puntojson);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
+});
+router.get('/viaje', async function (req, res) {
+    try {
+        const numero=req.query.viajee;
+        const us=req.query.log;
+        let viaje= await Viajeactual.find({$and:[{viaje:numero},{usuario:us}]}).lean();
+        let datalanlon=[];
+
+        for (var i=0; i<viaje[0].puntos.length;i++){
+            let aux=[viaje[0].puntos[i].lat,viaje[0].puntos[i].lon];
+            datalanlon.push(aux);
+        }
+        res.send(datalanlon);
     } catch (error) {
         console.error(error);
         res.status(500).send('Oops..');
