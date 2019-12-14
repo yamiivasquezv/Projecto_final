@@ -38,13 +38,20 @@
                 }
             xhr.send();
         }
+        var polyline;
+
          function updateviaje(viaje){
-             var polyline= L.polyline(viaje, {color:'red'}).bindPopup('Primer Viaje').addTo(map);
-             map.fitBounds(polyline.getBounds());
+             latlngs=viaje;
          }
 
         setInterval(function () {
             getdata();
+            if(polyline!=undefined){
+                map.removeLayer(polyline);
+            }
+            polyline= L.polyline(latlngs, {color:'red'}).bindPopup('Viaje').addTo(map);
+            map.fitBounds(polyline.getBounds());
+
         },2000)
     </script>
 </div>

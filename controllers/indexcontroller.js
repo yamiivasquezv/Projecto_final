@@ -130,6 +130,7 @@ controller.alquilar= async (req,res)=>{
              if (viajes[i].viaje>valor){
                  valor=viajes[i].viaje;
                  await Viajeactual.findOneAndUpdate({viaje:1},{ $push: {puntos:[{lat:1,lon:2}]}});
+                 await Viajeactual.findOneAndUpdate({viaje:2},{ $push: {puntos:[{lat:1,lon:2}]}});
                  }
              }
             const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:valor+1});
