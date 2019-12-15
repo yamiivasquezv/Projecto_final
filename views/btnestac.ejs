@@ -7,13 +7,10 @@
                     <a href="#"><img src="Imagenes/bicycle-parking.png" style="font-size: 3.0em; padding-right: 0.5em; width: 2em; display: inline; vertical-align: middle;"></img><span>Estación</span></a>
                     <ul class="nav-flyout">
                         <li>
-                            <a href="#"><img src="Imagenes/bicycle-parking.png" style="font-size: 3.0em; padding-right: 0.5em; width: 2em; display: inline; vertical-align: middle;"></img>Registrar Estación</a>
+                            <a href="#" onclick="hideshow3();"><img src="Imagenes/bicycle-parking.png" style="font-size: 3.0em; padding-right: 0.5em; width: 2em; display: inline; vertical-align: middle;"></img>Registrar Estación</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon ion-md-paper"></i>Ver Estaciones</a>
-                        </li>
-                        <li>
-                            <a href="/administrar" onclick="hideshow2();"><img src="Imagenes/back.png" style="font-size: 3.0em; padding-right: 0.5em; width: 1.4em; display: inline; vertical-align: middle;"></img>Volver</a>
+                            <a href="/administrar"><img src="Imagenes/back.png" style="font-size: 3.0em; padding-right: 0.5em; width: 1.4em; display: inline; vertical-align: middle;"></img>Volver</a>
                         </li>
                     </ul>
                 </li>
@@ -22,7 +19,7 @@
     </aside>
 </section>
 <div class="contenedorsiete">
-    <div class="card" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; height:100%; width: 100%;">
+    <div class="card" id="new" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; height:100%; width: 100%;">
         <div class="card-header">
             <h3>Estaciones</h3>
         </div>
@@ -49,8 +46,9 @@
         </div>
     </div>
 </div>
+
 <div class="contenedorseis">
-    <div class="card" id="cardestacion" style="width:850px;">
+    <div class="card" id="cardestacion" style="width:850px; display:none;">
         <div class="card-header"  style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
             <h3>Estaciones creadas</h3>
         </div>

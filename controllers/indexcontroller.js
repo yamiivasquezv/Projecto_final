@@ -111,7 +111,7 @@ controller.alquilar= async (req,res)=>{
     const user=req.body.user;
     const estacion=req.body.estacion;
     const findslot= await Slotestado.find({slot:slotestado});
-    const fi= await Viajeactual.find({viaje:1});
+    // const fi= await Viajeactual.find({viaje:1});
     // for (var i=0; i<fi[0].puntos.length; i++){
     //     console.log(fi[0].puntos[i].lat);
     //     console.log(fi[0].puntos[i].lon);
@@ -123,25 +123,23 @@ controller.alquilar= async (req,res)=>{
     //no devuelve nada, chequear eso
     if (findslot){
         const viajes = await Viaje.find({usuario:user}).lean();
-        var i=0;
         var valor=0;
         if (viajes){
-            for (i=0; i<viajes.length; i++){
-             if (viajes[i].viaje>valor){
-                 valor=viajes[i].viaje;
-                 await Viajeactual.findOneAndUpdate({viaje:1},{ $push: {puntos:[{lat:1,lon:2}]}});
-                 await Viajeactual.findOneAndUpdate({viaje:2},{ $push: {puntos:[{lat:1,lon:2}]}});
-                 }
-             }
-            const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:valor+1});
-            await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
-            await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
-            await nalquiler.save();
-            const nviaje= new Viaje({viaje:valor+1,usuario:user,estacionorigen:estacion});
-            await nviaje.save();
-            const nviajeactual=new Viajeactual({viaje:valor+1,bike:bike,usuario:user});
-            await nviajeactual.save();
-        }
+            for (i=0; i<viajes.length; i++) {
+                if (viajes[i].viaje > valor) {
+                    valor = viajes[i].viaje;
+                }
+            }
+                const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:valor+1});
+                await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
+                await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
+                await nalquiler.save();
+                const nviaje= new Viaje({viaje:valor+1,usuario:user,estacionorigen:estacion});
+                await nviaje.save();
+                const nviajeactual=new Viajeactual({viaje:valor+1,bike:bike,usuario:user});
+                await nviajeactual.save();
+            }
+
         else {
             const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:1});
             await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
@@ -151,7 +149,6 @@ controller.alquilar= async (req,res)=>{
             await nviaje.save();
             const nviajeactual=new Viajeactual({viaje:1,bike:bike,usuario:user});
             await nviajeactual.save();
-
         }
         req.flash('success_msg', 'Alquiler realizado satisfactoriamente');
         req.logout();

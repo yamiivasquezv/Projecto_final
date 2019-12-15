@@ -1,47 +1,51 @@
 <% include partials/_headers %>
+<section class="app" >
+    <aside class="sidebar" style="margin-top: 105px">
+        <nav class="sidebar-nav" style="background-color:#2C3E50;" >
+            <ul>
+                <li>
+                    <a href="#"><img src="Imagenes/way.png" style="font-size: 3.0em; padding-right: 0.5em; width: 2em; display: inline; vertical-align: middle;"></img><span>Alquileres</span></a>
+                    <ul class="nav-flyout">
+                        <li>
+                            <a href="#" onclick="hideshow3();"><img src="Imagenes/way.png" style="font-size: 3.0em; padding-right: 0.5em; width: 2em; display: inline; vertical-align: middle;"></img>Alquileres</a>
+                        </li>
+                        <li>
+                            <a href="/administrar"><img src="Imagenes/back.png" style="font-size: 3.0em; padding-right: 0.5em; width: 1.4em; display: inline; vertical-align: middle;"></img>Volver</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+</section>
 <div class="contenedorcuatro">
-    <div class="card" id="carbici" style="width:70%; display: none;">
+    <div class="card" style="width:95%;">
         <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
-            <h3>Bicicletas Creadas</h3>
+            <h3>Alquileres</h3>
         </div>
         <div class="card-body" style="background-color:#DCDCDC; height:80%;">
-            <div id="alltable" style="display: none; overflow: auto; max-height:500px;">
-                <table class="table table-hover" id="turealamiga">
+            <div style=" overflow: auto; max-height:500px;">
+                <table class="table table-hover" id="alquileres">
                     <thead >
                     <tr class="table-dark">
-                        <th scope="col">Nombre</th>
-                        <th scope="col">RFID</th>
-                        <th scope="col">Fecha de adquisición</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Ubicación</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Fecha de Alquiler</th>
+                        <th scope="col">Estación</th>
+                        <th scope="col">Slot</th>
+                        <th scope="col">Bicicleta</th>
+                        <th scope="col">Viaje</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <% bicis.forEach(function(bicis, index) { %>
-                        <% if (bicis.estado==="disponible") {%>
+                    <% alq.forEach(function(alq, index) { %>
                             <tr class="table-success">
-                                <td id="ident"><%= bicis.ident %></td>
-                                <td id="rfid"><%= bicis.rfid %></td>
-                                <td id="fechadq"><%= bicis.fechadq %></td>
-                                <td id="estado"><%= bicis.estado %></td>
+                                <td><%=alq.user %></td>
+                                <td><%=alq.fechaalquiler %></td>
+                                <td><%=alq.estacion %></td>
+                                <td><%=alq.slot %></td>
+                                <td><%=alq.bike %></td>
+                                <td><%=alq.viaje %></td>
                             </tr>
-                        <%}%>
-                        <% if (bicis.estado==="ocupado") {%>
-                        <tr class="table-light">
-                            <td><%=bicis.ident%></td>
-                            <td><%=bicis.rfid%></td>
-                            <td><%=bicis.fechadq%></td>
-                            <td><%=bicis.estado%></td>
-                        </tr>
-                        <%}%>
-                        <% if (!bicis.estado){%>
-                            <tr class="table-secondary">
-                                <td><%=bicis.ident%></td>
-                                <td><%=bicis.rfid%></td>
-                                <td><%=bicis.fechadq%></td>
-                                <td><%=bicis.estado%></td>
-                            </tr>
-                        <%}%>
                     <%})%>
                     </tbody>
                 </table>
@@ -51,104 +55,41 @@
     <script language="JavaScript">
         setInterval(function () {
             let xhr= new XMLHttpRequest();
-            xhr.open('Get', '/updatebicicletas', true);
+            xhr.open('Get', '/updatealquileres', true);
             xhr.onload=function () {
                 if (xhr.status == 200) {
-                    updateBicis(xhr.responseText);
+                    updatealq(xhr.responseText);
                 }
             }
             xhr.send();
         },5000);
-        function updateBicis(bikes){
-            bikes = JSON.parse(bikes)
-            document.getElementById("turealamiga").innerHTML=
+        function updatealq(alq){
+            alq = JSON.parse(alq)
+            document.getElementById("alquileres").innerHTML=
                 '<thead>'+
                 '<tr class=\'table-dark\'>'+
-                '<th scope=\'col\'>Nombre</th>'+
-                '<th scope=\'col\'>RFID</th>'+
-                '<th scope=\'col\'>Fecha de adquisición</th>'+
-                '<th scope=\'col\'>Estado</th>'+
-                '<th scope=\'col\'>Editar</th>'+
+                '<th scope=\'col\'>Usuario</th>'+
+                '<th scope=\'col\'>Fecha de Alquler</th>'+
+                '<th scope=\'col\'>Estación</th>'+
+                '<th scope=\'col\'>Slot</th>'+
+                '<th scope=\'col\'>Bicicleta</th>'+
+                '<th scope=\'col\'>Viaje</th>'+
                 '</tr>'+
                 '</thead>'+'<tbody>';
-            bikes.forEach(element => {
-                if (element.estado==="disponible") {
-                    document.getElementById("turealamiga").innerHTML +=
+            alq.forEach(element => {
+                    document.getElementById("alquileres").innerHTML +=
                         '<tr class=\'table-success\'>' +
-                        '<td id=\'ident\'>' + element.ident + '</td>' +
-                        '<td id=\'rfid\'>' + element.rfid + '</td>' +
-                        '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
-                        '<td id=\'estado\'>' + element.estado + '</td>' +
-                        '<td>'+
-                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
-                        '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
-                        '</div>'+
-                        '</td>'+
+                        '<td>' + element.user + '</td>' +
+                        '<td>' + element.fechaalquiler + '</td>' +
+                        '<td>' + element.estacion + '</td>' +
+                        '<td>' + element.slot + '</td>' +
+                        '<td>' + element.bike + '</td>' +
+                        '<td>' + element.viaje + '</td>' +
                         '</tr>';
-                }
-                else if (element.estado==="ocupado") {
-                    document.getElementById("turealamiga").innerHTML +=
-                        '<tr class=\'table-warning\'>' +
-                        '<td id=\'ident\'>' + element.ident + '</td>' +
-                        '<td id=\'rfid\'>' + element.rfid + '</td>' +
-                        '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
-                        '<td id=\'estado\'>' + element.estado + '</td>' +
-                        '<td>'+
-                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
-                        '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
-                        '</div>'+
-                        '</td>'+
-                        '</tr>';
-                }
-                else {
-                    document.getElementById("turealamiga").innerHTML +=
-                        '<tr class=\'table-primary\'>' +
-                        '<td id=\'ident\'>' + element.ident + '</td>' +
-                        '<td id=\'rfid\'>' + element.rfid + '</td>' +
-                        '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
-                        '<td id=\'estado\'>' + element.estado + '</td>' +
-                        '<td>'+
-                        '<div class=\'btn-group-vertical\' data-toggle=\'buttons\'>'+
-                        '<button type=\'button\' class=\'btn btn-outline-danger\' style=\'font-size: 12px;\'>Editar</button>'+
-                        '</div>'+
-                        '</td>'+
-                        '</tr>';
-                }
             });
-            document.getElementById("turealamiga").innerHTML+='</tbody>'+
+            document.getElementById("alquileres").innerHTML+='</tbody>'+
                 '</thead>';
         }
     </script>
-    <div class="card" id="adbici" style="height:350px; width:250px; display: none;">
-        <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
-            <h3>Agregar Bicicleta</h3>
-        </div>
-        <div class="card-body" >
-            <form id="formbici" style="display:block" action="/addbici" method="post">
-                <div class="form-group">
-                    <input type="text" name="ident" placeholder="Nombre identificador" class="form-control">
-                </div>
-                <div class="form-group">
-                    <select class="custom-select" name="rfid">
-                        <option selected="">Elija RFID </option>
-                        <% rfid.forEach(function (rfid, index) {%>
-                        <option value="<%=rfid.rfid%>"><%=rfid.rfid%></option>
-                        <%})%>
-                    </select>
-                </div>
-                <div class="form-group" >
-                    <input type="date" name="fechadq" placeholder="Fecha de adquisición" class="form-control">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">
-                        Agregar
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        Cancelar
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 <% include partials/_footer %>

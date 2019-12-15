@@ -18,4 +18,78 @@
         </nav>
     </aside>
 </section>
+<div class="contenedorcuatro">
+    <div class="card" style="width:95%;">
+        <div class="card-header" style="background-color:#2C3E50; font-weight: bold; color:#D3D3D3; ">
+            <h3>Viajes</h3>
+        </div>
+        <div class="card-body" style="background-color:#DCDCDC; height:80%;">
+            <div style=" overflow: auto; max-height:500px;">
+                <table class="table table-hover" id="viajes">
+                    <thead >
+                    <tr class="table-dark">
+                        <th scope="col">Viaje</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Estación origen</th>
+                        <th scope="col">Estación destino</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Fin</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% viaje.forEach(function(alq, index) { %>
+                        <tr class="table-success">
+                            <td><%=viaje.viaje %></td>
+                            <td><%=viaje.usuario %></td>
+                            <td><%=viaje.estacionorigen %></td>
+                            <td><%=viaje.estaciondestino %></td>
+                            <td><%=viaje.fechainicio %></td>
+                            <td><%=viaje.fechafin %></td>
+                        </tr>
+                    <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script language="JavaScript">
+        setInterval(function () {
+            let xhr= new XMLHttpRequest();
+            xhr.open('Get', '/updateviajes', true);
+            xhr.onload=function () {
+                if (xhr.status == 200) {
+                    updateviaj(xhr.responseText);
+                }
+            }
+            xhr.send();
+        },5000);
+        function updateviaj(viaj){
+            viaj = JSON.parse(viaj)
+            document.getElementById("viajes").innerHTML=
+                '<thead>'+
+                '<tr class=\'table-dark\'>'+
+                '<th scope=\'col\'>Viaje</th>'+
+                '<th scope=\'col\'>Usuario</th>'+
+                '<th scope=\'col\'>Estación origen</th>'+
+                '<th scope=\'col\'>Estación destino</th>'+
+                '<th scope=\'col\'>Fecha Inicio</th>'+
+                '<th scope=\'col\'>Fecha Fin</th>'+
+                '</tr>'+
+                '</thead>'+'<tbody>';
+            viaj.forEach(element => {
+                document.getElementById("viajes").innerHTML +=
+                    '<tr class=\'table-success\'>' +
+                    '<td>' + element.viaje + '</td>' +
+                    '<td>' + element.usuario + '</td>' +
+                    '<td>' + element.estacionorigen + '</td>' +
+                    '<td>' + element.estaciondestino + '</td>' +
+                    '<td>' + element.fechainicio + '</td>' +
+                    '<td>' + element.fechafin + '</td>' +
+                    '</tr>';
+            });
+            document.getElementById("viajes").innerHTML+='</tbody>'+
+                '</thead>';
+        }
+    </script>
+</div>
 <% include partials/_footer %>

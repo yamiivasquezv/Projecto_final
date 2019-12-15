@@ -10,6 +10,7 @@ const User=require('../modelos/usuario');
 const RFID=require('../modelos/rfid')
 const Viaje=require('../modelos/viaje');
 const Viajeactual=require('../modelos/viajeactual');
+const Alquiler=require('../modelos/alquiler');
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('home', { title: 'Express' });
@@ -56,6 +57,26 @@ router.get('/updatebicicletas', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
+router.get('/updatealquileres', async function (req, res) {
+    try {
+        const alq= await Alquiler.find({}).lean();
+        let alqjson = JSON.stringify(alq);
+        res.send(alqjson);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
+});
+router.get('/updateviajes', async function (req, res) {
+    try {
+        const viaj= await Viaje.find({}).lean();
+        let viajson = JSON.stringify(viaj);
+        res.send(viajson);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
+});
 router.get('/ubicacion', async function (req, res) {
     try {
         const ident=req.query.biciubi;
@@ -93,8 +114,23 @@ router.get('/btnestac', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
-router.get('/btnviajes', function (req, res) {
-    res.render('btnviajes', { title: 'Express' });
+router.get('/btnviajes', async function (req, res) {
+    try {
+        const viaje = await Viaje.find({}).lean();
+        res.render('btnviajes', {viaje});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
+});
+router.get('/btnalquileres', async function (req, res) {
+    try {
+        const alq = await Alquiler.find({}).lean();
+        res.render('btnalquileres', {alq});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
 });
 router.get('/homeuser', function (req, res) {
 });
