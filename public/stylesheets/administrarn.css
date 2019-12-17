@@ -58,6 +58,17 @@
     border-radius: 100px;"
 }
 #adm5{
+     border: 5px solid darkgray;
+     color:#D3D3D3;
+     font-weight: bold;
+     font-size: 20px;
+     background-color: #2C3E50 ;
+     width:200px; height:200px;
+     -webkit-border-radius: 100px;
+     -moz-border-radius: 100px;
+     border-radius: 100px;"
+ }
+#adm6{
     border: 5px solid darkgray;
     color:#D3D3D3;
     font-weight: bold;
@@ -86,8 +97,6 @@ div.elementotres{
     height: 200px; width: 350px;
 
 }
-
-
 @media screen and (min-width: 800px) {
     .content7 {
         width: 1000px;
@@ -99,7 +108,7 @@ div.elementotres{
         margin-left: auto;
         margin-right: auto;
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: space-between;
     }
 
@@ -114,7 +123,7 @@ div.elementotres{
         font-weight: bold;
         font-size: 20px;
         background-color: #2C3E50 ;
-        width:170px; height:170px;
+        width:150px; height:150px;
         -webkit-border-radius: 100px;
         -moz-border-radius: 100px;
         border-radius: 100px;"
@@ -137,7 +146,7 @@ div.elementotres{
         font-weight: bold;
         font-size: 20px;
         background-color: #2C3E50 ;
-        width:170px; height:170px;
+        width:150px; height:150px;
         -webkit-border-radius: 100px;
         -moz-border-radius: 100px;
         border-radius: 100px;"
@@ -160,7 +169,7 @@ div.elementotres{
         font-weight: bold;
         font-size: 20px;
         background-color: #2C3E50 ;
-        width:170px; height:170px;
+        width:150px; height:150px;
         -webkit-border-radius: 100px;
         -moz-border-radius: 100px;
         border-radius: 100px;
@@ -183,7 +192,7 @@ div.elementotres{
         font-weight: bold;
         font-size: 20px;
         background-color: #2C3E50 ;
-        width:170px; height:170px;
+        width:150px; height:150px;
         -webkit-border-radius: 100px;
         -moz-border-radius: 100px;
         border-radius: 100px;"
@@ -206,7 +215,7 @@ div.elementotres{
         font-weight: bold;
         font-size: 20px;
         background-color: #2C3E50 ;
-        width:170px; height:170px;
+        width:150px; height:150px;
         -webkit-border-radius: 100px;
         -moz-border-radius: 100px;
         border-radius: 100px;"
@@ -214,6 +223,29 @@ div.elementotres{
     #adm5:hover{
         outline:0;
         background: url("../Imagenes/group.png") no-repeat scroll ;
+        background-size: 120px 100px;
+        background-position: center;
+        color: transparent;
+        cursor:pointer;
+        border:5px solid #2C3E50;
+        font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
+    }
+    #adm6{
+        border: 5px solid darkgray;
+        background-size: 120px 100px;
+        background-position: center;
+        color:#D3D3D3;
+        font-weight: bold;
+        font-size: 20px;
+        background-color: #2C3E50 ;
+        width:150px; height:150px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;"
+    }
+    #adm6:hover{
+        outline:0;
+        background: url("../Imagenes/shape.png") no-repeat scroll ;
         background-size: 120px 100px;
         background-position: center;
         color: transparent;
@@ -231,8 +263,9 @@ div.elementotres{
         padding: 10px;
         margin-left: auto;
         margin-right: auto;
+        margin-top: -80px;
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
         margin-bottom: 4em;
     }

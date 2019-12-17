@@ -7,6 +7,7 @@ const Estacion=require('../modelos/estacion');
 const Slot=require('../modelos/slot');
 const Viaje=require('../modelos/viaje');
 const Viajeactual=require('../modelos/viajeactual');
+const Zona=require('../modelos/zona');
 const controller={};
 
 //agregar un usuario
@@ -86,6 +87,21 @@ controller.addestac=async (req,res)=> {
         }
     }
 };
+controller.addzona=async (req,res)=> {
+    const {nombrezona, latitud, longitud, lat1, lon1, lat2, lon2, lat3, lon3}=req.body;
+    const zone= await Zona.findOne({nombre:nombrezona});
+    console.log(zone);
+    if (zone) {
+        req.flash('error_msg', 'Ya existe una zona delimitada');
+        res.redirect('/btnzona');
+    }
+    else {
+        const zona= new Zona({nombre:nombrezona, puntos:[{lat:latitud,lon:longitud,lat1:lat1,lon1:lon1,lat2:lat2,lon2:lon2,lat3:lat3,lon3:lon3}]});
+        await zona.save();
+        req.flash('success_msg', 'Zona registrada satisfactoriamente');
+        res.redirect('/btnzona');
+    }
+};
 //revisar si el usuario existe con el pin y matricula o cedula
 controller.pin= async (req,res)=>{
     const pin=req.body.display;
@@ -123,12 +139,24 @@ controller.alquilar= async (req,res)=>{
     //no devuelve nada, chequear eso
     if (findslot){
         const viajes = await Viaje.find({usuario:user}).lean();
+        const viajeactual = await Viajeactual.find({}).lean();
         var valor=0;
+        var valornew=0;
         if (viajes){
             for (i=0; i<viajes.length; i++) {
                 if (viajes[i].viaje > valor) {
                     valor = viajes[i].viaje;
                 }
+            }
+            if (viajeactual) {
+                for (i = 0; i < viajeactual.length; i++) {
+                    if (viajeactual[i].numeroviaje > valornew) {
+                        valornew = viajeactual[i].numeroviaje;
+                    }
+                }
+            }
+            else{
+                valornew = 1;
             }
                 const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:valor+1});
                 await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
@@ -136,18 +164,28 @@ controller.alquilar= async (req,res)=>{
                 await nalquiler.save();
                 const nviaje= new Viaje({viaje:valor+1,usuario:user,estacionorigen:estacion});
                 await nviaje.save();
-                const nviajeactual=new Viajeactual({viaje:valor+1,bike:bike,usuario:user});
+                const nviajeactual=new Viajeactual({viaje:valor+1,bike:bike,usuario:user, numeroviaje:valornew+1});
                 await nviajeactual.save();
             }
 
         else {
+            if (viajeactual) {
+                for (i = 0; i < viajeactual.length; i++) {
+                    if (viajeactual[i].numeroviaje > valornew) {
+                        valornew = viajeactual[i].numeroviaje;
+                    }
+                }
+            }
+            else{
+                valornew = 1;
+            }
             const nalquiler=new Alquiler({user:user,estacion:estacion,slot:slotestado,bike:bike,viaje:1});
             await Slotestado.findOneAndUpdate({_id:idslot},{estado: 'disponible'});
             await Bici.findOneAndUpdate({_id:idbike},{estado:'ocupado'});
             await nalquiler.save();
             const nviaje= new Viaje({viaje:1,usuario:user,estacionorigen:estacion});
             await nviaje.save();
-            const nviajeactual=new Viajeactual({viaje:1,bike:bike,usuario:user});
+            const nviajeactual=new Viajeactual({viaje:1,bike:bike,usuario:user,numeroviaje:valornew+1});
             await nviajeactual.save();
         }
         req.flash('success_msg', 'Alquiler realizado satisfactoriamente');

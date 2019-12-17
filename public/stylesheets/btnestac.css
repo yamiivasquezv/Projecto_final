@@ -115,6 +115,18 @@ Sidebar Nav
         flex-wrap: wrap;
         justify-content: center;
     }
+    div.contenedorocho{
+        width: 800px;
+        height: 600px;
+        display: flex;
+        padding: 5px;
+        margin-left: 300px;
+        margin-right: auto;
+        margin-top: 0px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     div.contenedorseis {
         width: 800px;
         height: 400px;

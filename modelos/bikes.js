@@ -6,7 +6,8 @@ const  bikeSchema= new Schema({
     ident:{type: String, required:false},
     rfid: {type: String, required:false},
     fechadq: {type: Date, required:false},
-    estado: {type: String, required:false}
+    estado: {type: String, required:false},
+    zona: {type: String, required:false}
 });
 
 module.exports= mongoose.model('bicicleta',bikeSchema);

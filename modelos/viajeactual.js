@@ -3,6 +3,7 @@ const {Schema}=mongoose;
 
 //Esquema de las estaciones
 const  viajeactual= new Schema({
+    numeroviaje:{type: Number, required:true},
     viaje:{type: Number, required:true},
     bike:{type: String, required:false},
     usuario:{type: String, required:true},
