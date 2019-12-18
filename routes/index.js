@@ -251,10 +251,63 @@ function inside(point,vs) {
 async function updatebicicleta(result,id) {
     var nombre=id;
     if (result == false) {
-        const bici = await Bici.findOneAndUpdate({ident: nombre}, {zona: 'Afuera de zona'});
-        exports.sendEmail();
+           const bici=await Bici.findOne({ident:nombre});
+           var estadopasado=bici.zonapasada;
+           var estadoactual=bici.zonaactual;
+           console.log('El estado actual '+estadoactual);
+           console.log('El estado pasado '+estadopasado);
+
+            if((estadopasado===' ')&&(estadoactual===' ')){
+              const n=await Bici.findOneAndUpdate({ident:nombre},{zona:'Fuera de zona',zonapasada:'no',zonaactual:'fuera'});
+              n.save();
+              exports.sendEmail();
+            }
+            else if((estadopasado=='no')&&(estadoactual=='fuera')){
+               const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
+               n.save();
+            }
+            else if ((estadopasado=='fuera')&&(estadoactual=='fuera')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
+                n.save();
+            }
+            else if((estadopasado=='dentro')&&(estadoactual=='fuera')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
+                n.save();
+                exports.sendEmail();
+            }
+            else{
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
+                n.save();
+            }
     }
-}
+    else if(result==true){
+            const bici=await Bici.findOne({ident:nombre});
+            var estadopasado=bici.zonapasada;
+            var estadoactual=bici.zonaactual;
+            if((estadopasado==' ')&&(estadoactual==' ')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:'no',zonaactual:'dentro'});
+                n.save();
+                exports.sendEmail();
+            }
+            else if((estadopasado=='no')&&(estadoactual=='dentro')){
+               const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
+               n.save();
+            }
+            else if ((estadopasado=='dentro')&&(estadoactual=='dentro')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
+                n.save();
+            }
+            else if ((estadopasado=='fuera')&&(estadoactual=='dentro')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
+                n.save();
+                exports.sendEmail();
+            }
+            else{
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
+                n.save();
+            }
+    }
+};
 exports.sendEmail = function(req, res){
     var transporter = nodemailer.createTransport({
         service: 'Hotmail',

@@ -57,7 +57,7 @@ controller.addbici=async (req,res)=> {
             req.flash('error_msg', 'No se pudo registrar, bicicleta existe');
             res.redirect('/btnbici');
         } else {
-            const nbike = new Bici({ident, rfid, fechadq});
+            const nbike = new Bici({ident, rfid, fechadq,zonaactual:' ' ,zonapasada:' '});
             await nbike.save();
             req.flash('success_msg', 'Bicicleta registrada satisfactoriamente');
             res.redirect('/btnbici');
