@@ -1,4 +1,4 @@
-var hostname ="10.129.0.118";
+var hostname ="10.0.0.21";
 var port = 9001;
 var clientId = "vilma";
 //var clientId = user._id;
@@ -6,16 +6,13 @@ var clientId = "vilma";
 clientId += new Date().getUTCMilliseconds();
 //var username = "webclient";
 //var password = "Super$icher123";
-
 var subscription = "candado/+/set";
 //var subscription = "hola";
-
 mqttClient = new Paho.MQTT.Client(hostname, port, clientId);
 mqttClient.qos=3;
 mqttClient.onMessageArrived = MessageArrived;
 mqttClient.onConnectionLost = ConnectionLost;
 Connect();
-
 /*Initiates a connection to the MQTT broker*/
 function Connect(){
     mqttClient.connect({

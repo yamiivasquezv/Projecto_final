@@ -18,8 +18,13 @@ router.get('/', function(req, res) {
     res.render('home', { title: 'Express' });
 });
 router.get('/viajesuser', async function (req, res) {
-    const viajes=await Viaje.find({});
-    res.render('viajesuser', {viajes});
+    try {
+        const viajes = await Viaje.find({});
+        res.render('viajesuser', {viajes});
+    } catch (error) {
+    console.error(error);
+    res.status(500).send('Oops..');
+    }
 });
 router.get('/home', function(req, res) {
     res.render('home', { title: 'Express' });
@@ -31,9 +36,14 @@ router.get('/alquilar', function (req, res) {
     res.render('pin', { title: 'Express' });
 });
 router.get('/administrar', async function (req, res) {
-    const puntos = await Point.find({}).lean();
-    const bicis = await Bici.find({}).lean();
-    res.render('administrar', {puntos,bicis});
+    try{
+        const puntos = await Point.find({}).lean();
+        const bicis = await Bici.find({}).lean();
+        res.render('administrar', {puntos,bicis});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
 });
 router.get('/login', function(req, res) {
     res.render('usuarios', { title: 'Express' });
@@ -121,6 +131,7 @@ router.get('/ubicacion', async function (req, res) {
 router.get('/viaje', async function (req, res) {
     try {
         const numero=req.query.viajee;
+        console.log(numero);
         const us=req.query.log;
         let viaje= await Viajeactual.find({$and:[{viaje:numero},{usuario:us}]}).lean();
         let datalanlon=[];
@@ -171,8 +182,13 @@ router.get('/btnzona', function (req, res) {
     res.render('btnzona', { title: 'Express' });
 });
 router.get('/btnusuarios', async function (req, res) {
-    const usuario = await User.find({}).lean();
-    res.render('btnusuarios', {usuario});
+    try{
+        const usuario = await User.find({}).lean();
+        res.render('btnusuarios', {usuario});
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Oops..');
+    }
 });
 router.get('/logout', isAuthenticated, function(req, res) {
     req.logout();
@@ -204,19 +220,28 @@ router.post('/crearalquiler', indexcontroller.alquilar);
 router.post('/verviaje', indexcontroller.verviaje);
 router.post('/auth', passport.authenticate('passport',{failureRedirect:'/signin', failureFlash:true}),
     async function (req, res) {
-        const usuariot= await User.find({usuario:req.body.usuario});
-        if (usuariot) {
-            if (usuariot[0].tipo == 'estudiante') {
-                res.render('homeuser');
-            } else if (usuariot[0].tipo == 'empleado') {
-                const puntos = await Point.find({}).lean();
-                const bicis = await Bici.find({}).lean();
-                res.render('administrar', {puntos,bicis});
+        try{
+            const usuariot= await User.find({usuario:req.body.usuario});
+            if (usuariot) {
+                if (usuariot[0].tipo == 'estudiante') {
+                    res.render('homeuser');
+                } else if (usuariot[0].tipo == 'administrador') {
+                    try {
+                        const puntos = await Point.find({}).lean();
+                        const bicis = await Bici.find({}).lean();
+                        res.render('administrar', {puntos,bicis});
+                    } catch (error) {
+                        console.error(error);
+                        res.status(500).send('Oops..');
+                    }
+                }
             }
+        }catch (error) {
+            console.error(error);
+            res.status(500).send('Oops..');
         }
     }
 );
-
 setInterval(async function () {
     let puntos=await Point.find({}).lean();
     let zona= await Zona.findOne({nombre:'zona'}).lean();
@@ -230,6 +255,7 @@ setInterval(async function () {
     let aux4 = [zona.puntos[0].lat3, zona.puntos[0].lon3];
     datazona.push(aux4);
     for (var i=0; i<puntos.length; i++) {
+
         var result=inside(puntos[i].punto,datazona);
         updatebicicleta(result,puntos[i].patron_id);
     }
@@ -254,8 +280,8 @@ async function updatebicicleta(result,id) {
            const bici=await Bici.findOne({ident:nombre});
            var estadopasado=bici.zonapasada;
            var estadoactual=bici.zonaactual;
-           console.log('El estado actual '+estadoactual);
-           console.log('El estado pasado '+estadopasado);
+           // console.log('El estado actual '+estadoactual);
+           // console.log('El estado pasado '+estadopasado);
 
             if((estadopasado===' ')&&(estadoactual===' ')){
               const n=await Bici.findOneAndUpdate({ident:nombre},{zona:'Fuera de zona',zonapasada:'no',zonaactual:'fuera'});
@@ -270,20 +296,27 @@ async function updatebicicleta(result,id) {
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
                 n.save();
             }
+            else if ((estadopasado=='dentro')&&(estadoactual=='dentro')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
+                n.save();
+            }
             else if((estadopasado=='dentro')&&(estadoactual=='fuera')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
                 n.save();
                 exports.sendEmail();
             }
-            else{
+            else if((estadopasado=='fuera')&&(estadoactual=='dentro')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
                 n.save();
+                exports.sendEmail();
             }
     }
     else if(result==true){
             const bici=await Bici.findOne({ident:nombre});
             var estadopasado=bici.zonapasada;
             var estadoactual=bici.zonaactual;
+            // console.log('El estado actual '+estadoactual);
+            // console.log('El estado pasado '+estadopasado);
             if((estadopasado==' ')&&(estadoactual==' ')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:'no',zonaactual:'dentro'});
                 n.save();
@@ -302,30 +335,40 @@ async function updatebicicleta(result,id) {
                 n.save();
                 exports.sendEmail();
             }
-            else{
+            else if ((estadopasado=='fuera')&&(estadoactual=='fuera')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
                 n.save();
             }
+            else if ((estadopasado=='dentro')&&(estadoactual=='fuera')){
+                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
+                n.save();
+                exports.sendEmail();
+            }
     }
 };
-exports.sendEmail = function(req, res){
+exports.sendEmail = async function (req, res) {
+    let admin = await User.find({tipo: 'administrador'});
+    let administradores = [];
+    for (var i=0;i<admin.length;i++) {
+        let aux1 = [admin[i].correo,];
+        administradores.push(aux1);
+    }
+    // console.log(administradores);
     var transporter = nodemailer.createTransport({
         service: 'Hotmail',
         auth: {
-            user: 'vilmani12@hotmail.com',
-            pass: 'vnvspucmm123'
+            user: 'sistemasaabi@hotmail.com',
+            pass: 'Sistema1234'
         }
     });
-// Definimos el email
     var mailOptions = {
-        from: 'SAABI',
-        to: '20141701@ce.pucmm.edu.do',
+        from: 'sistemasaabi@hotmail.com',
+        to: administradores,
         subject: 'ALERTA: Bicicleta fuera de Zona',
         text: 'Se ha detectado que la bicicleta ... está fuera de la Zona establecida'
     };
-// Enviamos el email
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error){
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
             console.log(error);
             res.send(500, err.message);
         } else {

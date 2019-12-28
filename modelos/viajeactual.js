@@ -10,6 +10,8 @@ const  viajeactual= new Schema({
     puntos:[{
         lat: Number,
         lon: Number
-    }]
+    }],
+    fechafin:{type: Date, required:false},
+    estaciondestino: {type: String, required:false}
 });
 module.exports=mongoose.model('viajeactual',viajeactual);

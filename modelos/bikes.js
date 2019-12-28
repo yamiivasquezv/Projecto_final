@@ -9,7 +9,8 @@ const  bikeSchema= new Schema({
     estado: {type: String, required:false},
     zona: {type: String, required:false},
     zonaactual: {type: String, required:false},
-    zonapasada: {type: String, required:false}
+    zonapasada: {type: String, required:false},
+    giro:{type: Number, required:false}
 });
 
 module.exports= mongoose.model('bicicleta',bikeSchema);

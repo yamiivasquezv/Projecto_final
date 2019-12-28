@@ -104,11 +104,13 @@
                     // habilitamos
                     document.getElementById("mat").disabled = false;
                     document.getElementById("cbox2").disabled = true;
+                    document.getElementById("cbox3").disabled = true;
 
                 } else if (value === false) {
                     // deshabilitamos
                     document.getElementById("mat").disabled = true;
                     document.getElementById("cbox2").disabled = false;
+                    document.getElementById("cbox3").disabled = false;
                 }
             }
             else if (id==="cbox2"){
@@ -116,13 +118,30 @@
                     document.getElementById("ced").disabled=false;
                     document.getElementById("email").disabled=false;
                     document.getElementById("cbox1").disabled = true;
+                    document.getElementById("cbox3").disabled = true;
                     document.getElementById("mat").disabled = true;
 
                 }else if(value===false){
                     document.getElementById("ced").disabled=true;
-                    document.getElementById("email" +
-                        "..").disabled=true;
+                    document.getElementById("email").disabled=true;
                     document.getElementById("cbox1").disabled = false;
+                    document.getElementById("cbox3").disabled = false;
+                    document.getElementById("mat").disabled = true;
+                }
+            }
+            else if (id==="cbox3"){
+                if (value===true){
+                    document.getElementById("ced").disabled=false;
+                    document.getElementById("email").disabled=false;
+                    document.getElementById("cbox1").disabled = true;
+                    document.getElementById("cbox2").disabled = true;
+                    document.getElementById("mat").disabled = true;
+
+                }else if(value===false){
+                    document.getElementById("ced").disabled=true;
+                    document.getElementById("email").disabled=true;
+                    document.getElementById("cbox1").disabled = false;
+                    document.getElementById("cbox2").disabled = false;
                     document.getElementById("mat").disabled = true;
                 }
             }

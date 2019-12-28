@@ -9,6 +9,7 @@ const Viaje=require('../modelos/viaje');
 const Viajeactual=require('../modelos/viajeactual');
 const Zona=require('../modelos/zona');
 const controller={};
+const Point=require('../modelos/point');
 
 //agregar un usuario
 controller.add=async (req,res)=> {
@@ -29,6 +30,14 @@ controller.add=async (req,res)=> {
             res.redirect('/signin');
         }
         else if(req.body.tipo==="empleado"){
+            const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, correo, tipo, usuario, contrasena, pin, cedula});
+            nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
+            nusuario.pin= await nusuario.encryptPin(req.body.pin);
+            await nusuario.save();
+            req.flash('success_msg','Usuario registrado satisfactoriamente');
+            res.redirect('/signin');
+        }
+        else if(req.body.tipo==="administrador"){
             const nusuario=new User({primername, segundoname, primerapellido, segundoapellido, correo, tipo, usuario, contrasena, pin, cedula});
             nusuario.contrasena= await nusuario.encryptPassword(req.body.contrasena);
             nusuario.pin= await nusuario.encryptPin(req.body.pin);
@@ -58,7 +67,9 @@ controller.addbici=async (req,res)=> {
             res.redirect('/btnbici');
         } else {
             const nbike = new Bici({ident, rfid, fechadq,zonaactual:' ' ,zonapasada:' '});
+            const point=new Point({patron_id:ident,marker:ident});
             await nbike.save();
+            await point.save();
             req.flash('success_msg', 'Bicicleta registrada satisfactoriamente');
             res.redirect('/btnbici');
         }

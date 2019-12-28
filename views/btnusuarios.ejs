@@ -62,6 +62,17 @@
                                     <td><%=usuario.correo%></td>
                                 </tr>
                             <%}%>
+                            <%if (usuario.tipo=='administrador'){%>
+                                <tr class='table-success'>
+                                    <td><%=usuario.primername%></td>
+                                    <td><%=usuario.primerapellido%></td>
+                                    <td><%=usuario.tipo%></td>
+                                    <td>N/A</td>
+                                    <td><%=usuario.cedula%></td>
+                                    <td><%=usuario.usuario%></td>
+                                    <td><%=usuario.correo%></td>
+                                </tr>
+                            <%}%>
                         <%})%>
                     </tbody>
                 </table>
