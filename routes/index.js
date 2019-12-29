@@ -175,6 +175,7 @@ router.get('/btnalquileres', async function (req, res) {
     }
 });
 router.get('/homeuser', function (req, res) {
+    res.render('homeuser', { title: 'Express' });
 });
 router.get('/btnrutas', function (req, res) {
     res.render('btnrutas', { title: 'Express' });
