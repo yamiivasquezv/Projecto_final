@@ -23,7 +23,8 @@ router.get('/viajesuser', async function (req, res) {
         res.render('viajesuser', {viajes});
     } catch (error) {
     console.error(error);
-    res.status(500).send('Oops..');
+    res.
+    status(500).send('Oops..');
     }
 });
 router.get('/home', function(req, res) {
@@ -286,7 +287,7 @@ async function updatebicicleta(result,id) {
             if((estadopasado===' ')&&(estadoactual===' ')){
               const n=await Bici.findOneAndUpdate({ident:nombre},{zona:'Fuera de zona',zonapasada:'no',zonaactual:'fuera'});
               n.save();
-              exports.sendEmail();
+              mensaje1(n.ident);
             }
             else if((estadopasado=='no')&&(estadoactual=='fuera')){
                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
@@ -303,12 +304,12 @@ async function updatebicicleta(result,id) {
             else if((estadopasado=='dentro')&&(estadoactual=='fuera')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
                 n.save();
-                exports.sendEmail();
+                mensaje1(n.ident);
             }
             else if((estadopasado=='fuera')&&(estadoactual=='dentro')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Fuera de zona',zonapasada:estadoactual,zonaactual:'fuera'});
                 n.save();
-                exports.sendEmail();
+                mensaje1(n.ident);
             }
     }
     else if(result==true){
@@ -320,7 +321,7 @@ async function updatebicicleta(result,id) {
             if((estadopasado==' ')&&(estadoactual==' ')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:'no',zonaactual:'dentro'});
                 n.save();
-                exports.sendEmail();
+                mensaje2(n.ident);
             }
             else if((estadopasado=='no')&&(estadoactual=='dentro')){
                const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
@@ -333,7 +334,7 @@ async function updatebicicleta(result,id) {
             else if ((estadopasado=='fuera')&&(estadoactual=='dentro')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
                 n.save();
-                exports.sendEmail();
+                mensaje2(n.ident);
             }
             else if ((estadopasado=='fuera')&&(estadoactual=='fuera')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
@@ -342,14 +343,15 @@ async function updatebicicleta(result,id) {
             else if ((estadopasado=='dentro')&&(estadoactual=='fuera')){
                 const n=await Bici.findOneAndUpdate({ident:nombre},{zona: 'Dentro de zona',zonapasada:estadoactual,zonaactual:'dentro'});
                 n.save();
-                exports.sendEmail();
+                mensaje2(n.ident);
             }
     }
 };
-exports.sendEmail = async function (req, res) {
+async function mensaje1(nombre) {
+    var name=nombre;
     let admin = await User.find({tipo: 'administrador'});
     let administradores = [];
-    for (var i=0;i<admin.length;i++) {
+    for (var i = 0; i < admin.length; i++) {
         let aux1 = [admin[i].correo,];
         administradores.push(aux1);
     }
@@ -365,7 +367,7 @@ exports.sendEmail = async function (req, res) {
         from: 'sistemasaabi@hotmail.com',
         to: administradores,
         subject: 'ALERTA: Bicicleta fuera de Zona',
-        text: 'Se ha detectado que la bicicleta ... está fuera de la Zona establecida'
+        text: 'Se ha detectado que la bicicleta '+name+' está fuera de la Zona establecida'
     };
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -376,5 +378,37 @@ exports.sendEmail = async function (req, res) {
             res.status(200).jsonp(req.body);
         }
     });
-};
+}
+async function mensaje2(nombre) {
+    var name=nombre;
+    let admin = await User.find({tipo: 'administrador'});
+    let administradores = [];
+    for (var i = 0; i < admin.length; i++) {
+        let aux1 = [admin[i].correo,];
+        administradores.push(aux1);
+    }
+    // console.log(administradores);
+    var transporter = nodemailer.createTransport({
+        service: 'Hotmail',
+        auth: {
+            user: 'sistemasaabi@hotmail.com',
+            pass: 'Sistema1234'
+        }
+    });
+    var mailOptions = {
+        from: 'sistemasaabi@hotmail.com',
+        to: administradores,
+        subject: 'Bicicleta Dentro de Zona',
+        text: 'Se ha detectado que la bicicleta '+name+' ya se encuentra dentro de la Zona establecida'
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+            res.send(500, err.message);
+        } else {
+            console.log("Email sent");
+            res.status(200).jsonp(req.body);
+        }
+    });
+}
 module.exports = router;
