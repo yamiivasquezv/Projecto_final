@@ -10,7 +10,6 @@ const Viajeactual=require('../modelos/viajeactual');
 const Zona=require('../modelos/zona');
 const controller={};
 const Point=require('../modelos/point');
-
 //agregar un usuario
 controller.add=async (req,res)=> {
     const {primername, segundoname, primerapellido, segundoapellido, tipo, correo, usuario, contrasena, pin, matricula,cedula}=req.body;

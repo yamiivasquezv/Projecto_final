@@ -31,8 +31,8 @@
                         <th scope="col">Viaje</th>
                         <th scope="col">Usuario</th>
                         <th scope="col">Estación origen</th>
-                        <th scope="col">Estación destino</th>
                         <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Estación destino</th>
                         <th scope="col">Fecha Fin</th>
                     </tr>
                     </thead>
@@ -42,9 +42,11 @@
                             <td><%=viaje.viaje %></td>
                             <td><%=viaje.usuario %></td>
                             <td><%=viaje.estacionorigen %></td>
-                            <td><%=viaje.estaciondestino %></td>
                             <td><%=viaje.fechainicio %></td>
-                            <td><%=viaje.fechafin %></td>
+                            <%if (viaje.viaje==viajeact.numeroviaje){%>
+                                <td><%=viajeact.estaciondestino%></td>
+                                <td><%=viajeact.fechafin %></td>
+                            <%}%>
                         </tr>
                     <%})%>
                     </tbody>
@@ -71,8 +73,8 @@
                 '<th scope=\'col\'>Viaje</th>'+
                 '<th scope=\'col\'>Usuario</th>'+
                 '<th scope=\'col\'>Estación origen</th>'+
-                '<th scope=\'col\'>Estación destino</th>'+
                 '<th scope=\'col\'>Fecha Inicio</th>'+
+                '<th scope=\'col\'>Estación destino</th>'+
                 '<th scope=\'col\'>Fecha Fin</th>'+
                 '</tr>'+
                 '</thead>'+'<tbody>';
@@ -82,8 +84,8 @@
                     '<td>' + element.viaje + '</td>' +
                     '<td>' + element.usuario + '</td>' +
                     '<td>' + element.estacionorigen + '</td>' +
-                    '<td>' + element.estaciondestino + '</td>' +
                     '<td>' + element.fechainicio + '</td>' +
+                    '<td>' + element.estaciondestino + '</td>' +
                     '<td>' + element.fechafin + '</td>' +
                     '</tr>';
             });

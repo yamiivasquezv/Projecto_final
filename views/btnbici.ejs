@@ -38,6 +38,7 @@
                         <th scope="col">Fecha de adquisición</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Zona</th>
+                        <th scope="col">Posición</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,6 +50,12 @@
                                 <td id="fechadq"><%= bicis.fechadq %></td>
                                 <td id="estado"><%= bicis.estado %></td>
                                 <td id="zona"><%= bicis.zonaactual%></td>
+                                <% if (bicis.giro===1) {%>
+                                    <td id="giro">Normal</td>
+                                <%}%>
+                                <% if (bicis.giro===0) {%>
+                                    <td id="giro">Suelo</td>
+                                <%}%>
                             </tr>
                         <%}%>
                         <% if (bicis.estado==="ocupado") {%>
@@ -58,6 +65,12 @@
                                 <td><%=bicis.fechadq%></td>
                                 <td><%=bicis.estado%></td>
                                 <td><%=bicis.zonaactual%></td>
+                                <% if (bicis.giro===1) {%>
+                                    <td>Normal</td>
+                                <%}%>
+                                <% if (bicis.giro===0) {%>
+                                    <td>Suelo</td>
+                                <%}%>
                             </tr>
                         <%}%>
                         <% if (!bicis.estado){%>
@@ -67,6 +80,12 @@
                                 <td><%=bicis.fechadq%></td>
                                 <td><%=bicis.estado%></td>
                                 <td><%=bicis.zonaactual%></td>
+                                <% if (bicis.giro===1) {%>
+                                    <td>Normal</td>
+                                <%}%>
+                                <% if (bicis.giro===0) {%>
+                                    <td>Suelo</td>
+                                <%}%>
                             </tr>
                         <%}%>
                     <%})%>
@@ -96,6 +115,7 @@
             '<th scope=\'col\'>Fecha de adquisición</th>'+
             '<th scope=\'col\'>Estado</th>'+
             '<th scope=\'col\'>Zona</th>'+
+            '<th scope=\'col\'>Posición</th>'+
             '</tr>'+
             '</thead>'+'<tbody>';
         bikes.forEach(element => {
@@ -106,8 +126,19 @@
                     '<td id=\'rfid\'>' + element.rfid + '</td>' +
                     '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
                     '<td id=\'estado\'>' + element.estado + '</td>' +
-                    '<td id=\'zona\'>' + element.zonaactual + '</td>' +
-                    '</tr>';
+                    '<td id=\'zona\'>' + element.zonaactual + '</td>'
+                if (element.giro===1) {
+                     document.getElementById("turealamiga").innerHTML +=
+                     '<tr class=\'table-success\'>' +
+                     '<td id=\'giro\'>Normal</td>'+
+                     '</tr>';
+                }
+                if (element.giro===0) {
+                     document.getElementById("turealamiga").innerHTML +=
+                     '<tr class=\'table-success\'>' +
+                     '<td id=\'giro\'>Suelo</td>'+
+                     '</tr>';
+                }
             }
             else if (element.estado==="ocupado") {
                 document.getElementById("turealamiga").innerHTML +=
@@ -116,7 +147,17 @@
                     '<td id=\'rfid\'>' + element.rfid + '</td>' +
                     '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
                     '<td id=\'estado\'>' + element.estado + '</td>' +
-                    '<td id=\'zona\'>' + element.zonaactual + '</td>' +
+                    '<td id=\'zona\'>' + element.zonaactual + '</td>'
+                    if (element.giro===1) {
+                        document.getElementById("turealamiga").innerHTML +=
+                            '<tr class=\'table-warning\'>' +
+                            '<td id=\'giro\'>Normal</td>'
+                    }
+                    if (element.giro===0) {
+                        document.getElementById("turealamiga").innerHTML +=
+                            '<tr class=\'table-warning\'>' +
+                            '<td id=\'giro\'>Suelo</td>'
+                    }
                     '</tr>';
             }
             else {
@@ -126,7 +167,17 @@
                     '<td id=\'rfid\'>' + element.rfid + '</td>' +
                     '<td id=\'fechadq\'>' + element.fechadq + '</td>' +
                     '<td id=\'estado\'>' + element.estado + '</td>' +
-                    '<td id=\'zona\'>' + element.zonaactual + '</td>' +
+                    '<td id=\'zona\'>' + element.zonaactual + '</td>'
+                    if (element.giro===1) {
+                        document.getElementById("turealamiga").innerHTML +=
+                            '<tr class=\'table-primary\'>' +
+                            '<td id=\'giro\'>Normal</td>'
+                    }
+                    if (element.giro===0) {
+                        document.getElementById("turealamiga").innerHTML +=
+                            '<tr class=\'table-primary\'>' +
+                            '<td id=\'giro\'>Suelo</td>'
+                    }
                     '</tr>';
             }
         });

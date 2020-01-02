@@ -23,8 +23,7 @@ router.get('/viajesuser', async function (req, res) {
         res.render('viajesuser', {viajes});
     } catch (error) {
     console.error(error);
-    res.
-    status(500).send('Oops..');
+    res.status(500).send('Oops..');
     }
 });
 router.get('/home', function(req, res) {
@@ -36,7 +35,7 @@ router.get('/signin', function(req, res) {
 router.get('/alquilar', function (req, res) {
     res.render('pin', { title: 'Express' });
 });
-router.get('/administrar', async function (req, res) {
+router.get('/administrar',isAuthenticated, async function (req, res) {
     try{
         const puntos = await Point.find({}).lean();
         const bicis = await Bici.find({}).lean();
@@ -108,7 +107,7 @@ router.get('/updatezona', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
-router.get('/puntobici', async function (req, res) {
+router.get('/puntobici',  async function (req, res) {
     try {
         const puntos= await Point.find({}).lean();
         let puntojson = JSON.stringify(puntos);
@@ -129,7 +128,7 @@ router.get('/ubicacion', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
-router.get('/viaje', async function (req, res) {
+router.get('/viaje', isAuthenticated, async function (req, res) {
     try {
         const numero=req.query.viajee;
         console.log(numero);
@@ -147,7 +146,7 @@ router.get('/viaje', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
-router.get('/btnestac', async function (req, res) {
+router.get('/btnestac', isAuthenticated, async function (req, res) {
     try {
         const estacion = await Estacion.find({}).lean();
         res.render('btnestac', {estacion});
@@ -156,16 +155,17 @@ router.get('/btnestac', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
-router.get('/btnviajes', async function (req, res) {
+router.get('/btnviajes', isAuthenticated, async function (req, res) {
     try {
         const viaje = await Viaje.find({}).lean();
-        res.render('btnviajes', {viaje});
+        const viajeact = await Viajeactual.find({}).lean();
+        res.render('btnviajes', {viaje,viajeact});
     } catch (error) {
         console.error(error);
         res.status(500).send('Oops..');
     }
 });
-router.get('/btnalquileres', async function (req, res) {
+router.get('/btnalquileres', isAuthenticated, async function (req, res) {
     try {
         const alq = await Alquiler.find({}).lean();
         res.render('btnalquileres', {alq});
@@ -174,16 +174,16 @@ router.get('/btnalquileres', async function (req, res) {
         res.status(500).send('Oops..');
     }
 });
-router.get('/homeuser', function (req, res) {
+router.get('/homeuser', isAuthenticated, function (req, res) {
     res.render('homeuser', { title: 'Express' });
 });
-router.get('/btnrutas', function (req, res) {
+router.get('/btnrutas',isAuthenticated, function (req, res) {
     res.render('btnrutas', { title: 'Express' });
 });
-router.get('/btnzona', function (req, res) {
+router.get('/btnzona', isAuthenticated, function (req, res) {
     res.render('btnzona', { title: 'Express' });
 });
-router.get('/btnusuarios', async function (req, res) {
+router.get('/btnusuarios', isAuthenticated, async function (req, res) {
     try{
         const usuario = await User.find({}).lean();
         res.render('btnusuarios', {usuario});
